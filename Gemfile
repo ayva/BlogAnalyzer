@@ -4,7 +4,18 @@ ruby '2.2.2'
 
 gem 'mechanize'
 gem 'git-hooks'
+
 gem 'httparty'
+
+
+# Angular
+gem 'angularjs-rails'
+gem 'angular_rails_csrf'
+
+# Bootstrap
+gem "twitter-bootstrap-rails"
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
 # Use postgres as the database for Active Record
@@ -51,8 +62,6 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'rspec-rails'
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'shoulda-matchers'
-
 
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
   gem 'better_errors'
@@ -62,5 +71,6 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'puma'
 end
 

@@ -13,4 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+
+//= require twitter/bootstrap
+
+//= require angular/angular.min
+//= require angular-ui-router/release/angular-ui-router.min
+//= require angular-bootstrap/ui-bootstrap.min
+
+//= require lodash/lodash.min
+//= require restangular/dist/restangular.min
+
 //= require_tree .

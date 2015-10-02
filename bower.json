@@ -1,0 +1,27 @@
+{
+  "name": "Blog-Analyzer",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ayva/BlogAnalyzer",
+  "authors": [
+    "(Olga Ayvazyan)",
+    "(David Meza)",
+    "(Nick Sarlo)"
+  ],
+  "description": "Find bloggers with the best grammar",
+  "main": "README",
+  "moduleType": [],
+  "keywords": [
+    "blog-analyzer"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}

@@ -12,8 +12,12 @@ bg = angular.module('bg', ['restangular', 'ui.router', 'ui.bootstrap'])
             templateUrl: 'templates/partials/navbar.html'
           },
 
+          'header': {
+            templateUrl: 'templates/partials/header.html',
+          },
+
           'content': {
-            templateUrl: 'templates/partials/content.html'
+            templateUrl: 'templates/partials/content.html',
           },
 
           'footer': {

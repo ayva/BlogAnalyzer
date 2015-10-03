@@ -165,6 +165,7 @@ GEM
     mime-types (2.6.2)
     mini_portile (0.6.2)
     minitest (5.8.1)
+    modernizr-rails (2.7.1)
     multi_json (1.11.2)
     nenv (0.2.0)
     net-http-digest_auth (1.4)
@@ -333,6 +334,7 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   mechanize
+  modernizr-rails
   pg
   puma
   rails (= 4.2.3)

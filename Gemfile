@@ -5,6 +5,8 @@ ruby '2.2.2'
 gem 'mechanize'
 gem 'git-hooks'
 
+gem 'modernizr-rails'
+
 # Angular
 gem 'angularjs-rails'
 gem 'angular_rails_csrf'

@@ -1,6 +1,9 @@
 require "mechanize"
+require "grammarly.rb"
 
 class MediumScraper
+
+  include GrammarCheck
 
   attr_reader :post_urls
 
@@ -42,6 +45,18 @@ class MediumScraper
 
     content = parse_content(body)
     author_url = page.search('//*[@id="prerendered"]/article/header/div/div[1]/div/div[2]/a')[0].attributes["href"].text
+    author = scrape_author_info(author_url)
+    post = Post.find_or_create_by(post_url: url,
+                                  author_id: author.id)
+    errors = check_errors(content.join(" "))
+
+    errors.each do |error|
+      group = Group.find_or_create_by(name: error["group"])
+      hint = Hint.find_or_create_by(title: error["title"],
+                                    group_id: group.id)
+      Posthint.find_or_create_by(post_id: post.id,
+                                 hint_id: hint.id)
+    end
 
 
   end
@@ -55,16 +70,16 @@ class MediumScraper
   end
 
   def scrape_author_info(author_url)
-    page = agent.get(author_url)
+    page = @agent.get(author_url)
 
     url = author_url
     name = page.search('//*[@id="prerendered"]/div[2]/div/header/h1').text
     img = page.search('//*[@id="prerendered"]/div[2]/div/header/div[1]/div[2]/img')[0].attributes["src"].text
-    new_author = Author.find_or_create_by(name: name,
+    new_author = Author.find_or_create_by(full_name: name,
+                                          nickname: name,
                                           blog_url: url,
                                           author_pic: img)
   end
 
 
-  end
 end

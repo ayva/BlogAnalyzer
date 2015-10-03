@@ -5,7 +5,10 @@ ruby '2.2.2'
 gem 'mechanize'
 gem 'git-hooks'
 
+
 gem 'modernizr-rails'
+
+gem 'httparty'
 
 # Angular
 gem 'angularjs-rails'
@@ -13,6 +16,7 @@ gem 'angular_rails_csrf'
 
 # Bootstrap
 gem "twitter-bootstrap-rails"
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'

@@ -8,7 +8,9 @@ gem 'git-hooks'
 
 gem 'modernizr-rails'
 
+#Work with API
 gem 'httparty'
+gem 'oauth'
 
 # Angular
 gem 'angularjs-rails'
@@ -16,6 +18,8 @@ gem 'angular_rails_csrf'
 
 # Bootstrap
 gem "twitter-bootstrap-rails"
+
+
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

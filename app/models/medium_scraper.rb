@@ -43,7 +43,7 @@ class MediumScraper
     page = @agent.get(url)
 
     title = page.search('//*[@id="71bc"]').text
-    body = page.search('//*[@id="prerendered"]/article/main/section/div[2]/div[1]')
+    body = page.search("div[@class='section-content']").search("p")
 
     content = parse_content(body)
     author_url = page.search('//*[@id="prerendered"]/article/header/div/div[1]/div/div[2]/a')[0].attributes["href"].text
@@ -70,7 +70,7 @@ class MediumScraper
 
   def parse_content(content)
     parsed_content = []
-    content[0].children.each do |p|
+    content.each do |p|
       p p.text
       parsed_content << p.text
     end

@@ -17,6 +17,7 @@
 //= require twitter/bootstrap
 
 //= require angular/angular.min
+//= require angular-animate
 //= require angular-ui-router/release/angular-ui-router.min
 //= require angular-bootstrap/ui-bootstrap.min
 

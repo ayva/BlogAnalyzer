@@ -50,20 +50,23 @@ class MediumScraper
     author = scrape_author_info(author_url)
 
     word_count = content.split.size
-    post = Post.find_or_create_by(post_url: url,
-                                  author_id: author.id,
-                                  word_count: word_count)
-    errors = check_errors(content)
 
-    errors.each do |error|
-      group = Group.find_or_create_by(name: error["group"])
-      hint = Hint.find_or_create_by(title: error["title"],
-                                    group_id: group.id)
-      Posthint.find_or_create_by(post_id: post.id,
-                                 hint_id: hint.id)
+    unless Post.where(post_url: url) > 0
+      post = Post.find_or_create_by(post_url: url,
+                                    author_id: author.id,
+                                    word_count: word_count)
+      errors = check_errors(content)
+
+      errors.each do |error|
+        group = Group.find_or_create_by(name: error["group"])
+        hint = Hint.find_or_create_by(title: error["title"],
+                                      group_id: group.id)
+        Posthint.find_or_create_by(post_id: post.id,
+                                   hint_id: hint.id)
+      end
+
+      p content
     end
-
-    p content
 
 
   end

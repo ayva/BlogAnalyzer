@@ -35,8 +35,17 @@ html {
     color: #fff;
     border-radius: 0px;
 
+    .navbar-toggle {
+      background-color: #fff;
+
+      .icon-bar {
+        background-color: #333;
+      }
+    }
+
     a {
       color: #fff;
+      font-weight: 300;
     }
 
     li > a:hover {
@@ -92,12 +101,19 @@ header {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 5em;
-    font-weight: 200;
     color: #fff;
     z-index: 1;
     // border-top: 2px solid #fff;
     // border-bottom: 2px solid #fff;
+
+    h1 {
+      font-size: 5em;
+      font-weight: 200;
+    }
+
+    hr {
+      border-top: 1px solid #fff;
+    }
   }
 
   .fullscreen-video {
@@ -128,6 +144,27 @@ header {
     }
   }
 
+}
+
+hr.grandma-glasses:after {
+  content:"";
+  background-image: url("/images/glasses-w.png");
+  background-size: 37.5px 25px;
+  background-position: center;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  width: 45px;
+  height: 30px;
+  display: inline-block;
+  position: relative;
+  top: -1.19em;
+  font-family: FontAwesome;
+  transform: translate(50%, 0%);
+}
+
+hr.grandma-glasses {
+  margin: 25px auto 30px;
+  text-align: center;
 }
 
 .v-align-parent {

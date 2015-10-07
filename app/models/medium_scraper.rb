@@ -83,11 +83,16 @@ class MediumScraper
 
     url = author_url
     name = page.search('//*[@id="prerendered"]/div[2]/div/header/h1').text
+    username = add_username(name)
     img = page.search('//*[@id="prerendered"]/div[2]/div/header/div[1]/div[2]/img')[0].attributes["src"].text
     new_author = Author.find_or_create_by(full_name: name,
-                                          nickname: name,
+                                          username: username,
                                           blog_url: url,
                                           author_pic: img)
+  end
+
+  def add_username(name)
+    name.downcase.gsub(" ", "")
   end
 
 

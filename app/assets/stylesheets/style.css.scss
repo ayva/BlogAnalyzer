@@ -129,6 +129,13 @@ body {
   height: 50px;
   opacity: 0.8;
 }
+
+/*Blogger*/ 
+
+.elsewhere img {
+  width: 30px;
+  opacity: 0.8;
+}
 /*Icons*/
 .icon {
   position: relative;
@@ -222,12 +229,12 @@ body {
   fill: #42A5F5;
 }
 
-.icon-facebook svg {
+.icon-facebook png {
   width: 17px;
   height: 33px;
 }
 
-.icon-twitter svg {
+.icon-twitter png {
   width: 32px;
   height: 26px;
 }

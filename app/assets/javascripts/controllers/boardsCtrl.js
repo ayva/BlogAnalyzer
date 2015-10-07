@@ -8,21 +8,26 @@ grandma.controller('boardsCtrl', ['$scope', function($scope){
                         newyorktimes: 100};
 
   //Left leaderboard with today's bloggers
+  //username blogger.name.split(" ").join("").toLowerCase()
   $scope.featuredBloggers = [
                       { pic: 'https://cdn-images-1.medium.com/fit/c/120/120/1*3R6E3UiBHI5YPPZ2YPA4bg.jpeg',
                         name: 'Anna Harari',
+                        username: 'annaharari',
                         score: 99.9 },
                       { pic: 'https://cdn-images-1.medium.com/fit/c/120/120/0*B04L2Ma1UbOvo7xg.jpeg',
                         name: 'Gavin Sheridan',
+                        username: 'gavinsheridan',
                         score: 91.5}
                     ];
    //Right leaderboard with bloggers of all times
   $scope.grandmaBloggers = [
                       { pic: 'https://cdn-images-1.medium.com/fit/c/120/120/1*3R6E3UiBHI5YPPZ2YPA4bg.jpeg',
                         name: 'Anna Harari',
+                        username: 'annaharari',
                         score: 99.9 },
                       { pic: 'https://cdn-images-1.medium.com/fit/c/120/120/0*B04L2Ma1UbOvo7xg.jpeg',
                         name: 'Gavin Sheridan',
+                         username: 'gavinsheridan',
                         score: 91.5}
                     ];
     //4 bloggers at the bottom, best in a grammar group

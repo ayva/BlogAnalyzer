@@ -23,6 +23,10 @@ html {
   font-size: 18px;
 }
 
+a {
+  cursor: pointer;
+}
+
 /*Navbar*/
 .navbar-main {
   position: absolute;
@@ -30,8 +34,11 @@ html {
   z-index: 2;
   font-size: 1.2em;
 
-  nav {
+  .nav-transparent {
     background-color: transparent;
+  }
+
+  nav {
     color: #fff;
     border-radius: 0px;
 
@@ -55,27 +62,20 @@ html {
   }
 }
 
-// .navbar {
-//   position: relative;
-//   background-color: rgba(0, 0, 0, 0.7);
-//   width: 100%;
-//   border-radius: 0px;
-// }
-
-// .navbar-brand {
-//   color: #ECEDF5;
-// }
-
-// .nav li a{
-//   color: #ECEDF5;
-// }
-
 /*Header*/
 
 header {
   position: relative;
   overflow: hidden;
   height: 100%;
+
+  &.bg-fallback {
+    background-image: url("frame.jpg");
+    background-position: 50% 50%;
+    background-color: #123456;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 
   .video-gradient {
     position: absolute;
@@ -85,14 +85,6 @@ header {
     right: 0;
     top: 0;
     bottom: 0;
-  }
-
-  .bg-fallback {
-    background-image: url("frame.jpg");
-    background-position: 50% 50%;
-    background-color: #123456;
-    background-repeat: no-repeat;
-    background-size: cover;
   }
 
   .grandma-title {
@@ -114,10 +106,15 @@ header {
     hr {
       border-top: 1px solid #fff;
     }
+
+    h5 {
+      text-align: center;
+    }
   }
 
   .fullscreen-video {
     display: block;
+    // visibility: visible;
     position: absolute;
     left: 0;
     right: 0;
@@ -132,7 +129,7 @@ header {
   .counters {
     text-transform: uppercase;
     bottom: 0;
-    padding: 5%;
+    padding: 4%;
     position: absolute;
     color: #ECEDF5;
     background-color: rgba(0, 0, 0, 0.7);
@@ -142,6 +139,25 @@ header {
     .number{
       font-size: 2em;
     }
+  }
+
+  .hint-arrow {
+    -webkit-transform: translate3d(0,100px,0);
+    transform: translate3d(0,100px,0);
+    opacity: 0.6;
+    width: 40px;
+    height: 40px;
+    background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2270%22%20height%3D%2270%22%20viewBox%3D%220%200%2070%2070%22%3E%0D%0A%09%3Cpath%20fill%3D%22%23fff%22%20opacity%3D%220.21%22%20d%3D%22M35%2C2c18.196%2C0%2C33%2C14.804%2C33%2C33S53.196%2C68%2C35%2C68S2%2C53.196%2C2%2C35S16.804%2C2%2C35%2C2%20M35%2C0C15.67%2C0%2C0%2C15.67%2C0%2C35%20s15.67%2C35%2C35%2C35s35-15.67%2C35-35S54.33%2C0%2C35%2C0L35%2C0z%22/%3E%0D%0A%09%3Cpolygon%20fill-rule%3D%22evenodd%22%20fill%3D%22%23dedede%22%20points%3D%2245.107%2C34.715%2044.08%2C33%2035%2C38.455%2025.921%2C33%2024.893%2C34.715%2034.879%2C40.715%2035%2C40.513%2035.121%2C40.715%22/%3E%0D%0A%3C/svg%3E%0D%0A') 0 0 no-repeat;
+    background-size: 100%;
+    position: absolute;
+    bottom: 200px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    -webkit-transition: -webkit-transform .4s cubic-bezier(0.200, -0.020, 0.015, 0.990), opacity .3s ease-out;
+    transition: transform .4s cubic-bezier(0.200, -0.020, 0.015, 0.990), opacity .3s ease-out;
+    cursor: pointer;
+    z-index: 4;
   }
 
 }
@@ -185,31 +201,12 @@ hr.grandma-glasses {
   height: 100%;
 }
 
-@media ( min-width: 700px ) {
+@media ( max-width: 768px ) {
   .fullscreen-video  {
-    display: block;
+    visibility: hidden;
   }
 }
 
-
-.hint-arrow {
-  -webkit-transform: translate3d(0,100px,0);
-  transform: translate3d(0,100px,0);
-  opacity: .6;
-  width: 40px;
-  height: 40px;
-  background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2270%22%20height%3D%2270%22%20viewBox%3D%220%200%2070%2070%22%3E%0D%0A%09%3Cpath%20fill%3D%22%23fff%22%20opacity%3D%220.21%22%20d%3D%22M35%2C2c18.196%2C0%2C33%2C14.804%2C33%2C33S53.196%2C68%2C35%2C68S2%2C53.196%2C2%2C35S16.804%2C2%2C35%2C2%20M35%2C0C15.67%2C0%2C0%2C15.67%2C0%2C35%20s15.67%2C35%2C35%2C35s35-15.67%2C35-35S54.33%2C0%2C35%2C0L35%2C0z%22/%3E%0D%0A%09%3Cpolygon%20fill-rule%3D%22evenodd%22%20fill%3D%22%23dedede%22%20points%3D%2245.107%2C34.715%2044.08%2C33%2035%2C38.455%2025.921%2C33%2024.893%2C34.715%2034.879%2C40.715%2035%2C40.513%2035.121%2C40.715%22/%3E%0D%0A%3C/svg%3E%0D%0A') 0 0 no-repeat;
-  background-size: 100%;
-  position: absolute;
-  bottom: 30px;
-  left: 0;
-  right: 0;
-  margin: auto;
-  -webkit-transition: -webkit-transform .4s cubic-bezier(0.200, -0.020, 0.015, 0.990), opacity .3s ease-out;
-  transition: transform .4s cubic-bezier(0.200, -0.020, 0.015, 0.990), opacity .3s ease-out;
-  cursor: pointer;
-  z-index: 4;
-}
 
 /*Leaderboards*/
 

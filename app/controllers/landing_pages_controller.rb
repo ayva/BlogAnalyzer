@@ -2,7 +2,7 @@ class LandingPagesController < ApplicationController
   require 'grammarly'
   include GrammarCheck
 
-  
+
 
 
   def test
@@ -14,6 +14,7 @@ class LandingPagesController < ApplicationController
       # !!!Example how to twit in Grandma's timeline!!!
       # t = TwitterAPI.new
       # t.twit("Cheking grammar today...")
+
 
   end
 

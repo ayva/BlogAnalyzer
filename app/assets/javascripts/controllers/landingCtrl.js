@@ -1,3 +1,3 @@
-bg.controller('landingCtrl', ['$scope', function($scope) {
+grandma.controller('landingCtrl', ['$scope', function($scope) {
 
-}])
+}]);

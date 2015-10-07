@@ -4,11 +4,12 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-  root 'landing_pages#show'
+  root 'landing_pages#main'
 
 
   # Example of regular route:
-  get '/test' => 'landing_pages#index'
+  get '/test' => 'landing_pages#test'
+  
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

@@ -50,9 +50,9 @@ class TwitterAPI
     send_request(request,address)
   end
 
-  def  twit(text)
+  def  twit(name)
 
-    #  text = text || "Grandma just checked @#{name}\'s grammar on Medium, see results here #{linkToBloggerReview}!"
+    text = "Grandma just checked @#{name}\'s grammar on Medium, see results here #{linkToBloggerReview}!"
        #To post in GrandMa's timeline
     path    = "/1.1/statuses/update.json"
     address = URI("#{@baseurl}#{path}")

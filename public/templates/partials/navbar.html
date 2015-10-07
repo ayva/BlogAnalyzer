@@ -1,13 +1,17 @@
-<nav scroll class="navbar navbar-default navbar-fixed-top animate-show" ng-show = "showNav">
+<nav scroll class="navbar naar-fixed-top animate-show" ng-show = "showNav">
   <div class="container">
     <div class="navbar-header">
-      <img class="navbar-brand img-responsive" src="https://cdn0.iconfinder.com/data/icons/simple-seo-and-internet-icons/512/keyword_research-512.png">
-      <a class="navbar-brand" ui-sref="app">
-        Blog Analyzer
+
+      <img class="navbar-brand img-responsive" src="/images/glasses-w.png">
+      <a class="navbar-brand" ui-sref="main">
+        GrandmaCheck
       </a>
     </div>
-
     <ul class="nav navbar-nav navbar-right">
+      <li><a ui-sref = "leaderboards">Leaderboards</a></li>
+      <li><a ui-sref = "#">Log In</a></li>
+    </ul>
+    <!-- <ul class="nav navbar-nav navbar-right">
       <li class="dropdown" dropdown is-open="status.isopen">
         <a role="button" class="dropdown-toggle" dropdown-toggle>
           My profile <b class="caret"></b>
@@ -18,7 +22,7 @@
           <li role="menuitem"><a ui-sref = "app.user.settings">Settings</a></li>
         </ul>
       </li>
-    </ul>
+    </ul> -->
 
   </div>
 </nav>

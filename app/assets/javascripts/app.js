@@ -22,7 +22,7 @@ var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstr
       })
       .state('leaderboards', {
         url: '/leaderboards',
-        
+
         //templateUrl: 'templates/leaderboards.html'
         views: {
           '':{
@@ -34,7 +34,7 @@ var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstr
             templateUrl: 'templates/partials/navbar.html'
           }
         }
-        
+
       })
       .state('blogger', {
         url: '/blogger/:username',

@@ -1,9 +1,9 @@
 /*
   =require twitter-bootstrap-static/bootstrap
 
-  Use Font Awesome icons (default)
+  Use Font Awesome icons (require twitter-bootstrap-static/fontawesome)
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
-  =require twitter-bootstrap-static/fontawesome
+  =require twitter-bootstrap-static/sprites
   */
 .table tr {
   border: none;

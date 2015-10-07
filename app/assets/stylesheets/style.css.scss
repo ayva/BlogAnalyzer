@@ -229,9 +229,11 @@ footer {
 }
 
 table {
-  tr:first-child {
+  // tr:first-child {
+  // No lines on the tables per Olga's request
+  tr {
     td, th {
-      border-top: 0;
+      border-top: 0 !important;
     }
   }
 }

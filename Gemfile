@@ -7,6 +7,8 @@ gem 'git-hooks'
 
 gem 'bower'
 
+gem 'angular-ui-bootstrap-rails'
+
 
 gem 'modernizr-rails'
 

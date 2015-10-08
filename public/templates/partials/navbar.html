@@ -14,18 +14,28 @@
 
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <div class="col-xs-4 col-sm-4 col-md-4">
-      <form class="form-horizontal" >
-        <input class="form-control" type="text" placeholder="Find a blogger" >
 
-      </form>
-      </div>
       <ul class="nav navbar-nav navbar-right">
 
-        
         <li><a ui-sref = "leaderboards"><i class="fa fa-bar-chart-o"></i> Leaderboards</a></li>
 
       </ul>
+
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input  type="text"
+                  name = "user"
+                  required="string"
+                  typeahead="user.username for user in users | filter: {username: $viewValue } | limitTo: 8"
+                  typeahead-no-results="noResults"
+                  typeahead-append-to-body = "true"
+                  typeahead-on-select = "go($item)"
+                  placeholder = "Find a blogger"
+                  ng-model = "user"
+                  class = "form-control">
+        </div>
+        <!-- <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button> -->
+      </form>
 
     </div>
   </div>

@@ -21,7 +21,10 @@
 //= require angular-animate
 //= require angular-ui-router/release/angular-ui-router.min
 //= require angular-chart.js/dist/angular-chart.min
-//= require angular-bootstrap/ui-bootstrap.min
+
+// Bootstrap UI
+//= require angular-bootstrap/ui-bootstrap-tpls.min
+// require angular-ui-bootstrap
 
 
 

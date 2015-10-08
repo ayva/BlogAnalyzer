@@ -21,8 +21,20 @@ grandma.controller('bloggerCtrl', ['$scope', '$stateParams', 'Restangular', func
 
                   ];
 
+  $scope.charts = {
+    grammar: {
+      labels: ["Punctutation", "Style"],
+      data: [120, 130],
+    },
+    avgErrors: {
+      labels: ["Errors", "Correct Grammar"],
+      data: [5, (100 - 5)],
+    },
+    errorsPerWords: {
+      labels: ["Errors", "Correct Grammar"],
+      data: [3, (100 - 3)],
+    }
+  }
 
-  $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
-  $scope.data = [300, 500, 100];
 
 }]);

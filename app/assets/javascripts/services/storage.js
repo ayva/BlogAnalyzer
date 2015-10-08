@@ -3,7 +3,7 @@ grandma.service('storage',['Restangular', function(Restangular){
 
   obj.totals = {};
 
-  
+
   Restangular.all("authors").customGET('totals').then(function(response){
     obj.totals.TotalBloggers = response[0] ;
     obj.totals.TotalArticles = response[1] ;
@@ -17,16 +17,22 @@ grandma.service('storage',['Restangular', function(Restangular){
 
     obj.bloggers.featuredBloggers = response[0];
     obj.bloggers.grandmaBloggers = response[1];
-    
+
   });
 
   Restangular.all("authors").customGET('grouptop').then(function(response){
 
-    obj.bloggers.groupBloggers = response;    
-    
+    obj.bloggers.groupBloggers = response;
+
   });
 
-  
+  Restangular.all('authors').getList().then(function(response){
+    console.log(response)
+    obj.bloggers.all = response;
+
+  });
+
+
 
   return obj;
 

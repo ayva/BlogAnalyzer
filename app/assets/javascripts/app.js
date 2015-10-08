@@ -39,7 +39,8 @@ var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstr
         url: '/leaderboards',
         views: {
           'navbar':{
-            templateUrl: 'templates/partials/navbar'
+            templateUrl: 'templates/partials/navbar',
+            controller: 'navbarCtrl'
           },
 
           '':{
@@ -53,10 +54,11 @@ var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstr
 
 
       .state('blogger', {
-        url: '/bloggers/:username?id',
+        url: '/blogger/:username?id',
         views: {
           'navbar':{
-            templateUrl: 'templates/partials/navbar'
+            templateUrl: 'templates/partials/navbar',
+            controller: 'navbarCtrl'
           },
 
           '':{

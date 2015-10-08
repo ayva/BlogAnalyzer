@@ -23,6 +23,13 @@ Rails.application.routes.draw do
   get '/api/v1/authors/grandmatop' => 'authors#grandmatop'
 
 
+  #Data for blogger page
+
+  scope 'api' do
+    scope 'v1' do
+      resources :authors, only: [:index, :show]
+    end
+  end
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 

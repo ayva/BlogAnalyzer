@@ -23,7 +23,8 @@ module BlogAnalyzer
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    config.assets.paths << "#{Rails.root}/app/assets/fonts"
+    Rails.root.join('vendor', 'assets', 'components')
+    # config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
     config.assets.initialize_on_precompile = false
 

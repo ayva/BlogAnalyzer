@@ -1,54 +1,72 @@
-var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstrap'])
+var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstrap', 'chart.js'])
+  
 
+  .config(['RestangularProvider', function(RestangularProvider) {
 
-  .config(function($stateProvider, $urlRouterProvider) {
+    RestangularProvider.setBaseUrl('/api/v1');
+    RestangularProvider.setRequestSuffix('.json');
+    RestangularProvider.setDefaultHttpFields({
+      "content-type": "application/json"
+    });
 
+    // RestangularProvider.setResponseExtractor(function(response, operation){
+    //   return response;
+    // });
+  }])
+
+  .config(function($stateProvider, $urlRouterProvider){
     $stateProvider
-
       .state('main', {
         url: '/',
-        controller: 'landingCtrl',
+
         views: {
           'navbar': {
-            templateUrl: 'templates/partials/navbar-main.html'
+
+            templateUrl: 'templates/partials/navbar-main.html',
+            controller: 'navbarCtrl'
+
           },
 
           '': {
-            templateUrl: 'templates/welcome.html'
-          }
-
+            templateUrl: 'templates/welcome',
+            controller: 'landingCtrl'
+          },
 
         },
       })
+
+
       .state('leaderboards', {
         url: '/leaderboards',
-        
-        //templateUrl: 'templates/leaderboards.html'
         views: {
+          'navbar':{
+            templateUrl: 'templates/partials/navbar'
+          },
+
           '':{
-            templateUrl: 'templates/leaderboards.html',
+            templateUrl: 'templates/leaderboards',
             controller: 'boardsCtrl'
-          },
-
-          'navbar':{
-            templateUrl: 'templates/partials/navbar.html'
           }
+
         }
-        
+
       })
+
+
       .state('blogger', {
-        url: '/blogger/:username',
+        url: '/bloggers/:username',
         views: {
-          '':{
-            templateUrl: 'templates/blogger.html',
-            controller: 'bloggerCtrl'
+          'navbar':{
+            templateUrl: 'templates/partials/navbar'
           },
 
-          'navbar':{
-            templateUrl: 'templates/partials/navbar.html'
+          '':{
+            templateUrl: 'templates/blogger',
+            controller: 'bloggerCtrl'
           }
         }
       });
+
 
 
 

@@ -1,10 +1,22 @@
-<nav scroll class="navbar-main naar-fixed-top animate-show" ng-show = "showNav">
-  <div class="container">
+<nav class="navbar" ng-class = "landing ? 'nav-transparent' : 'navbar-inverse' ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
 
-    <ul class="nav navbar-nav navbar-right">
-      <li><a ui-sref = "leaderboards">Leaderboards</a></li>
-      <li><a ui-sref = "#">Log In</a></li>
-    </ul>
 
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a ui-sref = "leaderboards"><i class="fa fa-bar-chart-o"></i> Leaderboards</a></li>
+        <li><a ui-sref = "#"><i class="fa fa-sign-in"></i> Log In</a></li>
+
+      </ul>
+
+    </div>
   </div>
 </nav>

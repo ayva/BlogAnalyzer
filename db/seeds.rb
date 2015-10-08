@@ -12,16 +12,18 @@ Post.destroy_all
 author1 = Author.create({author_pic: 'https://cdn-images-1.medium.com/fit/c/120/120/1*3R6E3UiBHI5YPPZ2YPA4bg.jpeg',
                         blog_url: 'https://medium.com/@annaharari',
                         full_name: 'Anna Harari',
-                        nickname: 'annaharari'}
+                        username: 'annaharari',
+                        score: 91.9}
                         )
-# author1.score = 99.9
+
 author2 = Author.create({author_pic: 'https://cdn-images-1.medium.com/fit/c/120/120/0*B04L2Ma1UbOvo7xg.jpeg',
                         blog_url: 'https://medium.com/@gavinsblog',
                         full_name: 'Gavin Sheridan',
-                        nickname: 'gavinsheridan'}
+                        username: 'gavinsheridan',
+                        score: 92.9}
                         )
 
-# author2.score = 91.5
+
 
 
 

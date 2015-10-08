@@ -13,28 +13,29 @@
     <div class="row">
 
       <div class="col-xs-offset-1 col-xs-12  col-sm-offset-1 col-sm-3 col-md-offset-2 col-md-2">
-
-        <img class="groupBloggerImage" src={{blogger.pic}}>
+        =====DATA=====
+        <div>{{blogger}}</div>
+        <a href="{{blogger.blog_url}}"><img class="groupBloggerImage" src={{blogger.author_pic}}></a>
       </div>
       <div class="col-xs-12  col-sm-8">
-        <h3>{{blogger.name}}</h3>
+        <h3><a href="{{blogger.blog_url}}">{{blogger.full_name}}</a></h3>
         <div class="row">
           <div class=" col-xs-3  col-sm-3">
 
               <div class="bloggerNumberTitle">ARTICLES</div>
-              <div class="bloggerNumber">{{blogger.articles}}</div>
+              <div class="bloggerNumber">{{blogger.posts.length}}</div>
 
           </div>
           <div class=" col-xs-3  col-sm-3">
 
               <div class="bloggerNumberTitle">ERRORS</div>
-              <div class="bloggerNumber">{{blogger.errors}}</div>
+              <div class="bloggerNumber">{{blogger.hints.length}}</div>
 
           </div>
           <div class=" col-xs-3  col-sm-3">
 
               <div class="bloggerNumberTitle">SCORE</div>
-              <div class="bloggerNumber">{{blogger.score}}</div>
+              <div class="bloggerNumber">{{100-blogger.score}}</div>
 
           </div>
           <div class="col-xs-3  col-sm-3 elsewhere">

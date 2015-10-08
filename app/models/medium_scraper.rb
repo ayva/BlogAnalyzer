@@ -51,7 +51,7 @@ class MediumScraper
 
     word_count = content.split.size
 
-    unless Post.where(post_url: url) > 0
+    unless Post.where(post_url: url).length > 0
       post = Post.find_or_create_by(post_url: url,
                                     author_id: author.id,
                                     word_count: word_count)
@@ -65,9 +65,7 @@ class MediumScraper
                                    hint_id: hint.id)
       end
 
-      p content
     end
-
 
   end
 

@@ -19,6 +19,10 @@ gem 'angular_rails_csrf'
 # Bootstrap
 gem "twitter-bootstrap-rails"
 
+#Twitter and Facebook authorization
+gem 'omniauth-twitter'
+
+
 
 
 

@@ -10,7 +10,8 @@ var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstr
         controller: 'landingCtrl',
         views: {
           'navbar': {
-            templateUrl: 'templates/partials/navbar-main.html'
+            templateUrl: 'templates/partials/navbar-main.html',
+            controller: 'navbarCtrl'
           },
 
           '': {
@@ -31,7 +32,8 @@ var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstr
           },
 
           'navbar':{
-            templateUrl: 'templates/partials/navbar.html'
+            templateUrl: 'templates/partials/navbar.html',
+            controller: 'navbarCtrl'
           }
         }
         
@@ -45,10 +47,12 @@ var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstr
           },
 
           'navbar':{
-            templateUrl: 'templates/partials/navbar.html'
+            templateUrl: 'templates/partials/navbar.html',
+            controller: 'navbarCtrl'
           }
         }
       });
+
 
 
 

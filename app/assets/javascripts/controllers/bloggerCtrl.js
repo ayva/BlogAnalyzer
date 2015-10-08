@@ -1,6 +1,6 @@
 grandma.controller('bloggerCtrl', ['$scope', '$stateParams',function($scope, $stateParams) {
   var username = $stateParams.username;
-  
+
   //Need to get blogger by username 
   $scope.blogger = {    pic: 'https://cdn-images-1.medium.com/fit/c/120/120/1*3R6E3UiBHI5YPPZ2YPA4bg.jpeg',
                         name: 'Anna Harari',

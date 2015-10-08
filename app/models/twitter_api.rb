@@ -1,5 +1,4 @@
 
-
 class TwitterAPI
 
   attr_reader :baseurl, :consumer_key, :access_token

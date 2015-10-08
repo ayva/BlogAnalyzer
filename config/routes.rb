@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   root 'landing_pages#main'
 
-
+  #For social networks authorization
+  get '/auth/:provider/callback', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
   # Example of regular route:
   get '/test' => 'landing_pages#test'
   

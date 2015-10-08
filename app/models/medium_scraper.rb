@@ -3,6 +3,20 @@ require "grammarly.rb"
 
 class MediumScraper
 
+  # Every day we have 20 blog posts
+  # For every blog post
+  #   Go to bloggers page
+  #   Scrape 10 number of blog posts
+
+  # Best Style (all time)
+  # Best Grammar
+  # Best Punctuation
+  # Best Sentence Structure
+
+  # Add score column to author table
+  # Create 'leaders' table with entires for each category, check on scrape or new blog added
+
+
   include GrammarCheck
 
   attr_reader :post_urls

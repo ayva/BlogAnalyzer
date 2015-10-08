@@ -2,7 +2,11 @@ class PostsController < ApplicationController
 
   def index
 
-    @posts = Post.all
+    if params[:featured]
+      @posts = Post.featured_posts
+    else
+      @posts = Post.all
+    end
 
     respond_to do |format|
 

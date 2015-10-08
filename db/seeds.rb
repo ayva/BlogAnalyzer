@@ -6,8 +6,24 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-require 'grammarly'
-text="Check my grammar"
+Author.destroy_all
+Post.destroy_all
 
-GrammarCheck::check_errors(text)
+author1 = Author.create({author_pic: 'https://cdn-images-1.medium.com/fit/c/120/120/1*3R6E3UiBHI5YPPZ2YPA4bg.jpeg',
+                        blog_url: 'https://medium.com/@annaharari',
+                        full_name: 'Anna Harari',
+                        nickname: 'annaharari'}
+                        )
+# author1.score = 99.9
+author2 = Author.create({author_pic: 'https://cdn-images-1.medium.com/fit/c/120/120/0*B04L2Ma1UbOvo7xg.jpeg',
+                        blog_url: 'https://medium.com/@gavinsblog',
+                        full_name: 'Gavin Sheridan',
+                        nickname: 'gavinsheridan'}
+                        )
+
+# author2.score = 91.5
+
+
+
+
 

@@ -23,8 +23,13 @@
 //= require angular-chart.js/dist/angular-chart.min.js
 //= require angular-bootstrap/ui-bootstrap.min
 
+
+
 //= require lodash/lodash.min
 //= require restangular/dist/restangular.min
+
+
+
 
 //= require_tree .
 

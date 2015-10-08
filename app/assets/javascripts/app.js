@@ -1,10 +1,21 @@
 var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstrap', 'chart.js'])
+  
 
+  .config(['RestangularProvider', function(RestangularProvider) {
 
-  .config(function($stateProvider, $urlRouterProvider) {
+    RestangularProvider.setBaseUrl('/api/v1');
+    RestangularProvider.setRequestSuffix('.json');
+    RestangularProvider.setDefaultHttpFields({
+      "content-type": "application/json"
+    });
 
+    // RestangularProvider.setResponseExtractor(function(response, operation){
+    //   return response;
+    // });
+  }])
+
+  .config(function($stateProvider, $urlRouterProvider){
     $stateProvider
-
       .state('main', {
         url: '/',
 
@@ -18,6 +29,7 @@ var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstr
 
           '': {
             templateUrl: 'templates/welcome',
+            controller: 'landingCtrl'
           },
 
         },
@@ -34,15 +46,8 @@ var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstr
           '':{
             templateUrl: 'templates/leaderboards',
             controller: 'boardsCtrl'
-          },
-
-<<<<<<< HEAD
-          'navbar':{
-            templateUrl: 'templates/partials/navbar.html',
-            controller: 'navbarCtrl'
           }
-=======
->>>>>>> 56791aba2c51b50a5ec9884c6a4e06119b02a07f
+
         }
 
       })
@@ -58,15 +63,7 @@ var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstr
           '':{
             templateUrl: 'templates/blogger',
             controller: 'bloggerCtrl'
-          },
-
-<<<<<<< HEAD
-          'navbar':{
-            templateUrl: 'templates/partials/navbar.html',
-            controller: 'navbarCtrl'
           }
-=======
->>>>>>> 56791aba2c51b50a5ec9884c6a4e06119b02a07f
         }
       });
 

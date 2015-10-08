@@ -30,4 +30,20 @@ class PostsController < ApplicationController
     end
   end
 
+  def totalarticles
+    totalarticles = Post.count
+    
+    respond_to do |format|
+      format.json {render json: totalarticles}
+    end
+  end
+
+  def totalissues
+    totalissues = Posthint.count
+    
+    respond_to do |format|
+      format.json {render json: totalissues}
+    end
+  end
+
 end

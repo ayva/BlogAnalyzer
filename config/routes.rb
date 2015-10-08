@@ -11,7 +11,17 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   # Example of regular route:
   get '/test' => 'landing_pages#test'
+
+  #Counters for main page
+  get '/api/v1/authors/totalbloggers' => 'authors#totalbloggers'
+  get '/api/v1/posts/totalarticles' => 'posts#totalarticles'
+  get '/api/v1/posts/totalissues' => 'posts#totalissues'
+
   
+  #Data for leaderboards
+  get '/api/v1/authors/mediumfeaturedbloggers' => 'authors#mediumfeaturedbloggers'
+  get '/api/v1/authors/grandmatop' => 'authors#grandmatop'
+
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

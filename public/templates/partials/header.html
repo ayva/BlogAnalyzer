@@ -1,54 +1,44 @@
+<header class = "bg-fallback full-height">
+  <div class="video-gradient"></div>
 
-  <div class="row">
-    <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3">
-      <h1 class="grandma-title">GRANDMA</h1>
-    </div>
-  </div>
-
-  
-<div class="counters">
-  <div class="container">
-  <div class="row">
-    
-    <div class="col-xs-offset-2 col-xs-3 col-sm-offset-2 col-sm-3">
-      
-        <div class="number">23456</div>
-        <div class="numberTitle">BLOGGERS</div>
-      
-    </div>
-    <div class=" col-xs-3  col-sm-3">
-      
-        <div class="number">32345</div>
-        <div class="numberTitle">ARTICLES</div>
-      
-    </div>
-    <div class=" col-xs-3  col-sm-3">
-      
-        <div class="number">4567</div>
-        <div class="numberTitle">ISSUES</div>
-      
-    </div>
-  </div>
-  </div>
-</div>
-
-<div id="video-gradient">
-  <video loaded-data loop id="bg-video" class="fullscreen-video">
+  <video loaded-data loop class="fullscreen-video">
     <source src="videos/laptop.webm" type="video/webm">
     <source src="videos/laptop.mp4" type="video/mp4">
   </video>
-</div>
 
- 
-  <div class='hint-arrow'></div>
-     
-<!-- 
-   <div>
-          <a class="btn btn-prepend btn-launch-video">
-            <i class="prepended icon-append-check"></i>See Leaderboards
-          </a>
-        </div> -->
-     
-      
-    
+  <div class="grandma-title">
+    <hr class = "inline-hr"> <hr class = "grandma-glasses"> <hr class = "inline-hr">
+    <h1>Grandma</h1>
+    <hr>
+    <h5>can proofread your blog for free</h5>
+  </div>
 
+  <div class="counters text-center">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-xs-4">
+
+            <div class="number" count-to="{{ 23456 }}" value="{{ 0 }}" duration="2"></div>
+            <div class="numberTitle">Bloggers Joined</div>
+
+        </div>
+        <div class=" col-xs-4">
+
+            <div class="number" count-to="{{ 32345 }}" value="{{ 0 }}" duration="2"></div>
+            <div class="numberTitle">Articles Analyzed</div>
+
+        </div>
+        <div class=" col-xs-4">
+
+            <div class="number" count-to="{{ 4567 }}" value="{{ 0 }}" duration="2"></div>
+            <div class="numberTitle">Issues Solved</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class='hint-arrow'></div> -->
+
+</header>

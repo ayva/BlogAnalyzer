@@ -1,0 +1,109 @@
+﻿Blog Grammar Rating App
+
+
+An app that grades popular bloggers on their grammar
+
+
+Epic 1 - Landing Page
+
+
+Introduces users to the app, displays statistics of certain bloggers
+
+
+Stories-
+
+
+Sprint 1
+Epic Introductory
+* As a new visitor I want to learn what is this site all about so that I can decide whether I should use it
+* Screen-spanning header with project name and descriptive subtitle
+* About section that briefly goes over the high level points of what our page features
+Epic TDD driven
+* Test, test, test
+Epic Charts
+* As a user, I want to see the top scoring featured bloggers for the day, so that I can see who are the bloggers with the best grammar and learn from them
+
+
+* As a user, I want to see the top scoring bloggers of all times, so that I know who is the best of the best
+
+
+* As a user I want to see details about a score so that I know where it came from
+   *  Blogger descriptive page about his grammar
+
+
+* As a user, I want to find a blogger do that I can see his score
+   * Search field with autocompletion by nickname
+   * Show blogger descriptive page about his grammar
+* As a user, I want to find best bloggers by grammar skill so that I have more relevant results
+   * Filters for Top Blogger for all the time
+Epic Platforms
+* As a user I want to see bloggers from different platforms so that I have more chances to find my favourite blogger
+
+
+Epic About the project and Contacts
+* As a user I want to see about project info so that I can trust information
+   * Three of us smiling with link to LinkedIn / Github / personal site
+
+
+Sprint 2
+-As a user, I want to be able to navigate to the other pages of the site
+- As a user, I want to get emails so that  I know how  today’s featured bloggers were scored
+
+
+Stretch Goals:
+* Badges for users: Award users with badges when reaching certain milestones (e.g. 10 blog posts examined; a perfect 100 score in a blog post, etc)
+
+
+Awards:
+
+
+* Least mistakes per word / per article
+* Best in grammar/style/ punctuation/spelling/sentence structure
+
+
+Filter by category/hashtag
+Faces of 10-top bloggers with grades in default category
+
+
+
+
+Epic 2 - User Dashboard - not for now
+Login/Sign-Up
+Field for blog address/nickname
+You can check only 1 blogs
+Unfolding results of grabbing analysis - animation while waiting for final response
+
+
+Idea:
+
+
+Pilot includes daily dashboard with analysed top story bloggers + search in db for a scores of existing bloggers
+
+
+Update could include request for a blogger who was not featured.
+
+
+Choosing platform
+API
+easiness of scrapping
+Oauth
+
+
+Candidates:
+
+
+Medium 
+Tumblr
+Wordpress
+Blogger
+
+
+DB
+
+
+Blogger:
+nickname
+url
+scores
+tips
+number of articles

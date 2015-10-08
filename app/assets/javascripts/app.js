@@ -1,4 +1,4 @@
-var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstrap'])
+var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstrap', 'chart.js'])
 
 
   .config(function($stateProvider, $urlRouterProvider) {
@@ -7,49 +7,66 @@ var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstr
 
       .state('main', {
         url: '/',
-        controller: 'landingCtrl',
+
         views: {
           'navbar': {
+
             templateUrl: 'templates/partials/navbar-main.html',
             controller: 'navbarCtrl'
+
           },
 
           '': {
-            templateUrl: 'templates/welcome.html'
-          }
-
+            templateUrl: 'templates/welcome',
+          },
 
         },
       })
+
+
       .state('leaderboards', {
         url: '/leaderboards',
-        
-        //templateUrl: 'templates/leaderboards.html'
         views: {
+          'navbar':{
+            templateUrl: 'templates/partials/navbar'
+          },
+
           '':{
-            templateUrl: 'templates/leaderboards.html',
+            templateUrl: 'templates/leaderboards',
             controller: 'boardsCtrl'
           },
 
+<<<<<<< HEAD
           'navbar':{
             templateUrl: 'templates/partials/navbar.html',
             controller: 'navbarCtrl'
           }
+=======
+>>>>>>> 56791aba2c51b50a5ec9884c6a4e06119b02a07f
         }
-        
+
       })
+
+
       .state('blogger', {
-        url: '/blogger/:username',
+        url: '/bloggers/:username',
         views: {
+          'navbar':{
+            templateUrl: 'templates/partials/navbar'
+          },
+
           '':{
-            templateUrl: 'templates/blogger.html',
+            templateUrl: 'templates/blogger',
             controller: 'bloggerCtrl'
           },
 
+<<<<<<< HEAD
           'navbar':{
             templateUrl: 'templates/partials/navbar.html',
             controller: 'navbarCtrl'
           }
+=======
+>>>>>>> 56791aba2c51b50a5ec9884c6a4e06119b02a07f
         }
       });
 

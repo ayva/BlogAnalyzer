@@ -49,37 +49,59 @@ class MediumScraper
 
   def scrape_blogs
     @post_urls.each do |url|
-      scrape_blog(url)
+      p url
+      page = @agent.get(url)
+      author_post_urls = []
+      unless page.search('//*[@id="prerendered"]/article/header/div/div[1]/div/div[2]/a')[0].nil?
+        author_url = page.search('//*[@id="prerendered"]/article/header/div/div[1]/div/div[2]/a')[0].attributes["href"].text
+        author_page = @agent.get(author_url + "/latest")
+        posts = author_page.search("article")
+        posts[0].xpath("//article/a").each do |post|
+          author_post_urls << post.attributes["href"].value
+        end
+        author_post_urls.each_with_index do |au, i|
+          break if i > 9
+          p au
+          begin
+            scrape_blog(au)
+          rescue
+            Rails.logger.warn "URL failed"
+          end
+        end
+      end
     end
   end
 
   def scrape_blog(url)
-    page = @agent.get(url)
+      page = @agent.get(url)
 
-    title = page.search('//*[@id="71bc"]').text
-    body = page.search("div[@class='section-content']").search("p")
+      title = page.search('//*[@id="71bc"]').text
+      body = page.search("div[@class='section-content']").search("p")
 
-    content = parse_content(body)
-    author_url = page.search('//*[@id="prerendered"]/article/header/div/div[1]/div/div[2]/a')[0].attributes["href"].text
-    author = scrape_author_info(author_url)
+      content = parse_content(body)
+      author_url = page.search('//*[@id="prerendered"]/article/header/div/div[1]/div/div[2]/a')[0].attributes["href"].text
+      author = scrape_author_info(author_url)
 
-    word_count = content.split.size
+      word_count = content.split.size
 
-    unless Post.where(post_url: url).length > 0
-      post = Post.find_or_create_by(post_url: url,
-                                    author_id: author.id,
-                                    word_count: word_count)
-      errors = check_errors(content)
+      unless Post.where(post_url: url).length > 0
+        post = Post.find_or_create_by(post_url: url,
+                                      author_id: author.id,
+                                      word_count: word_count)
+        errors = check_errors(content)
 
-      errors.each do |error|
-        group = Group.find_or_create_by(name: error["group"])
-        hint = Hint.find_or_create_by(title: error["title"],
-                                      group_id: group.id)
-        Posthint.find_or_create_by(post_id: post.id,
-                                   hint_id: hint.id)
+        errors.each do |error|
+          group = Group.find_or_create_by(name: error["group"])
+          hint = Hint.find_or_create_by(title: error["title"],
+                                        group_id: group.id)
+          Posthint.find_or_create_by(post_id: post.id,
+                                     hint_id: hint.id)
+        end
+
       end
 
-    end
+      author.score = author.overall_error_rate
+      author.save
 
   end
 

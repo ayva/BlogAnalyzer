@@ -19,7 +19,11 @@ class AuthorsController < ApplicationController
 
 
   def grouptop
+    leaders = Leader.all
 
+    respond_to do |format|
+      format.json { render json: leaders  }
+    end
   end
 
   def grandmatop

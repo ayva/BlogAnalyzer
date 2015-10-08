@@ -15,10 +15,12 @@
 //= require turbolinks
 
 //= require twitter/bootstrap
+//= require Chart.js/Chart.min.js
 
 //= require angular/angular.min
 //= require angular-animate
 //= require angular-ui-router/release/angular-ui-router.min
+//= require angular-chart.js/dist/angular-chart.min.js
 //= require angular-bootstrap/ui-bootstrap.min
 
 //= require lodash/lodash.min

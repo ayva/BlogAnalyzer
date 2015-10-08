@@ -1,4 +1,4 @@
-var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstrap'])
+var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstrap', 'chart.js'])
 
 
   .config(function($stateProvider, $urlRouterProvider) {
@@ -10,14 +10,13 @@ var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstr
 
         views: {
           'navbar': {
-            templateUrl: 'templates/partials/navbar.html',
-            controller: 'landingCtrl'
+            templateUrl: 'templates/partials/navbar',
+            controller: 'landingCtrl',
           },
 
           '': {
-            templateUrl: 'templates/welcome.html'
-          }
-
+            templateUrl: 'templates/welcome',
+          },
 
         },
       })
@@ -26,30 +25,32 @@ var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstr
       .state('leaderboards', {
         url: '/leaderboards',
         views: {
+          'navbar':{
+            templateUrl: 'templates/partials/navbar'
+          },
+
           '':{
-            templateUrl: 'templates/leaderboards.html',
+            templateUrl: 'templates/leaderboards',
             controller: 'boardsCtrl'
           },
 
-          'navbar':{
-            templateUrl: 'templates/partials/navbar.html'
-          }
         }
 
       })
 
 
       .state('blogger', {
-        url: '/blogger/:username',
+        url: '/bloggers/:username',
         views: {
+          'navbar':{
+            templateUrl: 'templates/partials/navbar'
+          },
+
           '':{
-            templateUrl: 'templates/blogger.html',
+            templateUrl: 'templates/blogger',
             controller: 'bloggerCtrl'
           },
 
-          'navbar':{
-            templateUrl: 'templates/partials/navbar.html'
-          }
         }
       });
 

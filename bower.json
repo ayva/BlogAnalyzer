@@ -23,5 +23,6 @@
     "tests"
   ],
   "dependencies": {
+    "angular-chart.js": "~0.8.4"
   }
 }

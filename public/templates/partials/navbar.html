@@ -26,7 +26,7 @@
           <input  type="text"
                   name = "user"
                   required="string"
-                  typeahead="user.username for user in users | filter: {username: $viewValue } | limitTo: 8"
+                  typeahead="user.username for user in users.all | filter: {username: $viewValue } | limitTo: 5"
                   typeahead-no-results="noResults"
                   typeahead-append-to-body = "true"
                   typeahead-on-select = "go($item)"

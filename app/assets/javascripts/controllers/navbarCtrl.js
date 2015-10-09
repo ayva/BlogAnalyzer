@@ -1,4 +1,5 @@
-grandma.controller('navbarCtrl', ['$scope', function($scope, Restangular) {
+grandma.controller('navbarCtrl', ['$scope', function($scope) {
 
+  $scope.landing = true;
 
 }]);

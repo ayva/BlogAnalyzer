@@ -39,6 +39,14 @@ a {
     background-color: transparent;
   }
 
+  .navbar-inverse {
+
+    .navbar-brand, .navbar-nav>li>a {
+      color: #ECEDF5;
+    }
+
+  }
+
   nav {
     color: #fff;
     border-radius: 0px;
@@ -73,7 +81,7 @@ header {
   &.bg-fallback {
     background-image: url("frame.jpg");
     background-position: 50% 50%;
-    background-color: #123456;
+    background-color: #ECEDF5;
     background-repeat: no-repeat;
     background-size: cover;
   }

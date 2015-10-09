@@ -1,4 +1,4 @@
 
-<td><img class="bloggerBoardImage" src='{{blogger.author_pic}}'/> </td>
+<td><img class="bloggerBoardImage" ng-src='{{blogger.author_pic}}'/> </td>
 <td><a ui-sref="blogger({username:blogger.username , id: blogger.id})">{{blogger.full_name}}</a></td>
-<td>{{100-blogger.score}}</td>
+<td>{{100-blogger.score | number:2 }}</td>

@@ -2,12 +2,14 @@
   "name": "grandma",
   "description": "a really cool app",
   "version": "1.0.0",
+  "dependencies": {
+    "bower": "~1.5.3"
+  },
   "engines": {
     "node": "0.12.7",
     "npm": "2.11.3",
-    "bower": "1.5.3"
   },
   "scripts": {
-    "postinstall": "bower install"
+    "postinstall": "./node_modules/bower/bin/bower install"
   }
 }

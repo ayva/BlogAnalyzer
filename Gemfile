@@ -5,6 +5,8 @@ ruby '2.2.2'
 gem 'mechanize'
 gem 'git-hooks'
 
+gem 'bower'
+
 
 gem 'modernizr-rails'
 

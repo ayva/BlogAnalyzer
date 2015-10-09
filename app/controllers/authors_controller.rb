@@ -1,39 +1,34 @@
 class AuthorsController < ApplicationController
 
-  def totalbloggers
+  def totals
     total = Author.count
+    totalarticles = Post.count
+    totalissues = Posthint.count
+
     respond_to do |format|
-      format.json { render json: total }
+      format.json { render json: [total, totalarticles, totalissues] }
     end
   end
 
-  def mediumfeaturedbloggers
-    # Change to right collection of bloggers
-    featuredauthors = Author.all
 
+  def leaderboards
+    featuredauthors = Author.last(10)
+    grandmatop = Author.all.order("score asc").limit(10)
+    
     respond_to do |format|
-      format.json { render json: featuredauthors }
+      format.json { render json: [featuredauthors,grandmatop] }
     end
   end
-
 
 
   def grouptop
     leaders = Leader.all
 
     respond_to do |format|
-      format.json { render json: leaders  }
+      format.json { render json: leaders.to_json(include: :author)  }
     end
   end
 
-  def grandmatop
-     # Change to right collection of bloggers
-    grandmatop = Author.all
-
-    respond_to do |format|
-      format.json { render json: grandmatop }
-    end
-  end
 
   def index
 

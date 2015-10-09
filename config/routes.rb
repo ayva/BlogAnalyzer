@@ -6,22 +6,19 @@ Rails.application.routes.draw do
 
   root 'landing_pages#main'
 
-  #For social networks authorization
-  get '/auth/:provider/callback', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
+
   # Example of regular route:
   get '/test' => 'landing_pages#test'
 
   #Counters for main page
-  get '/api/v1/authors/totalbloggers' => 'authors#totalbloggers'
-  get '/api/v1/posts/totalarticles' => 'posts#totalarticles'
-  get '/api/v1/posts/totalissues' => 'posts#totalissues'
+  get '/api/v1/authors/totals' => 'authors#totals'
+  
 
   
   #Data for leaderboards
-  get '/api/v1/authors/mediumfeaturedbloggers' => 'authors#mediumfeaturedbloggers'
-  get '/api/v1/authors/grandmatop' => 'authors#grandmatop'
 
+  get '/api/v1/authors/grouptop' => 'authors#grouptop'
+  get '/api/v1/authors/leaderboards' => 'authors#leaderboards'
 
   #Data for blogger page
 

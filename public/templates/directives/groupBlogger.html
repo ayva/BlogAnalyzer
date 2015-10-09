@@ -1,10 +1,9 @@
 
     <div class="thumbnail">
-      <img class="groupBloggerImage" ng-src="{{blogger.author_pic}}" alt="#">
+      <img class="groupBloggerImage" ng-src="{{blogger.author.author_pic}}" alt="#">
       <div class="caption text-center">
-        <p>{{blogger.full_name}}</p>
-        <h4><span style="font-family: OpenSansSemibold; ">{{blogger.groupname}}</span> <span></span>{{blogger.score}}  </h4>
-        <!-- <hr> -->
-        <!-- <h6>{{blogger.description}}</h6> -->
+        <p>{{blogger.author.full_name}}</p>
+        <h4><span style="font-family: OpenSansSemibold; ">{{blogger.category}}</span> <span></span>{{100-blogger.score}}  </h4>
+
       </div>
     </div>

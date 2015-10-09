@@ -1,17 +1,12 @@
-grandma.controller('landingCtrl', ['$scope', 'Restangular', function($scope, Restangular) {
+grandma.controller('landingCtrl', ['$scope', 'storage', function($scope, storage) {
 
   $scope.landing = true;
+  
+  $scope.totals = storage.totals;
 
-  Restangular.all("authors").customGET('totalbloggers').then(function(response){
-    $scope.TotalBloggers = response;
-  });
 
-  Restangular.all("posts").customGET('totalarticles').then(function(response){
-    $scope.TotalArticles = response;
-  });
 
-  Restangular.all("posts").customGET('totalissues').then(function(response){
-    $scope.TotalIssues = response;
-  });
+
+
 
 }]);

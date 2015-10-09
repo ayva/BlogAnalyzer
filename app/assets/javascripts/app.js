@@ -1,5 +1,4 @@
 var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstrap', 'chart.js'])
-  
 
   .config(['RestangularProvider', function(RestangularProvider) {
 
@@ -14,7 +13,7 @@ var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstr
     // });
   }])
 
-  .config(function($stateProvider, $urlRouterProvider){
+  .config([ '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
     $stateProvider
       .state('main', {
         url: '/',
@@ -55,7 +54,6 @@ var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstr
 
       .state('blogger', {
         url: '/bloggers/:username?id',
-        
         views: {
           'navbar':{
             templateUrl: 'templates/partials/navbar'
@@ -73,10 +71,10 @@ var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstr
 
     $urlRouterProvider.otherwise('/');
 
-  })
+  }])
 
 
   // enable error handling
-  .run(function($rootScope){
+  .run([ '$rootScope', function($rootScope){
     $rootScope.$on("$stateChangeError", console.log.bind(console));
-  });
+  }]);

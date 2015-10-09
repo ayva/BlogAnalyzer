@@ -1,12 +1,12 @@
 
 @font-face {
   font-family: OpenSansLight;
-  src: url('OpenSans-Light.ttf');
+  src: asset-url('OpenSans-Light.ttf');
 }
 
 // @font-face {
 //   font-family: OpenSansSemibold;
-//   src: url('OpenSans-Semibold');
+//   src: asset-url('OpenSans-Semibold');
 // }
 
 body {
@@ -37,6 +37,14 @@ a {
 
   .nav-transparent {
     background-color: transparent;
+  }
+
+  .navbar-inverse {
+
+    .navbar-brand, .navbar-nav>li>a {
+      color: #ECEDF5;
+    }
+
   }
 
   nav {
@@ -71,9 +79,9 @@ header {
   height: 100%;
 
   &.bg-fallback {
-    background-image: url("frame.jpg");
+    background-image: asset-url("frame.jpg");
     background-position: 50% 50%;
-    background-color: #123456;
+    background-color: #ECEDF5;
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -102,7 +110,7 @@ header {
     h1 {
       font-size: 5em;
       font-weight: 200;
-      margin: 5px auto;
+      margin: -5px auto;
     }
 
     hr {

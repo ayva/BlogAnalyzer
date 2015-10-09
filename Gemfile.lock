@@ -68,6 +68,8 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bower (0.0.5)
+      multi_json
     builder (3.2.2)
     byebug (6.0.2)
     capybara (2.5.0)
@@ -338,6 +340,7 @@ DEPENDENCIES
   angularjs-rails
   better_errors
   binding_of_caller
+  bower
   byebug
   capybara
   coffee-rails (~> 4.1.0)

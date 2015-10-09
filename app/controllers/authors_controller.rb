@@ -49,16 +49,16 @@ class AuthorsController < ApplicationController
   def show
 
     @author = Author.find(params[:id])
+    # hints = Author.hints.group('title')
 
-    respond_to do |format|
+    # respond_to do |format|
 
-      #!!!! Include data for personal page so that I can call it like blogger.totalposts / errors etc + hint
-      format.json { render json: @author.to_json(
-        include: [:posts, hints: {include: :group}]
+    #   format.json { render json: @author.to_json(
+    #     include: [ hints: {include: :group}]
                           
-        ) 
-      }
-    end
+    #     ) 
+    #   }
+    # end
   end
 
 end

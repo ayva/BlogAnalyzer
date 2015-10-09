@@ -1,8 +1,27 @@
 {
   "name": "Grandma",
   "version": "0.0.0",
+  "homepage": "https://github.com/ayva/BlogAnalyzer",
+  "authors": [
+    "(Olga Ayvazyan)",
+    "(David Meza)",
+    "(Nick Sarlo)"
+  ],
+  "description": "Find bloggers with the best grammar",
   "main": "README",
-  "private": true,
+  "moduleType": [],
+  "keywords": [
+    "blog-analyzer"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
   "dependencies": {
     "angular": "~1.4.7",
     "angular-bootstrap": "~0.13.4",

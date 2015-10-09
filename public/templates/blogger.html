@@ -22,13 +22,13 @@
           <div class=" col-xs-3  col-sm-3">
 
               <div class="bloggerNumberTitle">ARTICLES</div>
-              <div class="bloggerNumber">{{blogger.posts.length}}</div>
+              <div class="bloggerNumber">{{blogger.author.totalposts}}</div>
 
           </div>
           <div class=" col-xs-3  col-sm-3">
 
               <div class="bloggerNumberTitle">ERRORS</div>
-              <div class="bloggerNumber">{{blogger.hints.length}}</div>
+              <div class="bloggerNumber">{{blogger.author.totalerrors}}</div>
 
           </div>
           <div class=" col-xs-3  col-sm-3">
@@ -104,10 +104,10 @@
           <th>Hint</th>
           <th>Group</th>
         </tr>
-        <tr ng-repeat='hint in hints'>
-          <td>{{hint.amount}}</td>
-          <td>{{hint.text}}</td>
-          <td>{{hint.group}}</td>
+        <tr ng-repeat='hint in blogger.table'>
+          <td>{{hint.total}}</td>
+          <td>{{hint.title}}</td>
+          <td>{{hint.groupname}}</td>
         </tr>
       </table>
     </div>

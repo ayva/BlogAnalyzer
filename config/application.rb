@@ -25,8 +25,7 @@ module BlogAnalyzer
 
     # Rails.root.join('vendor', 'assets', 'components')
     # config.assets.paths << "#{Rails.root}/app/assets/fonts"
-
-    config.assets.initialize_on_precompile = false
+    # config.assets.initialize_on_precompile = false
 
     config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
   end

@@ -20,4 +20,4 @@
 /config/application.yml
 
 # Ignore Bower components
-/bower_components/
+# /bower_components/

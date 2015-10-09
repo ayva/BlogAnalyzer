@@ -8,10 +8,6 @@ grandma.controller('boardsCtrl', ['$scope',  'storage', function($scope,  storag
                         newyorktimes: 100};
 
 
-
-
-
-  
     //4 bloggers at the bottom, best in a grammar group
     $scope.bloggers = storage.bloggers;
 

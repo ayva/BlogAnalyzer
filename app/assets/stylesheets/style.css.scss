@@ -1,12 +1,12 @@
 
 @font-face {
   font-family: OpenSansLight;
-  src: url('OpenSans-Light.ttf');
+  src: asset-url('OpenSans-Light.ttf');
 }
 
 // @font-face {
 //   font-family: OpenSansSemibold;
-//   src: url('OpenSans-Semibold');
+//   src: asset-url('OpenSans-Semibold');
 // }
 
 body {
@@ -79,7 +79,7 @@ header {
   height: 100%;
 
   &.bg-fallback {
-    background-image: url("frame.jpg");
+    background-image: asset-url("frame.jpg");
     background-position: 50% 50%;
     background-color: #ECEDF5;
     background-repeat: no-repeat;

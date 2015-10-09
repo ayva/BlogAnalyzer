@@ -3,18 +3,7 @@ require "grammarly.rb"
 
 class MediumScraper
 
-  # Every day we have 20 blog posts
-  # For every blog post
-  #   Go to bloggers page
-  #   Scrape 10 number of blog posts
-
-  # Best Style (all time)
-  # Best Grammar
-  # Best Punctuation
-  # Best Sentence Structure
-
-  # Add score column to author table
-  # Create 'leaders' table with entires for each category, check on scrape or new blog added
+  # Need to grab social media
 
 
   include GrammarCheck
@@ -61,7 +50,6 @@ class MediumScraper
         end
         author_post_urls.each_with_index do |au, i|
           break if i > 9
-          p au
           begin
             scrape_blog(au)
           rescue
@@ -121,9 +109,13 @@ class MediumScraper
     name = page.search('//*[@id="prerendered"]/div[2]/div/header/h1').text
     username = add_username(name)
     img = page.search('//*[@id="prerendered"]/div[2]/div/header/div[1]/div[2]/img')[0].attributes["src"].text
+    twtr = page.search("a[@title='Twitter']")[0].attributes["href"]
+    fcbk = page.search("a[@title='Facebook']")[0].attributes["href"]
     new_author = Author.find_or_create_by(full_name: name,
                                           username: username,
                                           blog_url: url,
+                                          twitter: twtr,
+                                          facebook: fcbk,
                                           author_pic: img)
   end
 

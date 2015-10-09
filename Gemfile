@@ -7,6 +7,7 @@ gem 'git-hooks'
 
 
 gem 'modernizr-rails'
+gem 'rufus-scheduler'
 
 #Work with API
 gem 'httparty'

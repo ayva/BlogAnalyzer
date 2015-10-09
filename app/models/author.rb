@@ -2,6 +2,11 @@ class Author < ActiveRecord::Base
   has_many :posts
   has_many :hints, through: :posts
   has_many :leaders
+  has_many :unique_hints
+
+  def unique_hints
+    self.hints.group('title').count
+  end
 
   def total_words
     posts.sum(:word_count)

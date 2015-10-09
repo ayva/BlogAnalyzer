@@ -60,8 +60,8 @@ class AuthorsController < ApplicationController
       #!!!! Include data for personal page so that I can call it like blogger.totalposts / errors etc + hint
       format.json { render json: @author.to_json(
         include: [:posts, hints: {include: :group}]
-                          
-        ) 
+
+        )
       }
     end
   end

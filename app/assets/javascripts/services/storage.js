@@ -27,14 +27,11 @@ grandma.service('storage',['Restangular', function(Restangular){
   });
 
   Restangular.all('authors').getList().then(function(response){
-    console.log(response)
+
     obj.bloggers.all = response;
 
   });
 
-
-
-  
 
   return obj;
 

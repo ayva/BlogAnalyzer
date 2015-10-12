@@ -64,6 +64,5 @@
   },
   "_source": "git://github.com/jtblin/angular-chart.js.git",
   "_target": "~0.8.4",
-  "_originalSource": "angular-chart.js",
-  "_direct": true
+  "_originalSource": "angular-chart.js"
 }

@@ -3,7 +3,7 @@ require 'rufus-scheduler'
 
 scheduler = Rufus::Scheduler.new
 
-scheduler.every("1m") do
+scheduler.every("1d") do
    scraper = MediumScraper.new
    scraper.get_stories
 end

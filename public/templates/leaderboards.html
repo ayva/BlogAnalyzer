@@ -1,12 +1,23 @@
 <div id="leaderboards-container" class="below-nav">
 
   <div class="container">
+
+    <div class="row">
+      <div class="col-sm-5 col-sm-offset-1 text-center">
+        <h4>Grandma can check your blog for free now</h4>
+      </div>
+
+      <div class="col-sm-3 col-sm-offset-1 col-xs-6 col-xs-offset-3 text-center">
+        <a class="btn btn-block btn-lg cta" href="#">Check my Blog!</a>
+      </div>
+    </div><br>
+
     <div class="row">
 
       <div class="col-xs-6">
         <h4>Blogger's featured on Medium today</h4>
         <table class = 'table table-hover'>
-          <tr blogger-board-record ng-repeat="blogger in featuredBloggers" style="border: 0px;
+          <tr blogger-board-record ng-repeat="blogger in bloggers.featuredBloggers|orderBy : score" style="border: 0px;
     border-color: white;"></tr>
         </table>
       </div>
@@ -14,7 +25,7 @@
       <div class="col-xs-6">
         <h4>Grandma's top</h4>
         <table class = 'table table-hover'>
-          <tr blogger-board-record ng-repeat="blogger in grandmaBloggers"></tr>
+          <tr blogger-board-record ng-repeat="blogger in bloggers.grandmaBloggers"></tr>
         </table>
       </div>
 
@@ -29,19 +40,19 @@
         </div>
         <div class="row text-center magazines">
           <div class="col-sm-5 col-md-5">
-            <img style="height: 50px;" src="/images/newyorktimes.png">
+            <img style="height: 50px;" ng-src="/images/newyorktimes.png">
             <h4>{{magazines.newyorktimes}}</h4>
           </div>
           <div class="col-sm-2  col-md-2">
-            <img style="height: 25px; margin-top: 15px; " src="/images/bbc.png">
+            <img style="height: 25px; margin-top: 15px; " ng-src="/images/bbc.png">
             <h4 style="margin-top: 10px">{{magazines.bbc}}</h4>
           </div>
           <div class="col-sm-2  col-md-2">
-            <img style="height: 25px; margin-top: 15px; " src="/images/cnn.png">
+            <img style="height: 25px; margin-top: 15px; " ng-src="/images/cnn.png">
             <h4 style="margin-top: 10px">{{magazines.cnn}}</h4>
           </div>
           <div  class="col-sm-3 col-md-3">
-            <img style="height: 20px;margin-top: 18px;" src="/images/newyorker.png">
+            <img style="height: 20px;margin-top: 18px;" ng-src="/images/newyorker.png">
             <h4 style="margin-top: 12px">{{magazines.newyorker}}</h4>
 
           </div>
@@ -56,7 +67,7 @@
           <h3>Compare yourself with best in a group:</h3>
         </div>
           <div class="row">
-            <div group-blogger ng-repeat="blogger in groupBloggers" class="col-xs-6 col-sm-3 col-md-3">
+            <div group-blogger ng-repeat="blogger in bloggers.groupBloggers" class="col-xs-6 col-sm-3 col-md-3">
             </div>
           </div>
       </div>

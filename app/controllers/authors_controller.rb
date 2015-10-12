@@ -1,39 +1,34 @@
 class AuthorsController < ApplicationController
 
-  def totalbloggers
+  def totals
     total = Author.count
+    totalarticles = Post.count
+    totalissues = Posthint.count
+
     respond_to do |format|
-      format.json { render json: total }
+      format.json { render json: [total, totalarticles, totalissues] }
     end
   end
 
-  def mediumfeaturedbloggers
-    # Change to right collection of bloggers
-    featuredauthors = Author.all
+
+  def leaderboards
+    featuredauthors = Author.last(10)
+    grandmatop = Author.all.order("score asc").limit(10)
 
     respond_to do |format|
-      format.json { render json: featuredauthors }
+      format.json { render json: [featuredauthors,grandmatop] }
     end
   end
-
 
 
   def grouptop
     leaders = Leader.all
 
     respond_to do |format|
-      format.json { render json: leaders  }
+      format.json { render json: leaders.to_json(include: :author)  }
     end
   end
 
-  def grandmatop
-     # Change to right collection of bloggers
-    grandmatop = Author.all
-
-    respond_to do |format|
-      format.json { render json: grandmatop }
-    end
-  end
 
   def index
 
@@ -54,8 +49,10 @@ class AuthorsController < ApplicationController
   def show
 
     @author = Author.find(params[:id])
+    # hints = Author.hints.group('title')
 
-    respond_to do |format|
+    # respond_to do |format|
+
 
       #!!!! Include data for personal page so that I can call it like blogger.totalposts / errors etc + hint
       format.json { render json: @author.to_json(
@@ -64,6 +61,7 @@ class AuthorsController < ApplicationController
         )
       }
     end
+
   end
 
 end

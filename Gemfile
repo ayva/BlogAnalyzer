@@ -5,6 +5,10 @@ ruby '2.2.2'
 gem 'mechanize'
 gem 'git-hooks'
 
+gem 'bower'
+
+gem 'angular-ui-bootstrap-rails'
+
 
 gem 'modernizr-rails'
 gem 'rufus-scheduler'

@@ -54,6 +54,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
+    angular-ui-bootstrap-rails (0.13.4)
     angular_rails_csrf (1.0.4)
       rails (>= 3, < 5)
     angularjs-rails (1.4.4)
@@ -68,6 +69,8 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bower (0.0.5)
+      multi_json
     builder (3.2.2)
     byebug (6.0.2)
     capybara (2.5.0)
@@ -334,10 +337,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angular-ui-bootstrap-rails
   angular_rails_csrf
   angularjs-rails
   better_errors
   binding_of_caller
+  bower
   byebug
   capybara
   coffee-rails (~> 4.1.0)

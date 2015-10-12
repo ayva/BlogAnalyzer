@@ -13,36 +13,41 @@
     <div class="row">
 
       <div class="col-xs-offset-1 col-xs-12  col-sm-offset-1 col-sm-3 col-md-offset-2 col-md-2">
+<<<<<<< HEAD
         <a href="{{blogger.blog_url}}"><img class="groupBloggerImage" src={{blogger.author_pic}}></a>
+=======
+
+        <a target="_blank" ng-href="{{blogger.blog_url}}"><img class="groupBloggerImage" ng-src="{{blogger.author_pic}}"></a>
+>>>>>>> 2e7a8f56587004911d34c4a2663c19a37ef7fbcb
       </div>
       <div class="col-xs-12  col-sm-8">
-        <h3><a href="{{blogger.blog_url}}">{{blogger.full_name}}</a></h3>
+        <h3><a target="_blank" ng-href="{{blogger.blog_url}}">{{blogger.full_name}}</a></h3>
         <div class="row">
           <div class=" col-xs-3  col-sm-3">
 
               <div class="bloggerNumberTitle">ARTICLES</div>
-              <div class="bloggerNumber">{{blogger.posts.length}}</div>
+              <div class="bloggerNumber">{{blogger.author.totalposts}}</div>
 
           </div>
           <div class=" col-xs-3  col-sm-3">
 
               <div class="bloggerNumberTitle">ERRORS</div>
-              <div class="bloggerNumber">{{blogger.hints.length}}</div>
+              <div class="bloggerNumber">{{blogger.author.totalerrors}}</div>
 
           </div>
           <div class=" col-xs-3  col-sm-3">
 
               <div class="bloggerNumberTitle">SCORE</div>
-              <div class="bloggerNumber">{{100-blogger.score}}</div>
+              <div class="bloggerNumber">{{100-blogger.score | number:2 }}</div>
 
           </div>
           <div class="col-xs-3  col-sm-3 elsewhere">
 
             <div class="bloggerNumberTitle text-center">ELSEWHERE</div>
 
-            <a href={{blogger.twitter}}><img style="width: 23px; opacity: 1" src="images/twitter.svg"></a>
+            <a target="_blank" ng-href={{blogger.twitter}}><img style="width: 23px; opacity: 1" src="images/twitter.svg"></a>
 
-            <a href={{blogger.facebook}}><img src="images/facebook.png"></a>
+            <a target="_blank" ng-href={{blogger.facebook}}><img src="images/facebook.png"></a>
 
           </div>
         </div>
@@ -51,24 +56,46 @@
 
   </div><br><br>
 
-  <div class="row">
+  <div class="row" id="grammar-charts">
     <div class="col-xs-3 col-xs-offset-2">
-      <canvas id="doughnut" class="chart chart-doughnut"
-        chart-data="data" chart-labels="labels">
-      </canvas>
+
+      <div class="chart-wrapper">
+        <canvas id="grammar-structure"
+                class="chart chart-doughnut"
+                chart-data="charts.grammar.data"
+                chart-labels="charts.grammar.labels">
+        </canvas>
+        <p class="text-overlay text-right"><strong>Grammar Structure</strong></p>
+      </div>
+
     </div>
 
     <div class="col-xs-3">
-      <canvas id="doughnut" class="chart chart-doughnut"
-        chart-data="data" chart-labels="labels">
-      </canvas>
+
+      <div class="chart-wrapper">
+        <canvas id="avg-errors"
+                class="chart chart-doughnut"
+                chart-data="charts.avgErrors.data"
+                chart-labels="charts.avgErrors.labels">
+        </canvas>
+        <p class="text-overlay text-right"><strong>Avg. Errors</strong></p>
+      </div>
+
     </div>
 
     <div class="col-xs-3">
-      <canvas id="doughnut" class="chart chart-doughnut"
-        chart-data="data" chart-labels="labels">
-      </canvas>
+
+      <div class="chart-wrapper">
+        <canvas id="errors-per-words"
+                class="chart chart-doughnut"
+                chart-data="charts.errorsPerWords.data"
+                chart-labels="charts.errorsPerWords.labels">
+        </canvas>
+        <p class="text-overlay text-right"><strong>Errors / 1000 Words</strong></p>
+      </div>
+
     </div>
+
   </div>
 
 
@@ -81,10 +108,10 @@
           <th>Hint</th>
           <th>Group</th>
         </tr>
-        <tr ng-repeat='hint in hints'>
-          <td>{{hint.amount}}</td>
-          <td>{{hint.text}}</td>
-          <td>{{hint.group}}</td>
+        <tr ng-repeat='hint in blogger.table'>
+          <td>{{hint.total}}</td>
+          <td>{{hint.title}}</td>
+          <td>{{hint.groupname}}</td>
         </tr>
       </table>
     </div>

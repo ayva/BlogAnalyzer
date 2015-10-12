@@ -1,5 +1,6 @@
 require "mechanize"
 require "grammarly.rb"
+require "twitter_api"
 
 class MediumScraper
 
@@ -7,6 +8,7 @@ class MediumScraper
 
 
   include GrammarCheck
+  include TwitterAPI
 
   attr_reader :post_urls
 
@@ -38,7 +40,7 @@ class MediumScraper
 
   def scrape_blogs
     @post_urls.each do |url|
-      p url
+      # Extract to own method
       page = @agent.get(url)
       author_post_urls = []
       unless page.search('//*[@id="prerendered"]/article/header/div/div[1]/div/div[2]/a')[0].nil?

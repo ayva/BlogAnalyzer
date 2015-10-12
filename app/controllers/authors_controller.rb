@@ -1,5 +1,7 @@
-class AuthorsController < ApplicationController
+require 'authors_helper'
 
+class AuthorsController < ApplicationController
+  include AuthorsHelper
   def totals
     total = Author.count
     totalarticles = Post.count
@@ -49,18 +51,8 @@ class AuthorsController < ApplicationController
   def show
 
     @author = Author.find(params[:id])
-    # hints = Author.hints.group('title')
-
-    # respond_to do |format|
-
-
-      #!!!! Include data for personal page so that I can call it like blogger.totalposts / errors etc + hint
-      format.json { render json: @author.to_json(
-        include: [:posts, hints: {include: :group}]
-
-        )
-      }
-    end
+    @hintstable = hintstable(params[:id])
+    
 
   end
 

@@ -3,10 +3,9 @@
 json.(@author, :id, :blog_url, :full_name, :author_pic, :username, :score, :created_at, :updated_at)
 
 json.author do
-  json.hints @author.hints.group('title','group_id').count('title')
 
-
-  json.grammarstructure do
+  json.hintstable @hintstable
+  json.grammar do
    json.enhancement @author.hints.where('group_id=1').count 
    json.grammar @author.hints.where('group_id=2').count 
    json.spelling @author.hints.where('group_id=3').count 
@@ -21,4 +20,8 @@ json.author do
   json.errorsarticle (@author.hints.count.to_f/@author.posts.count).round(2)
   json.errorwords (@author.hints.count.to_f/@author.posts.sum(:word_count)*1000).round(2)
 end
+
+
+
+
 

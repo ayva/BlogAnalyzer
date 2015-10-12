@@ -8,7 +8,7 @@ class MediumScraper
 
 
   include GrammarCheck
-  include TwitterAPI
+  # include TwitterAPI
 
   attr_reader :post_urls
 
@@ -62,6 +62,7 @@ class MediumScraper
     end
   end
 
+  # !!!Scrapes one post, not an entire blog!!!
   def scrape_blog(url)
       page = @agent.get(url)
 

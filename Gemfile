@@ -27,10 +27,6 @@ gem "twitter-bootstrap-rails"
 #Twitter and Facebook authorization
 gem 'omniauth-twitter'
 
-
-
-
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
 # Use postgres as the database for Active Record

@@ -4,4 +4,5 @@ class Hint < ActiveRecord::Base
   has_many :authors, through: :posts
 
   belongs_to :group
+  
 end

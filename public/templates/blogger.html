@@ -13,12 +13,10 @@
     <div class="row">
 
       <div class="col-xs-offset-1 col-xs-12  col-sm-offset-1 col-sm-3 col-md-offset-2 col-md-2">
-<<<<<<< HEAD
-        <a href="{{blogger.blog_url}}"><img class="groupBloggerImage" src={{blogger.author_pic}}></a>
-=======
+
 
         <a target="_blank" ng-href="{{blogger.blog_url}}"><img class="groupBloggerImage" ng-src="{{blogger.author_pic}}"></a>
->>>>>>> 2e7a8f56587004911d34c4a2663c19a37ef7fbcb
+
       </div>
       <div class="col-xs-12  col-sm-8">
         <h3><a target="_blank" ng-href="{{blogger.blog_url}}">{{blogger.full_name}}</a></h3>
@@ -65,7 +63,7 @@
                 chart-data="charts.grammar.data"
                 chart-labels="charts.grammar.labels">
         </canvas>
-        <p class="text-overlay text-center"><strong>Grammar Structure</strong></p>
+        <p class="text-overlay text-center"><strong>Grammar Issues </strong></p>
       </div>
 
     </div>
@@ -78,7 +76,7 @@
                 chart-data="charts.avgErrors.data"
                 chart-labels="charts.avgErrors.labels">
         </canvas>
-        <p class="text-overlay text-center"><strong>Avg. Errors</strong></p>
+        <p class="text-overlay text-center"><strong>{{blogger.author.errorsarticle}} Issues per Article</strong></p>
       </div>
 
     </div>
@@ -91,7 +89,7 @@
                 chart-data="charts.errorsPerWords.data"
                 chart-labels="charts.errorsPerWords.labels">
         </canvas>
-        <p class="text-overlay text-center"><strong>Errors / 1000 Words</strong></p>
+        <p class="text-overlay text-center"><strong>{{blogger.author.errorwords}} Errors per 1000 Words</strong></p>
       </div>
 
     </div>
@@ -99,23 +97,38 @@
   </div>
 
 
-  <div class="container">
-    <div class="row text-center">
-      <h3>Hints to improve grammar</h3>
-      <table class="table table-hover">
-        <tr>
-          <th>Freq.</th>
-          <th>Hint</th>
-          <th>Group</th>
-        </tr>
-        <tr ng-repeat='hint in blogger.table'>
-          <td>{{hint.total}}</td>
-          <td>{{hint.title}}</td>
-          <td>{{hint.groupname}}</td>
-        </tr>
-      </table>
-    </div>
-  </div>
+
+            
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-offset-2 col-xs-9 col-sm-offset-2 col-sm-9 col-md-offset-2 col-md-9">
+              <h3>Hints to improve grammar</h3>
+              <accordion class="accordion">
+                <accordion-group ng-repeat="group in testhints">
+                <div ng-show="group.hints.length > 0">
+                  <accordion-heading class="accordion-heading" >
+                    {{group.name}}
+                  </accordion-heading>
+                    <table class="table">
+                      <tr>
+                        <th>Total</th>
+                        <th>Hint</th>
+                      </tr>
+                      <tr ng-repeat="hint in group.hints | orderBy: '[0]' : true">
+                        
+                        
+                        <td>{{hint[0]}}</td>
+                        <td ng-bind-html="hint[1] | rawHtml"></td>
+                        
+                      </tr>
+                    </table>
+                </div>
+                </accordion-group>
+              </accordion>
+          </div>
+        </div>
+      </div>
+
 </div>
 
 <div ng-include = "'/templates/partials/footer'" class="footer-fix"></div>

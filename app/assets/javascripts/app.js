@@ -21,7 +21,7 @@ var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstr
         views: {
           'navbar': {
 
-            templateUrl: 'templates/partials/navbar-main.html',
+            templateUrl: 'templates/partials/navbar.html',
             controller: 'navbarCtrl'
 
           },

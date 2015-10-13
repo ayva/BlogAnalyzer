@@ -6,6 +6,7 @@ grandma.controller('bloggerCtrl', ['$scope', '$stateParams', 'Restangular', func
     
     $scope.blogger = response;
 
+    //Add arrow to show open and total errors
     var hints = $scope.blogger.author.hintstable;
 
     var hash={};

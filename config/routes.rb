@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   get '/api/v1/authors/grouptop' => 'authors#grouptop'
   get '/api/v1/authors/leaderboards' => 'authors#leaderboards'
 
+  #Blog check
+  post '/api/v1/authors/newblogger' => 'authors#newblogger'
+
   #Data for blogger page
 
   scope 'api' do

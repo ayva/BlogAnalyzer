@@ -5,5 +5,5 @@ scheduler = Rufus::Scheduler.new
 
 scheduler.every("1d") do
    scraper = MediumScraper.new
-   scraper.get_stories
+   scraper.get_top_stories
 end

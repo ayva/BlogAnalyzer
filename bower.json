@@ -28,5 +28,7 @@
     "angular-chart.js": "~0.8.4",
     "angular-ui-router": "~0.2.15",
     "restangular": "~1.5.1"
+
+
   }
 }

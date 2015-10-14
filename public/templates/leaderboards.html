@@ -3,11 +3,11 @@
   <div class="container">
 
     <div class="row" ng-hide="showInput" ng-init="showInput=false">
-      <div class="col-sm-6 col-sm-offset-1 text-center">
+      <div class="col-xs-8 col-sm-6 col-sm-offset-1 text-center">
         <h5>Grandma can check your blog for free now</h5>
       </div>
 
-      <div class="col-sm-4  col-xs-6  text-center">
+      <div class="col-xs-4 col-sm-4   text-center">
         
         <button  type="submit" class="btn btn-success" ng-click="showInput=true" >Check my Blog!</button>
       </div>
@@ -28,7 +28,9 @@
      
     </div>
     <div class="row">  
-      <div class="col-sm-6 col-sm-offset-1 text-center" ng-show="formSubmitted.b">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center" ng-show="formSubmitted.b">
+        <h5><a href="https://twitter.com/GrandmaCheck" class="twitter-follow-button" data-show-count="false">Follow @GrandmaCheck</a> to know when your blog is ready.</h5>
+        
         <h5 ng-bind-html="blogSubmitted.message | rawHtml"></h5>
       </div>
         

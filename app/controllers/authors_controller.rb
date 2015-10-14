@@ -33,7 +33,6 @@ class AuthorsController < ApplicationController
 
 
   def index
-
     @authors = Author.all
 
     respond_to do |format|
@@ -49,30 +48,24 @@ class AuthorsController < ApplicationController
 
 
   def show
-
     @author = Author.find(params[:id])
     @hintstable = hintstable(params[:id])
-    
-
   end
-
 
   def newblogger
     respond_to do |format|
       # validate url
       @author =  Author.find_by_blog_url(params[:url])
-      if(@author) 
-        
-
-        format.json { render json: "This blog was checked already.Follow the link <a href='#/blogger/#{@author.username}?id=#{@author.id}'>#{@author.full_name}</a>".to_json }
+      if(@author)
+        format.json { render json: "This blog was checked already. Follow the link <a href='#/blogger/#{@author.username}?id=#{@author.id}'>#{@author.full_name}</a>".to_json }
       else
-        # Callscrapper
+        MediumScraper.delayed_scrape_author(params[:url])
         format.json { render json: "Thank you for request. It will be processed in 5 min. ".to_json }
       end
     end
 
   end
-  
+
   private
   def params_list
     params.require(:author).permit(:url, :id)

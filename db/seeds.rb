@@ -33,11 +33,11 @@ author4 = Author.create({author_pic: 'https://cdn-images-1.medium.com/fit/c/120/
                         full_name: 'Sloane Crosley',
                         score: 8.7,
                         blog_url: "https://medium.com/@askanyone",
-                        username: 'askanyone' 
+                        username: 'askanyone'
 
         })
 
-leader1 = Leader.create({author_id: author1.id, 
+leader1 = Leader.create({author_id: author1.id,
                         score: 9.9 ,
                         category: 'Grammar'
         })

@@ -11,8 +11,6 @@ module GrammarCheck
       headers = {"Content-Type" => "text/plain",
                   "Accept" => "application/json"}
       result = HTTParty.post(api_url, :headers => headers, :body => text).parsed_response
-      p '======================================================='
-      p result
       return result
   end
 end
@@ -27,7 +25,6 @@ class MediumScraper
   TOP_STORIES_URL = "https://medium.com/top-stories"
 
   def self.check_errors(text)
-    p '======================================================='
     api_url = Rails.application.secrets.grammarly_API_url
     headers = {"Content-Type" => "text/plain",
                 "Accept" => "application/json"}
@@ -96,7 +93,6 @@ class MediumScraper
 
   def self.delayed_scrape_author(author_url)
     MediumScraper.delay.scrape_author(author_url)
-    # TwitterAPI.new.twit("Grandma just checked @#{author_url}'s grammar on Medium, see results here!")
   end
 
   # Scrapes the latest 10 blog posts from the corresponding author url.
@@ -120,6 +116,8 @@ class MediumScraper
         Rails.logger.warn "URL failed"
       end
     end
+
+    TwitterAPI.new.twit(Author.last.name, Author.last.id)
   end
 
 

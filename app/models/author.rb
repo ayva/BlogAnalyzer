@@ -4,6 +4,10 @@ class Author < ActiveRecord::Base
   has_many :leaders
   has_many :unique_hints
 
+  def percentage
+    Author.where('score < ?', self.score) / Author.count
+  end
+
   def unique_hints
     self.hints.group('title').count
   end

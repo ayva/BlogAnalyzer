@@ -117,7 +117,7 @@ class MediumScraper
       end
     end
 
-    TwitterAPI.new.twit(Author.last.name, Author.last.id)
+    TwitterAPI.new.twit(Author.last.full_name, Author.last.id)
   end
 
 
@@ -142,21 +142,23 @@ class MediumScraper
                                     author_id: author.id,
                                     word_count: word_count)
 
-      errors = MediumScraper.check_errors(content)
+      MediumScraper.score_post(post, content)
+    end
 
-      errors.each do |error|
+    author.score = author.overall_error_rate
+    author.save
+
+  end
+
+  def self.score_post(post, content)
+    errors = MediumScraper.check_errors(content)
+    errors.each do |error|
         group = Group.find_or_create_by(name: error["group"])
         hint = Hint.find_or_create_by(title: error["title"],
                                       group_id: group.id)
         Posthint.find_or_create_by(post_id: post.id,
                                    hint_id: hint.id)
       end
-
-    end
-
-    author.score = author.overall_error_rate
-    author.save
-
   end
 
   def self.parse_content(content)

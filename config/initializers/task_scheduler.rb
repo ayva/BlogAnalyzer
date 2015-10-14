@@ -4,6 +4,6 @@ require 'rufus-scheduler'
 scheduler = Rufus::Scheduler.new
 
 scheduler.every("1d") do
-   scraper = MediumScraper.new
-   scraper.get_top_stories
+  MediumScraper.get_top_authors
+  Author.delay.find_leaders
 end

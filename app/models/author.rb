@@ -98,30 +98,26 @@ class Author < ActiveRecord::Base
     ((grammar_errors.to_f / total_words) * 100).round(2)
   end
 
-  def find_leaders
-    style_leader = Leader.where(category: "style").first
+  def self.find_leaders
+    style_leader = Leader.where(category: "Style").first
     style_leader.author_id = 1
     style_leader.score = Author.first.style_error_rate
 
-    punctuation_leader = Leader.where(category: "punctuation").first
+    punctuation_leader = Leader.where(category: "Punctuation").first
     punctuation_leader.author_id = 1
     punctuation_leader.score = Author.first.punctuation_error_rate
 
-    spelling_leader = Leader.where(category: "spelling").first
-    spelling_leader.author_id = 1
-    spelling_leader.score = Author.first.spelling_error_rate
-
-    sentence_structure_leader = Leader.where(category: "sentence_structure").first
+    sentence_structure_leader = Leader.where(category: "Structure").first
     sentence_structure_leader.author_id = 1
     sentence_structure_leader.score = Author.first.sentence_structure_error_rate
 
-    grammar_leader = Leader.where(category: "grammar").first
+    grammar_leader = Leader.where(category: "Grammar").first
     grammar_leader.author_id = 1
     grammar_leader.score = Author.first.grammar_error_rate
 
-    overall_leader = Leader.where(category: "overall").first
-    overall_leader.author_id = 1
-    overall_leader.score = Author.first.overall_error_rate
+    # overall_leader = Leader.where(category: "Overall").first
+    # overall_leader.author_id = 1
+    # overall_leader.score = Author.first.overall_error_rate
 
     Author.all.each do |author|
       if author.style_error_rate < style_leader.score && author.total_words > 100
@@ -134,11 +130,11 @@ class Author < ActiveRecord::Base
         punctuation_leader.score = author.punctuation_error_rate
         punctuation_leader.save
       end
-      if author.spelling_error_rate < spelling_leader.score && author.total_words > 100
-        spelling_leader.author_id = author.id
-        spelling_leader.score = author.spelling_error_rate
-        spelling_leader.save
-      end
+      # if author.spelling_error_rate < spelling_leader.score && author.total_words > 100
+      #   spelling_leader.author_id = author.id
+      #   spelling_leader.score = author.spelling_error_rate
+      #   spelling_leader.save
+      # end
       if author.sentence_structure_error_rate < sentence_structure_leader.score && author.total_words > 100
         sentence_structure_leader.author_id = author.id
         sentence_structure_leader.score = author.sentence_structure_error_rate
@@ -149,11 +145,11 @@ class Author < ActiveRecord::Base
         grammar_leader.score = author.grammar_error_rate
         grammar_leader.save
       end
-      if author.overall_error_rate < overall_leader.score && author.total_words > 100
-        overall_leader.author_id = author.id
-        overall_leader.score = author.overall_error_rate
-        overall_leader.save
-      end
+      # if author.overall_error_rate < overall_leader.score && author.total_words > 100
+      #   overall_leader.author_id = author.id
+      #   overall_leader.score = author.overall_error_rate
+      #   overall_leader.save
+      # end
 
     end
   end

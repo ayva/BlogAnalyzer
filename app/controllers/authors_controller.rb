@@ -1,5 +1,6 @@
 require 'authors_helper'
 
+
 class AuthorsController < ApplicationController
   include AuthorsHelper
   def totals
@@ -50,6 +51,9 @@ class AuthorsController < ApplicationController
   def show
     @author = Author.find(params[:id])
     @hintstable = hintstable(params[:id])
+    @rating =    ( Author.where("score <= ?", @author.score).count.to_f / Author.count * 100).round(0)
+
+
   end
 
   def newblogger
@@ -59,8 +63,10 @@ class AuthorsController < ApplicationController
       if(@author)
         format.json { render json: "This blog was checked already. Follow the link <a href='#/blogger/#{@author.username}?id=#{@author.id}'>#{@author.full_name}</a>".to_json }
       else
+
         MediumScraper.delayed_scrape_author(params[:url])
-        format.json { render json: "Thank you for request. It will be processed in 5 min. ".to_json }
+        format.json { render json: "".to_json }
+
       end
     end
 

@@ -1,7 +1,7 @@
 
 
 json.(@author, :id, :blog_url, :full_name, :author_pic, :username, :score, :created_at, :updated_at)
-
+json.rating @rating
 json.author do
 
   json.hintstable @hintstable

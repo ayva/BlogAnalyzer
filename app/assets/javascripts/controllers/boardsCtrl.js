@@ -4,10 +4,10 @@ grandma.controller('boardsCtrl', ['$scope', '$timeout', 'storage', function($sco
   $scope.blogUrl = "https://medium.com/@sampleblogname";
   
   //Scores for magazines
-  $scope.magazines = {  bbc: 97,
-                        cnn: 99.9,
-                        newyorker: 99.8,
-                        newyorktimes: 100};
+  $scope.magazines = {  bbc: 100-2.11,
+                        cnn: 100-1.72,
+                        newyorker: 100-1.4,
+                        newyorktimes: 100-1.81};
 
 
   //Leaderboards and 4 bloggers at the bottom, best in a grammar group
@@ -18,7 +18,7 @@ grandma.controller('boardsCtrl', ['$scope', '$timeout', 'storage', function($sco
     $timeout(function(){
       $scope.showInput = false;
       storage.formSubmitted.b = false;},
-      3000);
+      7000);
     storage.checkBlog($scope.blogUrl);
   };
   $scope.formSubmitted = storage.formSubmitted;

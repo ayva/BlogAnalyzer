@@ -110,6 +110,9 @@ class MediumScraper
     body = page.search("div[@class='section-content']").search("p")
 
     content = parse_content(body)
+
+    # Get author in scrape_author rather than
+    # getting the author's page and scraping the information over and over
     author = scrape_author_info(author_url)
 
     word_count = content.split.size

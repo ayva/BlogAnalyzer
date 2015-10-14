@@ -1,3 +1,5 @@
+
+
 grandma.controller('bloggerCtrl', ['$scope', '$stateParams', 'Restangular', function($scope, $stateParams, Restangular) {
   var username = $stateParams.username;
   var id = $stateParams.id;
@@ -5,32 +7,49 @@ grandma.controller('bloggerCtrl', ['$scope', '$stateParams', 'Restangular', func
    Restangular.one('authors', id).get().then(function(response){
     
     $scope.blogger = response;
-    console.log(response.author.totalposts)
+
+    //Add arrow to show open and total errors
+    var hints = $scope.blogger.author.hintstable;
+
+    var hash={};
+    for(var i=0; i<hints.length; i++) {
+      if (!hash[hints[i].name]) {
+        hash[hints[i].name] = [];
+      }
+      hash[hints[i].name].push([hints[i].count, hints[i].title]);
+    }
+    $scope.testhints =[];
+    for(var h=0; h<Object.keys(hash).length; h++){
+      $scope.testhints.push({name: Object.keys(hash)[h], hints: hash[Object.keys(hash)[h]]});
+      
+    }
+
+
+    $scope.charts = {
+      grammar: {
+        labels: ["Enhancement", "Grammar","Spelling","Style","Sentence Structure","Plugiarism","Punctutation"],
+        data: [ $scope.blogger.author.grammar.enhancement,
+                $scope.blogger.author.grammar.grammar,
+                $scope.blogger.author.grammar.spelling,
+                $scope.blogger.author.grammar.style,
+                $scope.blogger.author.grammar.sentenceStructure,
+                $scope.blogger.author.grammar.plagiarism,
+                $scope.blogger.author.grammar.punctuation],
+      },
+      avgErrors: {
+        labels: ["Errors", "Articles"],
+        data: [$scope.blogger.author.totalerrors, $scope.blogger.author.totalposts]
+        
+      },
+      errorsPerWords: {
+        labels: ["Errors", "Words"],
+        data: [$scope.blogger.author.totalerrors, $scope.blogger.author.totalwords]
+      }
+    };
   });
 
 
-        // <tr ng-repeat='hint in blogger.table'>
-        //   <td>{{hint.total}}</td>
-        //   <td>{{hint.title}}</td>
-        //   <td>{{hint.groupname}}</td>
 
-
-
-
-  $scope.charts = {
-    grammar: {
-      labels: ["Punctutation", "Style"],
-      data: [120, 130],
-    },
-    avgErrors: {
-      labels: ["Errors", "Correct Grammar"],
-      data: [5, (100 - 5)],
-    },
-    errorsPerWords: {
-      labels: ["Errors", "Correct Grammar"],
-      data: [3, (100 - 3)],
-    }
-  }
 
 
 }]);

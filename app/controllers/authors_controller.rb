@@ -1,5 +1,7 @@
-class AuthorsController < ApplicationController
+require 'authors_helper'
 
+class AuthorsController < ApplicationController
+  include AuthorsHelper
   def totals
     total = Author.count
     totalarticles = Post.count
@@ -49,18 +51,31 @@ class AuthorsController < ApplicationController
   def show
 
     @author = Author.find(params[:id])
-    # hints = Author.hints.group('title')
+    @hintstable = hintstable(params[:id])
+    
 
-    # respond_to do |format|
-
-
-      #!!!! Include data for personal page so that I can call it like blogger.totalposts / errors etc + hint
-      format.json { render json: @author.to_json(
-        include: [:posts, hints: {include: :group}]
-
-        )
-      }
   end
 
+
+  def newblogger
+    respond_to do |format|
+      # validate url
+      @author =  Author.find_by_blog_url(params[:url])
+      if(@author) 
+        
+
+        format.json { render json: "This blog was checked already.Follow the link <a href='#/blogger/#{@author.username}?id=#{@author.id}'>#{@author.full_name}</a>".to_json }
+      else
+        # Callscrapper
+        format.json { render json: "Thank you for request. It will be processed in 5 min. ".to_json }
+      end
+    end
+
+  end
+  
+  private
+  def params_list
+    params.require(:author).permit(:url, :id)
+  end
 end
 

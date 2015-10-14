@@ -29,11 +29,30 @@ a {
 
 
 /*Navbar*/
+.panel-group .panel {
+  border-radius: 0px;
+  border-color: white;
+  border-bottom: 1px solid #ECEDF5;
+  box-shadow: none;
+}
+.panel-default {
+  background-color: white; 
+}
+.panel-default>.panel-heading {
+  background-color: white; 
+  border-color: white;
+  border-radius: 0px;
+}
+
+nav {
+  background-color: #36302F;
+}
 .navbar-main {
   position: absolute;
   width: 100%;
   z-index: 2;
   font-size: 1.2em;
+
 
   .nav-transparent {
     background-color: transparent;
@@ -43,9 +62,14 @@ a {
 
     .navbar-brand, .navbar-nav>li>a {
       color: #ECEDF5;
+
     }
 
   }
+
+
+
+
 
   nav {
     color: #fff;
@@ -151,24 +175,7 @@ header {
     }
   }
 
-  .hint-arrow {
-    -webkit-transform: translate3d(0,100px,0);
-    transform: translate3d(0,100px,0);
-    opacity: 0.6;
-    width: 40px;
-    height: 40px;
-    background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2270%22%20height%3D%2270%22%20viewBox%3D%220%200%2070%2070%22%3E%0D%0A%09%3Cpath%20fill%3D%22%23fff%22%20opacity%3D%220.21%22%20d%3D%22M35%2C2c18.196%2C0%2C33%2C14.804%2C33%2C33S53.196%2C68%2C35%2C68S2%2C53.196%2C2%2C35S16.804%2C2%2C35%2C2%20M35%2C0C15.67%2C0%2C0%2C15.67%2C0%2C35%20s15.67%2C35%2C35%2C35s35-15.67%2C35-35S54.33%2C0%2C35%2C0L35%2C0z%22/%3E%0D%0A%09%3Cpolygon%20fill-rule%3D%22evenodd%22%20fill%3D%22%23dedede%22%20points%3D%2245.107%2C34.715%2044.08%2C33%2035%2C38.455%2025.921%2C33%2024.893%2C34.715%2034.879%2C40.715%2035%2C40.513%2035.121%2C40.715%22/%3E%0D%0A%3C/svg%3E%0D%0A') 0 0 no-repeat;
-    background-size: 100%;
-    position: absolute;
-    bottom: 200px;
-    right: 0;
-    left: 0;
-    margin: 0 auto;
-    -webkit-transition: -webkit-transform .4s cubic-bezier(0.200, -0.020, 0.015, 0.990), opacity .3s ease-out;
-    transition: transform .4s cubic-bezier(0.200, -0.020, 0.015, 0.990), opacity .3s ease-out;
-    cursor: pointer;
-    z-index: 4;
-  }
+  
 
 }
 
@@ -233,13 +240,69 @@ footer {
 
 /*Leaderboards*/
 
+// New blogger request form
+.form-control{
+  border-radius: 0px;
+}
+.btn {
+  background-color: #6AA922;
+  border-color: none;
+  width: 100%;
+  border-radius: 0px;
+  border-color: #6AA922;
+}
+.btn:hover {
+  background-color: #5A8C20;
+  border-color: #5A8C20;
+}
+
+.css-form input.ng-invalid.ng-touched {
+  border-color: #FA787E;
+}
+
+.css-form input.ng-valid.ng-touched {
+  border-color: #6AA922;
+}
+
+.css-form button.ng-disabled {
+  background-color: black;
+}
+
+.inputUrl {
+  height: 100%;
+  width: 100%;
+}
+.cta {
+ 
+  background-color:#6AA922;
+  
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  
+  font-size:16px;
+  width: 100%;
+  padding:10px 30px;
+  text-decoration:none;
+}
+.cta:hover {
+  background-color:#5A8C20;
+  color: #ffffff;
+  text-decoration:none;
+}
+.cta:active {
+  position:relative;
+  top:1px;
+  color: #ffffff;
+}
+
 .footer-fix {
   margin-top: 9em;
 }
 
 table {
   // tr:first-child {
-  // No lines on the tables per Olga's request
+  // No lines on the tables 
   tr {
     td, th {
       border-top: 0 !important;
@@ -275,7 +338,6 @@ table {
 .thumbnail {
   border: 0px;
 }
-// @table-border-color: white;
 
 .table {
   border: 0px;
@@ -288,6 +350,7 @@ table {
 }
 
 /*Blogger*/
+
 
 .elsewhere {
   text-align: center;
@@ -488,41 +551,3 @@ table {
   background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2220%22%20height%3D%2232%22%20viewBox%3D%220%200%2020%2032%22%3E%0D%0A%3Cpath%20fill%3D%22%233d4042%22%20d%3D%22M16%2C32H4c-2.2%2C0-4-1.8-4-4v-6v-2V8V6V4c0-2.2%2C1.8-4%2C4-4h12%0D%0A%09c2.2%2C0%2C4%2C1.8%2C4%2C4v2v2v12v2v6C20%2C30.2%2C18.2%2C32%2C16%2C32z%20M18%2C4c0-1.1-0.9-2-2-2H4C2.9%2C2%2C2%2C2.9%2C2%2C4v2h16V4z%20M18%2C8H2v12h16V8z%20M2%2C22v6%0D%0A%09c0%2C1.1%2C0.9%2C2%2C2%2C2h12c1.1%2C0%2C2-0.9%2C2-2v-6H2z%20M10%2C28c-1.1%2C0-2-0.9-2-2c0-1.1%2C0.9-2%2C2-2c1.1%2C0%2C2%2C0.9%2C2%2C2C12%2C27.1%2C11.1%2C28%2C10%2C28z%22/%3E%0D%0A%3C/svg%3E%0D%0A');
 }
 
-.cta {
-  -moz-box-shadow:inset 0px 1px 0px 0px #9acc85;
-  -webkit-box-shadow:inset 0px 1px 0px 0px #9acc85;
-  box-shadow:inset 0px 1px 0px 0px #9acc85;
-  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #74ad5a), color-stop(1, #6AA922));
-  background:-moz-linear-gradient(top, #74ad5a 5%, #6AA922 100%);
-  background:-webkit-linear-gradient(top, #74ad5a 5%, #6AA922 100%);
-  background:-o-linear-gradient(top, #74ad5a 5%, #6AA922 100%);
-  background:-ms-linear-gradient(top, #74ad5a 5%, #6AA922 100%);
-  background:linear-gradient(to bottom, #74ad5a 5%, #6AA922 100%);
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#74ad5a', endColorstr='#6AA922',GradientType=0);
-  background-color:#74ad5a;
-  border:1px solid #3b6e22;
-  display:inline-block;
-  cursor:pointer;
-  color:#ffffff;
-  font-family:Arial;
-  font-size:13px;
-  font-weight:bold;
-  padding:6px 12px;
-  text-decoration:none;
-}
-.cta:hover {
-  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6AA922), color-stop(1, #74ad5a));
-  background:-moz-linear-gradient(top, #6AA922 5%, #74ad5a 100%);
-  background:-webkit-linear-gradient(top, #6AA922 5%, #74ad5a 100%);
-  background:-o-linear-gradient(top, #6AA922 5%, #74ad5a 100%);
-  background:-ms-linear-gradient(top, #6AA922 5%, #74ad5a 100%);
-  background:linear-gradient(to bottom, #6AA922 5%, #74ad5a 100%);
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6AA922', endColorstr='#74ad5a',GradientType=0);
-  background-color:#6AA922;
-  color: #eee;
-}
-.cta:active {
-  position:relative;
-  top:1px;
-  color: #eee;
-}

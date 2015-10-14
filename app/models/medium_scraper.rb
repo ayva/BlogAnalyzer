@@ -122,6 +122,7 @@ class MediumScraper
     end
   end
 
+
   # Scrapes 1 blog post
   def self.scrape_blog(url, author)
     sleep 1

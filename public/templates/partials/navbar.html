@@ -1,6 +1,6 @@
 <nav class="navbar" ng-class = "landing ? 'nav-transparent' : 'navbar-inverse' ">
   <div class="container-fluid">
-    <div class="navbar-header">
+    <div class="navbar-header" ng-hide="landing">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -17,16 +17,16 @@
 
       <ul class="nav navbar-nav navbar-right">
 
-        <li><a ui-sref = "leaderboards"><i class="fa fa-bar-chart-o"></i> Leaderboards</a></li>
+        <li ><a ng-style="leaderboards && {'color': '#6AA922'} " ui-sref = "leaderboards"><i class="fa fa-bar-chart-o"></i> Leaderboards</a></li>
 
       </ul>
 
-      <form class="navbar-form navbar-right" role="search">
+      <form ng-hide="landing" class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input  type="text"
                   name = "user"
                   required="string"
-                  typeahead="user.username for user in users.all | filter: {username: $viewValue } | limitTo: 5"
+                  typeahead="user.full_name for user in users.all | filter: {full_name: $viewValue } | limitTo: 5"
                   typeahead-no-results="noResults"
                   typeahead-append-to-body = "true"
                   typeahead-on-select = "go($item)"
@@ -38,5 +38,6 @@
       </form>
 
     </div>
+      
   </div>
 </nav>

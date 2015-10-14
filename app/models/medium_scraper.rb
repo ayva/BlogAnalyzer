@@ -1,32 +1,43 @@
 require "mechanize"
-require "grammarly.rb"
 require "twitter_api"
+
+def agent
+  Mechanize.new
+end
+
+module GrammarCheck
+  def check_errors(text)
+      api_url = Rails.application.secrets.grammarly_API_url
+      headers = {"Content-Type" => "text/plain",
+                  "Accept" => "application/json"}
+      result = HTTParty.post(api_url, :headers => headers, :body => text).parsed_response
+      return result
+  end
+end
 
 class MediumScraper
 
-  # Need to grab social media
-
-
   include GrammarCheck
-  # include TwitterAPI
 
   attr_reader :post_urls
 
   # The "Top Stories" url for Medium
   TOP_STORIES_URL = "https://medium.com/top-stories"
 
-  def initialize
-    # Initialize mechanize agent
-    @agent = Mechanize.new
-
-    # Initialize empty array to hold post URLs
+  def self.check_errors(text)
+    api_url = Rails.application.secrets.grammarly_API_url
+    headers = {"Content-Type" => "text/plain",
+                "Accept" => "application/json"}
+    result = HTTParty.post(api_url, :headers => headers, :body => text).parsed_response
+    p result
+    return result
   end
 
   # Scrapes top stories to find blogs to add to database.
   # Returns a list of urls related to the top stories.
-  def get_top_stories
+  def self.get_top_stories
     # Go to the top stories page, find the posts.
-    page = @agent.get(TOP_STORIES_URL)
+    page = agent.get(TOP_STORIES_URL)
     posts = page.search("article")
 
     # Map the posts to their href urls.
@@ -37,7 +48,7 @@ class MediumScraper
   end
 
   # Scrapes the stories of the top authors.
-  def scrape_top_story_authors
+  def self.scrape_top_story_authors
     urls = get_top_stories
 
     # For each top story, get the list of author urls.
@@ -49,8 +60,8 @@ class MediumScraper
     end
   end
 
-  def get_author(url)
-    page = @agent.get(url)
+  def self.get_author(url)
+    page = agent.get(url)
     result = page.search('//*[@id="prerendered"]/article/header/div/div[1]/div/div[2]/a')[0]
     return result ? result.attributes["href"].text + "/latest" : nil
   end
@@ -59,11 +70,11 @@ class MediumScraper
   #
   # def scrape_blogs
   #   @post_urls.each do |url|
-  #     page = @agent.get(url)
+  #     page = agent.get(url)
   #     author_post_urls = []
   #     unless page.search('//*[@id="prerendered"]/article/header/div/div[1]/div/div[2]/a')[0].nil?
   #       author_url = page.search('//*[@id="prerendered"]/article/header/div/div[1]/div/div[2]/a')[0].attributes["href"].text
-  #       author_page = @agent.get(author_url + "/latest")
+  #       author_page = agent.get(author_url + "/latest")
   #       posts = author_page.search("article")
   #       posts[0].xpath("//article/a").each do |post|
   #         author_post_urls << post.attributes["href"].value
@@ -80,13 +91,18 @@ class MediumScraper
   #   end
   # end
 
+  def self.delayed_scrape_author(author_url)
+    MediumScraper.delay.scrape_author(author_url)
+  end
+
   # Scrapes the latest 10 blog posts from the corresponding author url.
-  def scrape_author(author_url)
+  def self.scrape_author(author_url)
     p "Scraping posts by #{author_url}"
 
     # Add check that author has not already been scraped in the past month
 
-    author_page = @agent.get(author_url)
+    author_page = agent.get(author_url)
+    author = MediumScraper.scrape_author_info(author_url)
     posts = author_page.search("article")
     author_post_urls = posts[0].xpath("//article/a").map do |post|
       post.attributes["href"].value
@@ -94,35 +110,39 @@ class MediumScraper
 
     author_post_urls[0..9].each_with_index do |au, i|
       begin
-        scrape_blog(au, author_url)
+        p "Scraping #{au}"
+        MediumScraper.scrape_blog(au, author)
       rescue
         Rails.logger.warn "URL failed"
       end
     end
+
+    TwitterAPI.new.twit(Author.last.name, Author.last.id)
   end
 
 
   # Scrapes 1 blog post
-  def scrape_blog(url, author_url)
+  def self.scrape_blog(url, author)
     sleep 1
-    page = @agent.get(url)
+    page = agent.get(url)
 
     title = page.search('//*[@id="71bc"]').text
     body = page.search("div[@class='section-content']").search("p")
 
-    content = parse_content(body)
+    content = MediumScraper.parse_content(body)
 
     # Get author in scrape_author rather than
     # getting the author's page and scraping the information over and over
-    author = scrape_author_info(author_url)
+
 
     word_count = content.split.size
 
-    unless Post.where(post_url: url).length > 0
+    unless Post.find_by_post_url(url)
       post = Post.find_or_create_by(post_url: url,
                                     author_id: author.id,
                                     word_count: word_count)
-      errors = check_errors(content)
+
+      errors = MediumScraper.check_errors(content)
 
       errors.each do |error|
         group = Group.find_or_create_by(name: error["group"])
@@ -139,19 +159,19 @@ class MediumScraper
 
   end
 
-  def parse_content(content)
+  def self.parse_content(content)
     content.map{|p| p.text}.join(" ")
   end
 
-  def scrape_author_info(author_url)
-    page = @agent.get(author_url)
+  def self.scrape_author_info(author_url)
+    page = agent.get(author_url)
 
     url = author_url
     name = page.search('//*[@id="prerendered"]/div[2]/div/header/h1').text
-    username = add_username(name)
+    username = MediumScraper.add_username(name)
     img = page.search('//*[@id="prerendered"]/div[2]/div/header/div[1]/div[2]/img')[0].attributes["src"].text
-    twtr = get_twitter(page)
-    fcbk = get_facebook(page)
+    twtr = MediumScraper.get_twitter(page)
+    fcbk = MediumScraper.get_facebook(page)
     new_author = Author.find_or_create_by(full_name: name,
                                           username: username,
                                           blog_url: url,
@@ -161,17 +181,17 @@ class MediumScraper
   end
 
   # Wrapper methods for get_social_media
-  def get_twitter(page)
+  def self.get_twitter(page)
     get_social_media('Twitter', page)
   end
 
-  def get_facebook(page)
+  def self.get_facebook(page)
     get_social_media('Facebook', page)
   end
 
   # This looks like a prime place to use a maybe monad.
   # Returns the social media url or nil if not available.
-  def get_social_media(type, page)
+  def self.get_social_media(type, page)
     media = page.search("a[@title='#{type}']")
     if media && media[0] && media[0].attributes["href"]
       return media[0].attributes["href"].text[2..-1]
@@ -180,7 +200,7 @@ class MediumScraper
     end
   end
 
-  def add_username(name)
+  def self.add_username(name)
     name.downcase.gsub(" ", "")
   end
 

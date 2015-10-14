@@ -44,11 +44,15 @@ a {
   border-radius: 0px;
 }
 
+nav {
+  background-color: #36302F;
+}
 .navbar-main {
   position: absolute;
   width: 100%;
   z-index: 2;
   font-size: 1.2em;
+
 
   .nav-transparent {
     background-color: transparent;
@@ -58,6 +62,7 @@ a {
 
     .navbar-brand, .navbar-nav>li>a {
       color: #ECEDF5;
+
     }
 
   }

@@ -1,5 +1,13 @@
+
+
 var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstrap', 'chart.js'])
 
+  // .config(function(ChartJsProvider){
+  //   ChartJsProvider.setOptions({
+  //     colours: ['#74B8F3','#ECEDF5', '#A3D864', '#B7ABA9', , '#5B5A79', '#E199AD', '#87A269']
+
+  //   });
+  // })
   .config(['RestangularProvider', function(RestangularProvider) {
 
     RestangularProvider.setBaseUrl('/api/v1');

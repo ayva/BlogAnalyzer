@@ -2,9 +2,9 @@
 class TwitterAPI
 
   attr_reader :baseurl, :consumer_key, :access_token
-  
 
-  def initialize  
+
+  def initialize
     @baseurl = "https://api.twitter.com"
 
     @consumer_key = OAuth::Consumer.new(
@@ -16,7 +16,7 @@ class TwitterAPI
   end
 
   #Check if response status 200 with given Auth keys
-  def verify 
+  def verify
     # The verify credentials endpoint returns a 200 status if
     # the request is signed correctly.
     address = URI("#{@baseurl}/1.1/account/verify_credentials.json")
@@ -39,7 +39,7 @@ class TwitterAPI
   #!!!This is actually twitting to GrandMa timeline!!!
 
   def follow(name)
-        #To make Grandma to follow name account
+    #To make Grandma to follow name account
     path    = "/1.1/friendships/create.json"
     address = URI("#{@baseurl}#{path}?screen_name=#{name}")
     request = Net::HTTP::Post.new address.request_uri
@@ -49,10 +49,10 @@ class TwitterAPI
     send_request(request,address)
   end
 
-  def  twit(name)
+  def twit(name)
 
     text = "Grandma just checked @#{name}\'s grammar on Medium, see results here #{linkToBloggerReview}!"
-       #To post in GrandMa's timeline
+    #To post in GrandMa's timeline
     path    = "/1.1/statuses/update.json"
     address = URI("#{@baseurl}#{path}")
     request = Net::HTTP::Post.new address.request_uri
@@ -78,7 +78,7 @@ class TwitterAPI
 
   def send_request(request, address)
 
-        # Set up HTTP.
+    # Set up HTTP.
     http             = Net::HTTP.new address.host, address.port
     http.use_ssl     = true
     http.verify_mode = OpenSSL::SSL::VERIFY_PEER
@@ -128,8 +128,8 @@ class TwitterAPI
     http             = Net::HTTP.new address.host, address.port
     http.use_ssl     = true
     http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-    
-      # Issue the request.
+
+    # Issue the request.
     request = Net::HTTP::Get.new address.request_uri
     request.oauth! http, consumer_key, access_token
     http.start

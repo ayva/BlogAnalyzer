@@ -33,7 +33,7 @@ grandma.directive('medium',function(){
   return {
     require: 'ngModel',
     link: function(scope, elm, attrs, ctrl){
-      ctrl.$validators.integer = function(modelValue, viewValue){
+      ctrl.$validators.medium = function(modelValue, viewValue){
         if(ctrl.$isEmpty(modelValue)){
            // consider empty models to be invalid
           return false;

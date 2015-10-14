@@ -1,3 +1,5 @@
+
+
 grandma.controller('bloggerCtrl', ['$scope', '$stateParams', 'Restangular', function($scope, $stateParams, Restangular) {
   var username = $stateParams.username;
   var id = $stateParams.id;
@@ -36,11 +38,12 @@ grandma.controller('bloggerCtrl', ['$scope', '$stateParams', 'Restangular', func
       },
       avgErrors: {
         labels: ["Errors", "Articles"],
-        data: [$scope.blogger.author.totalerrors, $scope.blogger.author.totalposts],
+        data: [$scope.blogger.author.totalerrors, $scope.blogger.author.totalposts]
+        
       },
       errorsPerWords: {
         labels: ["Errors", "Words"],
-        data: [$scope.blogger.author.totalerrors, $scope.blogger.author.totalwords],
+        data: [$scope.blogger.author.totalerrors, $scope.blogger.author.totalwords]
       }
     };
   });

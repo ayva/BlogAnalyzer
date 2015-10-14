@@ -56,6 +56,7 @@ class AuthorsController < ApplicationController
 
   end
 
+
   def newblogger
     respond_to do |format|
       # validate url
@@ -69,6 +70,7 @@ class AuthorsController < ApplicationController
         format.json { render json: "Thank you for request. It will be processed in 5 min. ".to_json }
       end
     end
+
   end
   
   private

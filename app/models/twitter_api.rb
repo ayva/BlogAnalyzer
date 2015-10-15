@@ -58,7 +58,6 @@ class TwitterAPI
   end
 
   def twit(text)
-    text =
     #To post in GrandMa's timeline
     path    = "/1.1/statuses/update.json"
     address = URI("#{@baseurl}#{path}")

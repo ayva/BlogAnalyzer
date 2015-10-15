@@ -175,6 +175,7 @@ class MediumScraper
 
     author = Author.find_by_blog_url(url)
     if author
+      author.score = author.overall_error_rate
       return author
     else
       new_author = Author.find_or_create_by(full_name: name,

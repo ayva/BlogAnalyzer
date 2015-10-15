@@ -55,7 +55,7 @@ class MediumScraper
     author_urls = urls.map{|url| get_author(url)}.compact
 
     # Then, for each author url, go to the author's latest posts page and scrape the posts.
-    author_urls[0..1].each do |author_url|
+    author_urls.each do |author_url|
       scrape_author(author_url)
     end
   end
@@ -116,8 +116,6 @@ class MediumScraper
         Rails.logger.warn "URL failed"
       end
     end
-
-    TwitterAPI.new.twit(Author.last.full_name, Author.last.id)
   end
 
 
@@ -174,12 +172,20 @@ class MediumScraper
     img = page.search('//*[@id="prerendered"]/div[2]/div/header/div[1]/div[2]/img')[0].attributes["src"].text
     twtr = MediumScraper.get_twitter(page)
     fcbk = MediumScraper.get_facebook(page)
-    new_author = Author.find_or_create_by(full_name: name,
-                                          username: username,
-                                          blog_url: url,
-                                          twitter: twtr,
-                                          facebook: fcbk,
-                                          author_pic: img)
+
+    author = Author.find_by_blog_url(url)
+    if author
+      return author
+    else
+      new_author = Author.find_or_create_by(full_name: name,
+                                            username: username,
+                                            blog_url: url,
+                                            twitter: twtr,
+                                            facebook: fcbk,
+                                            author_pic: img)
+      # TwitterAPI.new.delay.twit(Author.last.full_name, Author.last.id)
+      return new_author
+    end
   end
 
   # Wrapper methods for get_social_media

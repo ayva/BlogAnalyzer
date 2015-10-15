@@ -26,8 +26,8 @@
       <div class="col-xs-offset-2 col-xs-8  col-sm-offset-0 col-sm-6">
 
         <h3><a target="_blank" ng-href="{{blogger.blog_url}}">{{blogger.full_name}}</a></h3>
-        <h4>
-          <table class="table">
+        <h4 ng-hide="blogger.rating>50">
+          <table class="table" >
             <tr>
 
               <td>{{blogger.full_name}} is in {{blogger.rating}}% Top bloggers according to Grandma </td>
@@ -87,11 +87,20 @@
 
             <div class="col-xs-3  col-sm-3 elsewhere">
 
-              <div class="bloggerNumberTitle text-center">ELSEWHERE</div>
+              <div class="bloggerNumberTitle text-center">SHARE</div>
+     
+            
+              <a class="twitter-share-button" 
+                  href={{twitterUrlnumbers}} 
+                  data-counturl="https://dev.twitter.com/web/tweet-button"
+                  data-count="none"><img style="width: 23px; opacity: 1" src="images/twitter.svg"></a>
 
-              <a target="_blank" ng-href={{blogger.twitter}}><img style="width: 23px; opacity: 1" src="images/twitter.svg"></a>
+              <a class="facebook-share-button" 
+              href="http://www.facebook.com/sharer.php?s=100&p[url]=http://www.grandma.space&p[images][0]=https://pbs.twimg.com/profile_images/654360947457323008/jDnkyvfA_400x400.png"
 
-              <a target="_blank" ng-href={{blogger.facebook}}><img src="images/facebook.png"></a>
+              
+              data-href="http://grandma.space/#/blogger/{{blogger.nickname}}?id={{blogger.id}}"
+              data-layout="link"><img src="images/facebook.png"></a>
 
             </div>
           </div>

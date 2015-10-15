@@ -30,7 +30,7 @@
           <table class="table" >
             <tr>
 
-              <td>{{blogger.full_name}} is in {{blogger.rating}}% Top bloggers according to Grandma </td>
+              <td>{{blogger.full_name}}'s blog is in the top {{blogger.rating}}% blogs read by Grandma.</td>
               <td><a class="twitter-share-button"
                 href={{twitterUrl}}
                 data-counturl="https://dev.twitter.com/web/tweet-button" data-count="none">Tweet</a>
@@ -157,7 +157,7 @@
                   chart-data="charts.errorsPerWords.data"
                   chart-labels="charts.errorsPerWords.labels">
           </canvas>
-          <p class="text-overlay text-center"><strong>{{blogger.author.errorwords}} Avr. Errors</strong></p>
+          <p class="text-overlay text-center"><strong>{{blogger.author.errorwords * 10}} Suggestions/100 words</strong></p>
         </div>
       </div>
 

@@ -14,5 +14,5 @@ Group.destroy_all
 Hint.destroy_all
 Posthint.destroy_all
 
-MediumScraper.scrape_top_story_authors
-Author.find_leaders
+MediumScraper.delay.scrape_top_story_authors
+Author.delay.find_leaders

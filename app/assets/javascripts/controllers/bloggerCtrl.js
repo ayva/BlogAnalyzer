@@ -8,7 +8,7 @@ grandma.controller('bloggerCtrl', ['$scope', '$stateParams', '$location', 'Resta
                         bbc: 2.11};
 
    Restangular.one('authors', id).get().then(function(response){
-    
+
     $scope.blogger = response;
     //Share buttons
     var text=encodeURIComponent($scope.blogger.full_name+' in '+$scope.blogger.rating+'% best bloggers according to Grandma check');
@@ -28,7 +28,7 @@ grandma.controller('bloggerCtrl', ['$scope', '$stateParams', '$location', 'Resta
     } else {
       textscore = encodeURIComponent('Grandma checked me: POSTS: '+ $scope.blogger.author.totalposts+', WORDS: '+$scope.blogger.author.totalwords+', SCORE: '+(100-$scope.blogger.score));
     }
-    
+
 
     $scope.twitterUrlnumbers = 'http://twitter.com/share?via=GrandmaCheck&hashtags= grammar&url=http%3A%2F%2Fgrandma.space&text='+textscore+'.';
     //Add arrow to show open and total errors
@@ -44,17 +44,17 @@ grandma.controller('bloggerCtrl', ['$scope', '$stateParams', '$location', 'Resta
     $scope.testhints =[];
     for(var h=0; h<Object.keys(hash).length; h++){
       $scope.testhints.push({name: Object.keys(hash)[h], amount: hash[Object.keys(hash)[h]].length, hints: hash[Object.keys(hash)[h]]});
-      
+
     }
 
-    
+
   $scope.done = function(){
       $("#canvasimg").attr("src", $("#grammar-structure").get(0).toDataURL("img/png"));
   };
 
     $scope.charts = {
       grammar: {
-        labels: ["Enhancement", "Grammar","Spelling","Style","Sentence Structure","Plugiarism","Punctutation"],
+        labels: ["Enhancement", "Grammar","Spelling","Style","Sentence Structure","Plagiarism","Punctutation"],
         data: [ $scope.blogger.author.grammar.enhancement,
                 $scope.blogger.author.grammar.grammar,
                 $scope.blogger.author.grammar.spelling,
@@ -67,7 +67,7 @@ grandma.controller('bloggerCtrl', ['$scope', '$stateParams', '$location', 'Resta
       avgErrors: {
         labels: ["Errors", "Articles"],
         data: [$scope.blogger.author.totalerrors, $scope.blogger.author.totalposts]
-        
+
       },
       errorsPerWords: {
         labels: ["Errors", "Words"],

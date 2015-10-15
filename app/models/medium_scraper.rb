@@ -66,31 +66,6 @@ class MediumScraper
     return result ? result.attributes["href"].text + "/latest" : nil
   end
 
-  # Old scraper
-  #
-  # def scrape_blogs
-  #   @post_urls.each do |url|
-  #     page = agent.get(url)
-  #     author_post_urls = []
-  #     unless page.search('//*[@id="prerendered"]/article/header/div/div[1]/div/div[2]/a')[0].nil?
-  #       author_url = page.search('//*[@id="prerendered"]/article/header/div/div[1]/div/div[2]/a')[0].attributes["href"].text
-  #       author_page = agent.get(author_url + "/latest")
-  #       posts = author_page.search("article")
-  #       posts[0].xpath("//article/a").each do |post|
-  #         author_post_urls << post.attributes["href"].value
-  #       end
-  #       author_post_urls.each_with_index do |au, i|
-  #         break if i > 9
-  #         begin
-  #           scrape_blog(au, author_url)
-  #         rescue
-  #           Rails.logger.warn "URL failed"
-  #         end
-  #       end
-  #     end
-  #   end
-  # end
-
   def self.delayed_scrape_author(author_url)
     MediumScraper.delay.scrape_author(author_url)
   end

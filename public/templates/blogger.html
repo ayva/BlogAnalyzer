@@ -157,7 +157,7 @@
                   chart-data="charts.errorsPerWords.data"
                   chart-labels="charts.errorsPerWords.labels">
           </canvas>
-          <p class="text-overlay text-center"><strong>{{blogger.author.errorwords * 10}} Suggestions/100 words</strong></p>
+          <p class="text-overlay text-center"><strong>{{blogger.author.errorwords * 10 | number:2}} Suggestions/100 words</strong></p>
         </div>
       </div>
 

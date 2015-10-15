@@ -4,6 +4,7 @@ require 'open-uri'
 
 class AuthorsController < ApplicationController
   include AuthorsHelper
+
   def totals
     total = Author.count
     totalarticles = Post.count
@@ -65,7 +66,7 @@ class AuthorsController < ApplicationController
         format.json { render json: "This blog was checked already. Follow the link <a href='#/blogger/#{@author.username}?id=#{@author.id}'>#{@author.full_name}</a>".to_json }
       else
         begin
-          JSON.parse(open(params[:url]).read)
+          open(params[:url])
         rescue
           format.json { render json: "The blog could not be found. Please try again." }
         else

@@ -51,7 +51,7 @@ class AuthorsController < ApplicationController
   def show
     @author = Author.find(params[:id])
     @hintstable = hintstable(params[:id])
-    @rating =    ( Author.where("score <= ?", @author.score).count.to_f / Author.count * 100).round(0)
+    @rating =    ( Author.where("score <= ?", @author.score).group('authors.id').having('sum(posts.word_count) > 3000').count.to_f / Author.count * 100).round(0)
 
 
   end

@@ -167,7 +167,7 @@ class MediumScraper
     page = agent.get(author_url)
 
     url = author_url
-    name = page.search('//*[@id="prerendered"]/div[2]/div/header/h1').text
+    name = page.search('//*[@id="prerendered"]/div[2]/div/header/h1').text.split(" ").map(&:capitalize).join(" ")
     username = MediumScraper.add_username(name)
     img = page.search('//*[@id="prerendered"]/div[2]/div/header/div[1]/div[2]/img')[0].attributes["src"].text
     twtr = MediumScraper.get_twitter(page)
@@ -175,6 +175,7 @@ class MediumScraper
 
     author = Author.find_by_blog_url(url)
     if author
+      author.score = author.overall_error_rate
       return author
     else
       new_author = Author.find_or_create_by(full_name: name,
@@ -183,7 +184,7 @@ class MediumScraper
                                             twitter: twtr,
                                             facebook: fcbk,
                                             author_pic: img)
-      # TwitterAPI.new.delay.twit(Author.last.full_name, Author.last.id)
+      TwitterAPI.new.delay.twit(Author.last.full_name, Author.last.id)
       return new_author
     end
   end

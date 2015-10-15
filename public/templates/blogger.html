@@ -17,10 +17,10 @@
             <tr>
               <td><a target="_blank" ng-href="{{blogger.blog_url}}"><img class="groupBloggerImage" ng-src="{{blogger.author_pic}}"></a>
               </td>
-              
+
             </tr>
 
-          </table>    
+          </table>
       </div>
 
       <div class="col-xs-offset-2 col-xs-8  col-sm-offset-0 col-sm-6">
@@ -29,7 +29,7 @@
         <h4 ng-hide="blogger.rating>50">
           <table class="table" >
             <tr>
-              
+
               <td>{{blogger.full_name}} is in {{blogger.rating}}% Top bloggers according to Grandma </td>
               <td><a class="twitter-share-button"
                 href={{twitterUrl}}
@@ -38,7 +38,7 @@
             </tr>
 
           </table>
-        </h4> 
+        </h4>
       </div>
       <div class="col-xs-offset-2 col-xs-8  col-sm-10">
         <div ng-show="blogger.score < magazines.bbc">
@@ -48,13 +48,13 @@
               <h4>SCORED HIGHER THAN</h4>
             </div>
           </div>
-   
+
           <table id="bloggermagazines" class="table" >
             <tr >
-              
-              <td ng-show="blogger.score < magazines.cnn"> 
+
+              <td ng-show="blogger.score < magazines.cnn">
               <img style="height: 25px; margin-top: 15px; " ng-src="/images/cnn.png"></td>
-              <td ng-show="blogger.score < magazines.newyorker"> 
+              <td ng-show="blogger.score < magazines.newyorker">
                 <img style="height: 20px;margin-top: 18px;" ng-src="/images/newyorker.png">
               </td>
               <td ng-show="blogger.score < magazines.newyorktimes"><img style="height: 40px; margin-top: 5px" ng-src="/images/newyorktimes.png">
@@ -105,15 +105,15 @@
             </div>
           </div>
           <hr>
-          
+
         </div>
       </div>
-  
 
 
-  
+
+
   <br><br>
-  
+
 
 
 
@@ -127,7 +127,7 @@
                     class="chart chart-doughnut"
                     chart-data="charts.grammar.data"
                     chart-labels="charts.grammar.labels"
-                    
+
                     >
             </canvas>
             <p class="text-overlay text-center"><strong>Grammar Issues </strong></p>
@@ -166,7 +166,7 @@
       </div>
 
 
-            
+
       <div class="container">
         <div class="row">
           <div class="col-xs-offset-2 col-xs-9 col-sm-offset-2 col-sm-9 col-md-offset-2 col-md-9">
@@ -176,7 +176,7 @@
                 <div >
                   <accordion-heading class="accordion-heading" >
                    <i class="icon-circle-blank"></i> {{group.name}} ({{group.amount}})
-                   
+
                   </accordion-heading>
                     <table class="table">
                       <tr>
@@ -184,11 +184,11 @@
                         <th>Hint</th>
                       </tr>
                       <tr ng-repeat="hint in group.hints | orderBy: '[0]' : true">
-                        
-                        
+
+
                         <td>{{hint[0]}}</td>
                         <td ng-bind-html="hint[1] | rawHtml"></td>
-                        
+
                       </tr>
                     </table>
                 </div>

@@ -4,11 +4,11 @@
 
     <div class="row" ng-hide="showInput" ng-init="showInput=false">
       <div class="col-xs-8 col-sm-6 col-sm-offset-1 text-center">
-        <h5>Grandma can check your blog for free now</h5>
+        <h5>Grandma can check your blog for free!</h5>
       </div>
 
       <div class="col-xs-4 col-sm-4   text-center">
-        
+
         <button  type="submit" class="btn btn-success" ng-click="showInput=true" >Check my Blog!</button>
       </div>
     </div>
@@ -25,15 +25,15 @@
 
         </div>
       </form>
-     
+
     </div>
-    <div class="row">  
+    <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center" ng-show="formSubmitted.b">
-        
-        
+
+
         <h5 ng-bind-html="blogSubmitted.message | rawHtml"></h5>
       </div>
-        
+
 
     </div>
 
@@ -45,7 +45,7 @@
     <div class="row">
 
       <div class="col-xs-12 col-sm-6">
-        <h4>Blogger's featured on Medium today</h4>
+        <h4>Bloggers featured on Medium today:</h4>
         <table class = 'table table-hover'>
           <tr blogger-board-record ng-repeat="blogger in bloggers.featuredBloggers | orderBy : 'score'" style="border: 0px;
     border-color: white;"></tr>
@@ -53,7 +53,7 @@
       </div>
 
       <div class="col-xs-12 col-sm-6">
-        <h4>Grandma's top</h4>
+        <h4>Grandma's top:</h4>
         <table class = 'table table-hover'>
           <tr blogger-board-record ng-repeat="blogger in bloggers.grandmaBloggers"></tr>
         </table>
@@ -94,7 +94,7 @@
     <div class="row " style="margin-top: 50px">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="row text-center" style="margin-bottom: 30px">
-          <h3>Compare yourself with best in a group:</h3>
+          <h3>Be the best in each category:</h3>
         </div>
           <div class="row">
             <div group-blogger ng-repeat="blogger in bloggers.groupBloggers" class="col-xs-6 col-sm-3 col-md-3">

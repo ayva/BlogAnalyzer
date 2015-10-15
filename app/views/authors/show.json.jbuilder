@@ -18,7 +18,7 @@ json.author do
   json.totalposts @author.posts.count
   json.totalwords @author.posts.sum(:word_count)
   json.errorsarticle (@author.hints.count.to_f/@author.posts.count).round(2)
-  json.errorwords (@author.hints.count.to_f/@author.posts.sum(:word_count)*1000).round(2)
+  json.errorwords (@author.hints.count.to_f/@author.posts.sum(:word_count)*100).round(2)
 end
 
 

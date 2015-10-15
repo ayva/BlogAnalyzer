@@ -12,6 +12,8 @@ grandma.service('storage',['$http','Restangular', function($http,Restangular){
       obj.formSubmitted.b = true;
       Restangular.all('authors').customPOST({url: url}, 'newblogger' ).then(function(response){
                 obj.checkBlogReply.message = response;
+              }, function(){
+                obj.checkBlogReply.message = "Please check blog url and try again.";
               });
       //XMLHttpRequest cannot load https://medium.com/@sampleblognam. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:3000' is therefore not allowed access. The response had HTTP status code 401.
       // $http({

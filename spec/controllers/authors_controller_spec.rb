@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe AuthorsController, type: :controller do
   it "creates new author" do
+    allow(controller).to receive(:open) { true }
     expect{
       post :newblogger, format: :json, author: attributes_for(:author)}.to change(Delayed::Job , :count).by(1)
   end
@@ -20,18 +21,18 @@ RSpec.describe AuthorsController, type: :controller do
   describe "Author API" do
     it "renders show template" do
       author = create(:author)
-         
+
       get :show, format: :json, :id => author.id
-      
-      
+
+
       expect(response).to be_success
       expect(response).to render_template(:show)
-      
+
     end
 
     it "returns leaderboards" do
       get :leaderboards, format: :json
-      
+
       expect(response).to be_success
       expect(JSON.parse(response.body).length).to eq(2)
     end

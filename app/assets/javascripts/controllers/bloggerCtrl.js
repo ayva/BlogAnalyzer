@@ -48,7 +48,7 @@ grandma.controller('bloggerCtrl', ['$scope', '$stateParams', '$location', 'Resta
       },
       errorsPerWords: {
         labels: ["Errors", "Words"],
-        data: [$scope.blogger.author.totalerrors, $scope.blogger.author.totalwords]
+        data: [$scope.blogger.author.totalerrors*10, $scope.blogger.author.totalwords]
       }
     };
   }, function(){

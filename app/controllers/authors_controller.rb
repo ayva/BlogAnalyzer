@@ -1,5 +1,6 @@
 require 'authors_helper'
-
+require 'json'
+require 'open-uri'
 
 class AuthorsController < ApplicationController
   include AuthorsHelper
@@ -63,10 +64,14 @@ class AuthorsController < ApplicationController
       if(@author)
         format.json { render json: "This blog was checked already. Follow the link <a href='#/blogger/#{@author.username}?id=#{@author.id}'>#{@author.full_name}</a>".to_json }
       else
-
-        MediumScraper.delayed_scrape_author(params[:url])
-        format.json { render json: "<h5><a href='https://twitter.com/GrandmaCheck' class='twitter-follow-button' data-show-count='false'>Follow @GrandmaCheck</a> to know when your blog is ready.</h5>".to_json }
-
+        begin
+          JSON.parse(open(params[:url]).read)
+        rescue
+          format.json { render json: "The blog could not be found. Please try again." }
+        else
+          MediumScraper.delayed_scrape_author(params[:url])
+          format.json { render json: "<h5><a href='https://twitter.com/GrandmaCheck' class='twitter-follow-button' data-show-count='false'>Follow @GrandmaCheck</a> to know when your blog is ready.</h5>".to_json }
+        end
       end
     end
 

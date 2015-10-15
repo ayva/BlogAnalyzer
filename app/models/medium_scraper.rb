@@ -116,8 +116,6 @@ class MediumScraper
         Rails.logger.warn "URL failed"
       end
     end
-
-    TwitterAPI.new.twit(Author.last.full_name, Author.last.id)
   end
 
 
@@ -174,12 +172,15 @@ class MediumScraper
     img = page.search('//*[@id="prerendered"]/div[2]/div/header/div[1]/div[2]/img')[0].attributes["src"].text
     twtr = MediumScraper.get_twitter(page)
     fcbk = MediumScraper.get_facebook(page)
-    new_author = Author.find_or_create_by(full_name: name,
-                                          username: username,
-                                          blog_url: url,
-                                          twitter: twtr,
-                                          facebook: fcbk,
-                                          author_pic: img)
+    unless Author.find_by_blog_url(url)
+      new_author = Author.find_or_create_by(full_name: name,
+                                            username: username,
+                                            blog_url: url,
+                                            twitter: twtr,
+                                            facebook: fcbk,
+                                            author_pic: img)
+      TwitterAPI.new.delay.twit(Author.last.full_name, Author.last.id)
+    end
   end
 
   # Wrapper methods for get_social_media

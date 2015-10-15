@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '2.2.2'
 
 gem 'delayed_job_active_record'
+gem 'delayed_job_recurring'
 gem 'mechanize'
 gem 'git-hooks'
 
@@ -12,7 +13,6 @@ gem 'angular-ui-bootstrap-rails'
 
 
 gem 'modernizr-rails'
-gem 'rufus-scheduler'
 
 #Work with API
 gem 'httparty'

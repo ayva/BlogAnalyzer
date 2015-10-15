@@ -184,7 +184,12 @@ class MediumScraper
                                             twitter: twtr,
                                             facebook: fcbk,
                                             author_pic: img)
-      TwitterAPI.new.delay.twit(Author.last.full_name, Author.last.id)
+      if twtr
+        TwitterAPI.new.delay.tweet_twitter_user(twtr.split("/").last, Author.last.id)
+      else
+        TwitterAPI.new.delay.tweet_non_twitter_user(Author.last.full_name, Author.last.id)
+      end
+
       return new_author
     end
   end

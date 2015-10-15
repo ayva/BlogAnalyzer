@@ -49,8 +49,16 @@ class TwitterAPI
     send_request(request,address)
   end
 
-  def twit(name, id)
-    text = "Grandma just checked @#{name}\'s grammar on Medium, see results here http://grandma.space/\#/?id=#{id}!"
+  def tweet_non_twitter_user(name, id)
+    twit("Grandma just checked #{name}\'s grammar on Medium, see results here http://grandma.space/\#/blogger/?id=#{id}!")
+  end
+
+  def tweet_twitter_user(twitter_username, id)
+    twit("Grandma just checked @#{twitter_username}\'s grammar on Medium, see results here http://grandma.space/\#/blogger/?id=#{id}!")
+  end
+
+  def twit(text)
+    text =
     #To post in GrandMa's timeline
     path    = "/1.1/statuses/update.json"
     address = URI("#{@baseurl}#{path}")

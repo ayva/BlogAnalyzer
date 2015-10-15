@@ -10,9 +10,27 @@ grandma.controller('bloggerCtrl', ['$scope', '$stateParams', '$location', 'Resta
    Restangular.one('authors', id).get().then(function(response){
     
     $scope.blogger = response;
-    
-    var text=encodeURIComponent($scope.blogger.full_name+' in '+$scope.blogger.rating+'% best bloggers according to Grandma check.');
+    //Share buttons
+    var text=encodeURIComponent($scope.blogger.full_name+' in '+$scope.blogger.rating+'% best bloggers according to Grandma check');
     $scope.twitterUrl = 'http://twitter.com/share?via=GrandmaCheck&hashtags= grammar&url=http%3A%2F%2Fgrandma.space&text='+text+'.';
+    var textscore = "";
+    if($scope.blogger.score<$scope.magazines.bbc){
+      textscore = encodeURIComponent($scope.blogger.full_name+' has a better score than BBC');
+        if ($scope.blogger.score<$scope.magazines.newyorktimes) {
+          textscore+=', New York Times';
+        }
+        if ($scope.blogger.score<$scope.magazines.cnn) {
+          textscore+=', CNN';
+        }
+        if ($scope.blogger.score<$scope.magazines.newyorker) {
+          textscore+=', New Yorker Magazine';
+        }
+    } else {
+      textscore = encodeURIComponent('Grandma checked me: POSTS: '+ $scope.blogger.author.totalposts+', WORDS: '+$scope.blogger.author.totalwords+', SCORE: '+(100-$scope.blogger.score));
+    }
+    
+
+    $scope.twitterUrlnumbers = 'http://twitter.com/share?via=GrandmaCheck&hashtags= grammar&url=http%3A%2F%2Fgrandma.space&text='+textscore+'.';
     //Add arrow to show open and total errors
     var hints = $scope.blogger.author.hintstable;
 

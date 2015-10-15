@@ -55,7 +55,7 @@ class MediumScraper
     author_urls = urls.map{|url| get_author(url)}.compact
 
     # Then, for each author url, go to the author's latest posts page and scrape the posts.
-    author_urls[0..1].each do |author_url|
+    author_urls.each do |author_url|
       scrape_author(author_url)
     end
   end

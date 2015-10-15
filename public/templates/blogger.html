@@ -12,65 +12,105 @@
   <div class="container">
     <div class="row">
 
-      <div class="col-xs-offset-2 col-xs-10  col-sm-offset-2 col-sm-10">
-        <h4>
+      <div class="col-xs-offset-2 col-xs-10  col-sm-offset-2 col-sm-3">
           <table class="table">
             <tr>
               <td><a target="_blank" ng-href="{{blogger.blog_url}}"><img class="groupBloggerImage" ng-src="{{blogger.author_pic}}"></a>
-</td>
+              </td>
+              
+            </tr>
+
+          </table>    
+      </div>
+
+      <div class="col-xs-offset-2 col-xs-8  col-sm-offset-0 col-sm-6">
+
+        <h3><a target="_blank" ng-href="{{blogger.blog_url}}">{{blogger.full_name}}</a></h3>
+        <h4>
+          <table class="table">
+            <tr>
+              
               <td>{{blogger.full_name}} is in {{blogger.rating}}% Top bloggers according to Grandma </td>
               <td><a class="twitter-share-button"
-        href={{twitterUrl}}
-        data-counturl="https://dev.twitter.com/web/tweet-button" data-count="none">Tweet</a></td>
+                href={{twitterUrl}}
+                data-counturl="https://dev.twitter.com/web/tweet-button" data-count="none">Tweet</a>
+              </td>
+            </tr>
+
+          </table>
+        </h4> 
+      </div>
+      <div class="col-xs-offset-2 col-xs-8  col-sm-10">
+        <div ng-show="blogger.score < magazines.bbc">
+
+          <div class="row " style="margin-top: 10px">
+            <div class=" col-xs-12  col-sm-12">
+              <h4>SCORED HIGHER THAN</h4>
+            </div>
+          </div>
+   
+          <table id="bloggermagazines" class="table" >
+            <tr >
+              
+              <td ng-show="blogger.score < magazines.cnn"> 
+              <img style="height: 25px; margin-top: 15px; " ng-src="/images/cnn.png"></td>
+              <td ng-show="blogger.score < magazines.newyorker"> 
+                <img style="height: 20px;margin-top: 18px;" ng-src="/images/newyorker.png">
+              </td>
+              <td ng-show="blogger.score < magazines.newyorktimes"><img style="height: 40px; margin-top: 5px" ng-src="/images/newyorktimes.png">
+              </td>
+              <td ng-show="blogger.score < magazines.bbc" > <img style="height: 25px; margin-top: 15px; " ng-src="/images/bbc.png"></td>
             </tr>
           </table>
-      </h4> 
-      </div>
-      <div class="col-xs-offset-2 col-xs-8  col-sm-8">
-        <h3><a target="_blank" ng-href="{{blogger.blog_url}}">{{blogger.full_name}}</a></h3>
-        <div class="row">
-          <div class=" col-xs-3  col-sm-3">
+          <hr>
+        </div>
 
-              <div class="bloggerNumberTitle">ARTICLES</div>
-              <div class="bloggerNumber">{{blogger.author.totalposts}}</div>
+          <div class="row">
+            <div class=" col-xs-3  col-sm-3">
 
+                <div class="bloggerNumberTitle">ARTICLES</div>
+                <div class="bloggerNumber">{{blogger.author.totalposts}}</div>
+
+            </div>
+            <div class=" col-xs-3  col-sm-3">
+
+                <div class="bloggerNumberTitle">ERRORS</div>
+                <div class="bloggerNumber">{{blogger.author.totalerrors}}</div>
+
+            </div>
+            <div class=" col-xs-3  col-sm-3">
+
+                <div class="bloggerNumberTitle">SCORE</div>
+                <div class="bloggerNumber">{{100-blogger.score | number:2 }}</div>
+
+            </div>
+
+            <div class="col-xs-3  col-sm-3 elsewhere">
+
+              <div class="bloggerNumberTitle text-center">ELSEWHERE</div>
+
+              <a target="_blank" ng-href={{blogger.twitter}}><img style="width: 23px; opacity: 1" src="images/twitter.svg"></a>
+
+              <a target="_blank" ng-href={{blogger.facebook}}><img src="images/facebook.png"></a>
+
+            </div>
           </div>
-          <div class=" col-xs-3  col-sm-3">
-
-              <div class="bloggerNumberTitle">ERRORS</div>
-              <div class="bloggerNumber">{{blogger.author.totalerrors}}</div>
-
-          </div>
-          <div class=" col-xs-3  col-sm-3">
-
-              <div class="bloggerNumberTitle">SCORE</div>
-              <div class="bloggerNumber">{{100-blogger.score | number:2 }}</div>
-
-          </div>
-          <div class="col-xs-3  col-sm-3 elsewhere">
-
-            <div class="bloggerNumberTitle text-center">ELSEWHERE</div>
-
-            <a target="_blank" ng-href={{blogger.twitter}}><img style="width: 23px; opacity: 1" src="images/twitter.svg"></a>
-
-            <a target="_blank" ng-href={{blogger.facebook}}><img src="images/facebook.png"></a>
-
-          </div>
+          <hr>
+          
         </div>
       </div>
-    </div>
+  
 
-  </div>
+
   
   <br><br>
   
 
-  <!-- <img id="canvasimg" style="border: 1px black solid" src="" /> -->
-  <!-- <canvas id="badge">  </canvas> -->
 
 
     <div class="row" id="grammar-charts">
-      <div class="col-xs-6 col-xs-offset-3 col-sm-3 col-sm-offset-2">
+      <div class="col-xs-offset-2 col-xs-8  col-sm-10">
+      <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0">
 
         <div class="chart-wrapper">
 
@@ -87,7 +127,7 @@
 
       </div>
 
-      <div class="col-xs-6 col-xs-offset-3 col-sm-3 col-sm-offset-0">
+      <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0">
 
         <div class="chart-wrapper">
           <canvas id="avg-errors"
@@ -101,8 +141,7 @@
 
       </div>
 
-      <div class="col-xs-6 col-xs-offset-3 col-sm-3 col-sm-offset-0">
-
+      <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0">
         <div class="chart-wrapper">
           <canvas id="errors-per-words"
                   class="chart chart-doughnut"
@@ -111,11 +150,11 @@
           </canvas>
           <p class="text-overlay text-center"><strong>{{blogger.author.errorwords}} Avr. Errors</strong></p>
         </div>
-
       </div>
 
     </div>
-
+    </div>
+      </div>
 
 
             

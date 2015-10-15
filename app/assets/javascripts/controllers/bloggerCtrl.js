@@ -2,12 +2,17 @@ grandma.controller('bloggerCtrl', ['$scope', '$stateParams', '$location', 'Resta
   var username = $stateParams.username;
   var id = $stateParams.id;
 
+    $scope.magazines = {newyorker: 1.4,
+                        cnn: 1.72,
+                        newyorktimes: 1.81,
+                        bbc: 2.11};
+
    Restangular.one('authors', id).get().then(function(response){
     
     $scope.blogger = response;
     
     var text=encodeURIComponent($scope.blogger.full_name+' in '+$scope.blogger.rating+'% best bloggers according to Grandma check.');
-    $scope.twitterUrl = 'http://twitter.com/share?via=GrandmaCheck&hashtags=grammar, grandmacheck&url=http%3A%2F%2Fgrandma.space&text='+text+'.';
+    $scope.twitterUrl = 'http://twitter.com/share?via=GrandmaCheck&hashtags= grammar&url=http%3A%2F%2Fgrandma.space&text='+text+'.';
     //Add arrow to show open and total errors
     var hints = $scope.blogger.author.hintstable;
 

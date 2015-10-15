@@ -1,28 +1,25 @@
-== README
+== Check live project on Grandma.space
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Grandma checks Medium bloggers grammar via Grammarly API and provides hints how to improve grammar. 
 
-Things you may want to cover:
+* Ruby version 2.2.2
 
-* Ruby version
+* System dependencies 
+  "angular": "~1.4.7",
+  "angular-bootstrap": "~0.13.4",
+  "angular-chart.js": "~0.8.4",
+  "angular-ui-router": "~0.2.15",
+  "restangular": "~1.5.1"
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  Require Grammarly.com API keys
 
 
-Please feel free to use a different markup language if you do not plan to run
+Contributors:
+
+Ayvazyan Olga https://github.com/ayva
+Nick Sarlo https://github.com/sicknarlo
+David Meza https://github.com/david-meza
+Donald Kelsey https://github.com/shadefinale
+
+
 <tt>rake doc:app</tt>.

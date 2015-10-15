@@ -1,9 +1,11 @@
-
+  <a ui-sref="blogger({ id: blogger.author.id})" style="text-decoration: none">
     <div class="thumbnail">
+      
       <img class="groupBloggerImage" ng-src="{{blogger.author.author_pic}}" alt="#">
       <div class="caption text-center">
         <p>{{blogger.author.full_name}}</p>
-        <h4><span style="font-family: OpenSansSemibold; ">{{blogger.category}}</span> <span></span>{{100-blogger.score}}  </h4>
+        <h4 ><span style="font-family: OpenSansSemibold; ">{{blogger.category}}</span> <span></span>{{100-blogger.score}}  </h4>
 
       </div>
     </div>
+  </a>

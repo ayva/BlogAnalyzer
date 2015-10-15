@@ -1,8 +1,8 @@
 require 'authors_helper'
 
-
 class AuthorsController < ApplicationController
   include AuthorsHelper
+
   def totals
     total = Author.count
     totalarticles = Post.count

@@ -100,20 +100,10 @@ class Author < ActiveRecord::Base
 
   def self.find_leaders
     style_leader = Leader.where(category: "Style").first
-    style_leader.author_id = Author.last.id
-    style_leader.score = Author.first.style_error_rate
-
     punctuation_leader = Leader.where(category: "Punctuation").first
-    punctuation_leader.author_id = Author.last.id
-    punctuation_leader.score = Author.first.punctuation_error_rate
-
     sentence_structure_leader = Leader.where(category: "Structure").first
-    sentence_structure_leader.author_id = Author.last.id
-    sentence_structure_leader.score = Author.first.sentence_structure_error_rate
-
     grammar_leader = Leader.where(category: "Grammar").first
-    grammar_leader.author_id = Author.last.id
-    grammar_leader.score = Author.first.grammar_error_rate
+
 
     # overall_leader = Leader.where(category: "Overall").first
     # overall_leader.author_id = 1

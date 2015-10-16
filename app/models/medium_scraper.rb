@@ -23,7 +23,8 @@ class MediumScraper
 
   # The "Top Stories" url for Medium
   TOP_STORIES_URL = "https://medium.com/top-stories"
-  MEDIUM_REGEX = /https:\/\/medium.com\/@.*\//
+  MEDIUM_REGEX = /(https:\/\/medium.com\/@[^\/]+)(?:\/?)/
+
 
   def self.check_errors(text)
     api_url = Rails.application.secrets.grammarly_API_url
@@ -64,6 +65,7 @@ class MediumScraper
     page = agent.get(url)
     result = page.search('//*[@id="prerendered"]/article/header/div/div[1]/div/div[2]/a')[0]
     result = result.match(MEDIUM_REGEX) ? result.match(MEDIUM_REGEX)[0] : nil
+    result = result[0..-2] if result && result[-1] == "/"
     return result ? result.attributes["href"].text : nil
   end
 

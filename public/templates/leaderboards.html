@@ -21,7 +21,7 @@
         </div>
 
         <div class="col-xs-12 col-sm-4 text-center">
-          <button  type="submit" class="btn btn-success" ng-disabled=" checkForm.$invalid || blogUrl=='https://medium.com/@sampleblogname'" ng-click=" checkBlog()" >Submit</button>
+          <button  type="submit" class="btn btn-success" ng-disabled=" (!blogUrl.toLowerCase().includes('https://medium.com/@'))|| (blogUrl.length < 21)|| blogUrl=='https://medium.com/@sampleblogname'" ng-click=" checkBlog()" >Submit</button>
 
         </div>
       </form>

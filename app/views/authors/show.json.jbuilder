@@ -6,13 +6,13 @@ json.author do
 
   json.hintstable @hintstable
   json.grammar do
-   json.enhancement @author.hints.where('group_id=1').count 
-   json.grammar @author.hints.where('group_id=2').count 
-   json.spelling @author.hints.where('group_id=3').count 
-   json.style @author.hints.where('group_id=4').count 
-   json.sentenceStructure @author.hints.where('group_id=5').count 
-   json.plagiarism @author.hints.where('group_id=6').count 
-   json.punctuation @author.hints.where('group_id=7').count 
+   json.enhancement @author.hints.where('group_id=2').count
+   json.grammar @author.hints.where('group_id=4').count
+   json.spelling @author.hints.where('group_id=7').count
+   json.style @author.hints.where('group_id=6').count
+   json.sentenceStructure @author.hints.where('group_id=3').count
+   json.plagiarism @author.hints.where('group_id=1').count
+   json.punctuation @author.hints.where('group_id=5').count
   end
   json.totalerrors @author.hints.count
   json.totalposts @author.posts.count

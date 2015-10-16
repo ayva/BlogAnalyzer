@@ -64,8 +64,6 @@ class MediumScraper
   def self.get_author(url)
     page = agent.get(url)
     result = page.search('//*[@id="prerendered"]/article/header/div/div[1]/div/div[2]/a')[0]
-    result = result.match(MEDIUM_REGEX) ? result.match(MEDIUM_REGEX)[0] : nil
-    result = result[0..-2] if result && result[-1] == "/"
     return result ? result.attributes["href"].text : nil
   end
 
@@ -73,9 +71,17 @@ class MediumScraper
     MediumScraper.delay.scrape_author(author_url)
   end
 
+  def self.sanitize_author_url(url)
+    url = url.match(MEDIUM_REGEX) ? url.match(MEDIUM_REGEX)[0] : nil
+    url = url[0..-2] if url && url[-1] == "/"
+    url
+  end
+
   # Scrapes the latest 10 blog posts from the corresponding author url.
   def self.scrape_author(author_url)
     p "Scraping posts by #{author_url}"
+
+    author_url = MediumScraper.sanitize_author_url(author_url)
 
     # Add check that author has not already been scraped in the past month
 

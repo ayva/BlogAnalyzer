@@ -7,7 +7,7 @@ grandma.service('storage',['$http','Restangular', function($http,Restangular){
   obj.formSubmitted ={};
   obj.formSubmitted.b = false;
   obj.checkBlog = function(url){
-
+    obj.checkBlogReply.message = "";
     if(url.toLowerCase().includes("https://medium.com/@")){
       obj.formSubmitted.b = true;
       Restangular.all('authors').customPOST({url: url}, 'newblogger' ).then(function(response){

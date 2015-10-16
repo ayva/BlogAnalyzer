@@ -23,13 +23,13 @@ class MediumScraper
 
   # The "Top Stories" url for Medium
   TOP_STORIES_URL = "https://medium.com/top-stories"
+  MEDIUM_REGEX = /https:\/\/medium.com\/@.*\//
 
   def self.check_errors(text)
     api_url = Rails.application.secrets.grammarly_API_url
     headers = {"Content-Type" => "text/plain",
                 "Accept" => "application/json"}
     result = HTTParty.post(api_url, :headers => headers, :body => text).parsed_response
-    p result
     return result
   end
 
@@ -63,7 +63,8 @@ class MediumScraper
   def self.get_author(url)
     page = agent.get(url)
     result = page.search('//*[@id="prerendered"]/article/header/div/div[1]/div/div[2]/a')[0]
-    return result ? result.attributes["href"].text + "/latest" : nil
+    result = result.match(MEDIUM_REGEX) ? result.match(MEDIUM_REGEX)[0] : nil
+    return result ? result.attributes["href"].text : nil
   end
 
   def self.delayed_scrape_author(author_url)
@@ -76,7 +77,7 @@ class MediumScraper
 
     # Add check that author has not already been scraped in the past month
 
-    author_page = agent.get(author_url)
+    author_page = agent.get(author_url + "/latest")
     author = MediumScraper.scrape_author_info(author_url)
     posts = author_page.search("article")
     author_post_urls = posts[0].xpath("//article/a").map do |post|
@@ -91,6 +92,8 @@ class MediumScraper
         Rails.logger.warn "URL failed"
       end
     end
+    author.score = author.overall_error_rate
+    author.save
   end
 
 
@@ -117,10 +120,6 @@ class MediumScraper
 
       MediumScraper.score_post(post, content)
     end
-
-    author.score = author.overall_error_rate
-    author.save
-
   end
 
   def self.score_post(post, content)
@@ -150,7 +149,6 @@ class MediumScraper
 
     author = Author.find_by_blog_url(url)
     if author
-      author.score = author.overall_error_rate
       return author
     else
       new_author = Author.find_or_create_by(full_name: name,

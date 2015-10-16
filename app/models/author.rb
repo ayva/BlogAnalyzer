@@ -29,13 +29,7 @@ class Author < ActiveRecord::Base
   end
 
   def style_errors
-    sum = 0
-    posts.each do |post|
-      post.posthints.each do |ph|
-        sum += 1 if ph.hint.group_id == 1
-      end
-    end
-    sum
+    self.hints.where('group_id = ?', 1).count
   end
 
   def style_error_rate
@@ -43,13 +37,7 @@ class Author < ActiveRecord::Base
   end
 
   def punctuation_errors
-    sum = 0
-    posts.each do |post|
-      post.posthints.each do |ph|
-        sum += 1 if ph.hint.group_id == 2
-      end
-    end
-    sum
+    self.hints.where('group_id = ?', 2).count
   end
 
   def punctuation_error_rate

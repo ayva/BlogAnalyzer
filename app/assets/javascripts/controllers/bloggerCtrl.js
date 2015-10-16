@@ -35,11 +35,21 @@ grandma.controller('bloggerCtrl', ['$scope', '$stateParams', '$location', 'Resta
     var hints = $scope.blogger.author.hintstable;
 
     var hash={};
+
     for(var i=0; i<hints.length; i++) {
-      if (!hash[hints[i].name]) {
-        hash[hints[i].name] = [];
+     
+      if(hints[i].name=="Plagiarism"){
+        if (!hash["Citation"]) {
+        hash["Citation"] = [];
+        }
+        hash["Citation"].push([hints[i].count, hints[i].title]);
+      } else {
+         if (!hash[hints[i].name]) {
+          hash[hints[i].name] = [];
+        }
+        hash[hints[i].name].push([hints[i].count, hints[i].title]);
       }
-      hash[hints[i].name].push([hints[i].count, hints[i].title]);
+      
     }
     $scope.testhints =[];
     for(var h=0; h<Object.keys(hash).length; h++){
@@ -54,24 +64,29 @@ grandma.controller('bloggerCtrl', ['$scope', '$stateParams', '$location', 'Resta
 
     $scope.charts = {
       grammar: {
-        labels: ["Enhancement", "Grammar","Spelling","Style","Sentence Structure","Plagiarism","Punctutation"],
-        data: [ $scope.blogger.author.grammar.enhancement,
-                $scope.blogger.author.grammar.grammar,
-                $scope.blogger.author.grammar.spelling,
-                $scope.blogger.author.grammar.style,
-                $scope.blogger.author.grammar.sentenceStructure,
-                $scope.blogger.author.grammar.plagiarism,
-                $scope.blogger.author.grammar.punctuation],
+        labels: ["Enhancement", "Grammar","Spelling","Style","Sentence Structure","Citation","Punctutation"],
+        data: [ [$scope.blogger.author.grammar.enhancement,
+                        $scope.blogger.author.grammar.grammar,
+                        $scope.blogger.author.grammar.spelling,
+                        $scope.blogger.author.grammar.style,
+                        $scope.blogger.author.grammar.sentenceStructure,
+                        $scope.blogger.author.grammar.plagiarism,
+                        $scope.blogger.author.grammar.punctuation]],
         options: {onAnimationComplete: $scope.done}
       },
       avgErrors: {
         labels: ["Errors", "Articles"],
-        data: [$scope.blogger.author.totalerrors, $scope.blogger.author.totalposts]
+        data: [[$scope.blogger.author.totalerrors], [$scope.blogger.author.totalposts]]
 
       },
       errorsPerWords: {
         labels: ["Errors", "Words"],
-        data: [$scope.blogger.author.totalerrors*10, $scope.blogger.author.totalwords]
+        data: [[$scope.blogger.author.totalerrors], [$scope.blogger.author.totalwords]]
+      },
+      accuracyFreq: {
+        labels: [""],
+        data: [[$scope.blogger.author.errorsarticle.toFixed(0)],[($scope.blogger.author.errorwords*10).toFixed(0)]],
+        series: ["Per Article", "Per 1k Words"]
       }
     };
   }, function(){

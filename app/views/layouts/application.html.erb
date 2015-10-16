@@ -9,7 +9,7 @@
   <meta property="og:image" content="https://pbs.twimg.com/profile_images/654360947457323008/jDnkyvfA_400x400.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
+  <link rel="icon" href="/images/glasses-.ico" type="image/x-icon">
   <title>Grandma - blog grammar checker </title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
@@ -26,6 +26,15 @@
 
 <%= yield %>
 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+  ga('create', 'UA-68888910-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 </body>
 </html>

@@ -23,7 +23,7 @@
           </table>
       </div>
 
-      <div class="col-xs-offset-2 col-xs-8  col-sm-offset-0 col-sm-6">
+      <div class="col-xs-12  col-sm-offset-0 col-sm-6">
 
         <h3><a target="_blank" ng-href="{{blogger.blog_url}}">{{blogger.full_name}}</a></h3>
         <h4 ng-hide="blogger.rating>50">
@@ -40,7 +40,7 @@
           </table>
         </h4>
       </div>
-      <div class="col-xs-offset-2 col-xs-8  col-sm-10">
+      <div class="col-sm-offset-2 col-xs-12  col-sm-10">
         <div ng-show="blogger.score < magazines.bbc">
 
           <div class="row " style="margin-top: 10px">
@@ -49,19 +49,19 @@
             </div>
           </div>
 
-          <table id="bloggermagazines" class="table" >
-            <tr >
+          <div class = "row" id="bloggermagazines" >
 
-              <td ng-show="blogger.score < magazines.cnn">
-              <img style="height: 25px; margin-top: 15px; " ng-src="/images/cnn.png"></td>
-              <td ng-show="blogger.score < magazines.newyorker">
-                <img style="height: 20px;margin-top: 18px;" ng-src="/images/newyorker.png">
-              </td>
-              <td ng-show="blogger.score < magazines.newyorktimes"><img style="height: 40px; margin-top: 5px" ng-src="/images/newyorktimes.png">
-              </td>
-              <td ng-show="blogger.score < magazines.bbc" > <img style="height: 25px; margin-top: 15px; " ng-src="/images/bbc.png"></td>
-            </tr>
-          </table>
+
+              <div class="col-xs-12 col-sm-2" ng-show="blogger.score < magazines.cnn">
+              <img style="height: 20px; margin-top: 15px; " ng-src="/images/cnn.png"></div>
+              <div class="col-xs-12 col-sm-3" ng-show="blogger.score < magazines.newyorker">
+                <img style="height: 15px;margin-top: 18px;" ng-src="/images/newyorker.png">
+              </div>
+              <div class="col-xs-12 col-sm-5" ng-show="blogger.score < magazines.newyorktimes"><img style="height: 35px; margin-top: 5px" ng-src="/images/newyorktimes.png">
+              </div>
+              <div class="col-xs-12 col-sm-1" ng-show="blogger.score < magazines.bbc" > <img style="height: 20px; margin-top: 15px; " ng-src="/images/bbc.png"></div>
+
+          </div>
           <hr>
         </div>
 
@@ -118,59 +118,42 @@
 
 
     <div class="row" id="grammar-charts">
-      <div class="col-xs-offset-2 col-xs-8  col-sm-10">
-      <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0">
 
-        <div class="chart-wrapper">
 
-            <canvas id="grammar-structure"
-                    class="chart chart-doughnut"
-                    chart-data="charts.grammar.data"
-                    chart-labels="charts.grammar.labels"
+        <div class="col-xs-12 col-sm-9 col-sm-offset-0 col-md-offset-0 col-md-9 col-lg-offset-0 col-lg-9 ">
+          <div class="chart-wrapper">
+              <canvas id="grammar-structure"
+                      class="chart chart-radar"
+                      chart-data="charts.grammar.data"
+                      chart-labels="charts.grammar.labels"
 
+                      >
+              </canvas>
+              <p class="text-overlay text-center"><strong>Accuracy Issues </strong></p>
+          </div>
+        </div>
+
+        <div class="col-xs-offset-3 col-xs-6 col-sm-3 col-sm-offset-0 col-md-3 col-md-offset-0 col-lg-offset-0 col-lg-3" style="margin-top: 10%">
+          <div class="chart-wrapper">
+            <canvas id="accuracy-freq"
+                    class="chart chart-bar"
+                    chart-data="charts.accuracyFreq.data"
+                    chart-series="charts.accuracyFreq.series"
+                    chart-labels="charts.accuracyFreq.labels"
                     >
             </canvas>
-            <p class="text-overlay text-center"><strong>Accuracy Issues </strong></p>
 
+            <p class="text-overlay text-center"><strong>Hints statistics</strong></p>
+          </div>
         </div>
-
-      </div>
-
-      <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0">
-
-        <div class="chart-wrapper">
-          <canvas id="avg-errors"
-                  class="chart chart-doughnut"
-                  chart-data="charts.avgErrors.data"
-                  chart-labels="charts.avgErrors.labels"
-                  >
-          </canvas>
-          <p class="text-overlay text-center"><strong>{{blogger.author.errorsarticle}} Issues per Article</strong></p>
-        </div>
-
-      </div>
-
-      <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0">
-        <div class="chart-wrapper">
-          <canvas id="errors-per-words"
-                  class="chart chart-doughnut"
-                  chart-data="charts.errorsPerWords.data"
-                  chart-labels="charts.errorsPerWords.labels">
-          </canvas>
-          <p class="text-overlay text-center"><strong>{{blogger.author.errorwords * 10 | number:2}} Suggestions/100 words</strong></p>
-        </div>
-      </div>
-
     </div>
-    </div>
-      </div>
 
 
 
       <div class="container">
         <div class="row">
           <div class="col-xs-offset-2 col-xs-9 col-sm-offset-2 col-sm-9 col-md-offset-2 col-md-9">
-              <h3>Hints to improve grammar</h3>
+              <h3>Hints to improve accuracy</h3>
               <accordion class="accordion">
                 <accordion-group ng-repeat="group in testhints">
                 <div >
@@ -202,13 +185,3 @@
 
 <div ng-include = "'/templates/partials/footer'" class="footer-fix"></div>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-68888910-1', 'auto');
-  ga('send', 'pageview');
-
-</script>

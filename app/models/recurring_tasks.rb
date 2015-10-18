@@ -2,7 +2,7 @@ class RecurringTask
   include Delayed::RecurringJob
 
   run_every 1.day
-  run_at '9:01am'
+  run_at '22:35pm'
   timezone 'US/Pacific'
 
   def perform
@@ -10,3 +10,6 @@ class RecurringTask
     Author.find_leaders
   end
 end
+
+
+# RecurringTask.schedule!

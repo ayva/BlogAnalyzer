@@ -98,12 +98,12 @@ class Author < ActiveRecord::Base
     # overall_leader.score = Author.first.overall_error_rate
 
     Author.all.each do |author|
-      if author.style_error_rate < style_leader.score && author.total_words > 100
+      if author.style_error_rate <= style_leader.score && author.total_words > 100
         style_leader.author_id = author.id
         style_leader.score = author.style_error_rate
         style_leader.save
       end
-      if author.punctuation_error_rate < punctuation_leader.score && author.total_words > 100
+      if author.punctuation_error_rate <= punctuation_leader.score && author.total_words > 100
         punctuation_leader.author_id = author.id
         punctuation_leader.score = author.punctuation_error_rate
         punctuation_leader.save
@@ -113,12 +113,12 @@ class Author < ActiveRecord::Base
       #   spelling_leader.score = author.spelling_error_rate
       #   spelling_leader.save
       # end
-      if author.sentence_structure_error_rate < sentence_structure_leader.score && author.total_words > 100
+      if author.sentence_structure_error_rate <= sentence_structure_leader.score && author.total_words > 100
         sentence_structure_leader.author_id = author.id
         sentence_structure_leader.score = author.sentence_structure_error_rate
         sentence_structure_leader.save
       end
-      if author.grammar_error_rate < grammar_leader.score && author.total_words > 100
+      if author.grammar_error_rate <= grammar_leader.score && author.total_words > 100
         grammar_leader.author_id = author.id
         grammar_leader.score = author.grammar_error_rate
         grammar_leader.save

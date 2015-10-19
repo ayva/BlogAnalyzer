@@ -57,8 +57,8 @@ class MediumScraper
 
     # Then, for each author url, go to the author's latest posts page and scrape the posts.
     author_urls.each do |author_url|     
-      p "Author #{author_url} alredy scrapped" unless Author.find_by_blog_url(author_url).nil?
-      scrape_author(author_url) if Author.find_by_blog_url(author_url).nil?
+      #Checks if sanitized url is already scrapped
+      scrape_author(author_url) if Author.find_by_blog_url(MediumScraper.sanitize_author_url(author_url)).nil?
     end
   end
 

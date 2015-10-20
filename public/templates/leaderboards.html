@@ -2,25 +2,25 @@
 
   <div class="container">
 
-    <div class="row" ng-hide="showInput" ng-init="showInput=false">
+    <div class="row" ng-hide="showInput">
       <div class="col-xs-12 col-sm-6 col-sm-offset-1 text-center">
         <h5>Grandma can check your blog for free!</h5>
       </div>
 
-      <div class="col-xs-12 col-sm-4   text-center">
-
+      <div class="col-xs-12 col-sm-4 text-center">
         <button class="btn btn-success" ng-click="showInput=true" >Check my Blog!</button>
       </div>
     </div>
 
 
-    <div class="row" ng-show="showInput && !formSubmitted.b" >
-      <form class="css-form" name="checkForm" novalidate ng-submit = "checkBlog()" >
+    <div class="row" ng-show="showInput && !formSubmitted.bool" >
+      <form class="css-form" name="checkForm" ng-submit = "checkBlog(blogUrl)" >
 
         <div class="col-xs-12 col-sm-6 col-sm-offset-1 text-center">
           <input  class="form-control inputUrl"
-                  type="url"
-                  ng-pattern = "/medium.com\/@\S{1,30}$/i"
+                  type="text"
+                  required = "string"
+                  ng-pattern = "/^(https?:\/\/)?medium.com\/@\S{1,30}$/i"
                   ng-model="blogUrl"
                   medium >
         </div>
@@ -30,6 +30,15 @@
         </div>
 
       </form>
+    </div>
+
+
+    <div class="row" ng-show="formSubmitted.bool">
+
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center">
+        <h5 ng-bind-html="blogSubmitted.message | rawHtml"></h5>
+      </div>
+
     </div>
 
 

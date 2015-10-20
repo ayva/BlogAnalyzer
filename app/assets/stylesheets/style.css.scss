@@ -202,7 +202,7 @@ header {
     -webkit-transition: -webkit-transform .4s cubic-bezier(0.200, -0.020, 0.015, 0.990), opacity 0.4s ease-out;
     transition: transform .4s cubic-bezier(0.200, -0.020, 0.015, 0.990), opacity 0.4s ease-out;
     cursor: pointer;
-    z-index: 4;
+    z-index: 99;
   }
 
 

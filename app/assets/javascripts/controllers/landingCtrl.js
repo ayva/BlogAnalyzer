@@ -4,19 +4,12 @@ grandma.controller('landingCtrl', ['$scope', 'storage', '$timeout', function($sc
   storage.getTotals();
   $scope.totals = storage.totals;
 
-  $scope.checkBlog = function(){
-    $timeout(function(){
-      storage.formSubmitted.b = false; },
-      4000);
-    storage.checkBlog($scope.blogUrl);
-  };
+  $scope.checkBlog = storage.checkBlog
 
   // Initialize input field model
   $scope.blogUrl = "https://medium.com/@samplebloggername";
+  $scope.showInput = false;
   $scope.formSubmitted = storage.formSubmitted;
   $scope.blogSubmitted = storage.checkBlogReply;
-
-
-
 
 }]);

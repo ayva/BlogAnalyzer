@@ -5,18 +5,15 @@ grandma.directive('medium',function(){
     link: function(scope, elm, attrs, ctrl){
       ctrl.$validators.medium = function(modelValue, viewValue){
 
-        if(ctrl.$isEmpty(modelValue)){
-           // consider empty models to be invalid
-          return false;
-        }
+        if (ctrl.$isEmpty(modelValue)) return false;
 
-        if (modelValue === "https://medium.com/@samplebloggername") return false;
+        if (viewValue === "https://medium.com/@samplebloggername") return false;
 
-        if(modelValue.toLowerCase().includes('https://medium.com/@')){
-          return true;
-        }
+        // if(viewValue.toLowerCase().includes('https://medium.com/@')){
+        //   return true;
+        // }
 
-        return false;
+        return true;
       };
     }
   };

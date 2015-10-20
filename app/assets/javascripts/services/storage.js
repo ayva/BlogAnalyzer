@@ -1,23 +1,22 @@
-grandma.service('storage',['$http','Restangular', function($http,Restangular){
+grandma.service('storage',['$http','Restangular', '$timeout', function($http, Restangular, $timeout){
   var obj = {};
 
   obj.totals = {};
 
   obj.checkBlogReply = {};
-  obj.formSubmitted ={ b: false };
+  obj.formSubmitted ={ bool: false };
 
   obj.checkBlog = function(url){
-    obj.checkBlogReply.message = "";
-    if(url.toLowerCase().includes("https://medium.com/@")){
-      obj.formSubmitted.b = true;
-      Restangular.all('authors').customPOST({url: url}, 'newblogger' ).then(function(response){
-                obj.checkBlogReply.message = response;
-              }, function(){
-                obj.checkBlogReply.message = "Please check blog url and try again.";
-              });
-    } else {
-      obj.checkBlogReply.message = "Please provide blog on https://medium.com/";
-    }
+    obj.formSubmitted.bool = true;
+    obj.checkBlogReply.message = "We are processing your request...";
+    $timeout(function(){ obj.formSubmitted.bool = false; }, 3000);
+
+    Restangular.all('authors').customPOST({url: url}, 'newblogger' )
+      .then(function(response){
+        obj.checkBlogReply.message = response;
+      }, function(){
+        obj.checkBlogReply.message = "Please check blog url and try again.";
+      });
 
   };
 

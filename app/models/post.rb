@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   belongs_to :author
-  has_many :posthints
+  has_many :posthints, dependent: :destroy
   has_many :hints, through: :posthints, as: :errors
 
   # Virtual Assosciations

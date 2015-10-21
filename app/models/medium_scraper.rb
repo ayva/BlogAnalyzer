@@ -99,13 +99,13 @@ class MediumScraper
         p "Scraping #{au}"
         MediumScraper.scrape_post(au, author)
       rescue
-        Rails.logger.warn "URL failed"
+        Rails.logger.warn "URL failed #{au}"
       end
     end
     author.score = author.overall_error_rate
     author.save
 
-    if !author.score.nil? 
+    if !author.score.nil? || !author.score.nan?
       twtr = author.twitter
       p "Grandma will twit to #{twtr}"
       if twtr
@@ -131,6 +131,7 @@ class MediumScraper
     content = MediumScraper.parse_content(body)
 
     word_count = content.split.size
+    p "URL #{url} has content size #{content.length} and #{word_count} words"
     unless Post.find_by_post_url(url)
      
       post = Post.find_or_create_by(post_url: url,

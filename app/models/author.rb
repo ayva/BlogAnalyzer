@@ -1,5 +1,5 @@
 class Author < ActiveRecord::Base
-  has_many :posts
+  has_many :posts, dependent: :destroy
   has_many :hints, through: :posts
   has_many :leaders
   has_many :unique_hints

@@ -5,19 +5,11 @@ def agent
   Mechanize.new
 end
 
-module GrammarCheck
-  def check_errors(text)
-      api_url = Rails.application.secrets.grammarly_API_url
-      headers = {"Content-Type" => "text/plain",
-                  "Accept" => "application/json"}
-      result = HTTParty.post(api_url, :headers => headers, :body => text).parsed_response
-      return result
-  end
-end
+
 
 class MediumScraper
 
-  include GrammarCheck
+  # include GrammarCheck
 
   attr_reader :post_urls
 
@@ -27,11 +19,19 @@ class MediumScraper
 
 
   def self.check_errors(text)
-    api_url = Rails.application.secrets.grammarly_API_url
-    headers = {"Content-Type" => "text/plain",
-                "Accept" => "application/json"}
-    result = HTTParty.post(api_url, :headers => headers, :body => text).parsed_response
-    return result
+      api_url = Rails.application.secrets.grammarly_API_url
+      token = Rails.application.secrets.grammarly_token
+
+      headers = { "Content-Type" => "text/plain",
+                  "Accept" => "application/json",
+                  "Cookie" => "grauth=#{token}",
+                  "Cache-Control" => "no-cache"
+                  }
+      result = HTTParty.post(api_url, :headers => headers, :body => text).parsed_response
+
+      p '=================Hints size=================='
+      p result.length
+      return result
   end
 
   # Scrapes top stories to find blogs to add to database.
@@ -95,19 +95,33 @@ class MediumScraper
 
     author_post_urls[0..9].each_with_index do |au, i|
       begin
+        sleep 1
         p "Scraping #{au}"
-        MediumScraper.scrape_blog(au, author)
+        MediumScraper.scrape_post(au, author)
       rescue
         Rails.logger.warn "URL failed"
       end
     end
     author.score = author.overall_error_rate
     author.save
+
+    if !author.score.nil? 
+      twtr = author.twitter
+      p "Grandma will twit to #{twtr}"
+      if twtr
+        TwitterAPI.new.delay.tweet_twitter_user(twtr.split("/").last, Author.last.id)
+      else
+        TwitterAPI.new.delay.tweet_non_twitter_user(Author.last.full_name, Author.last.id)
+      end
+    else
+      p "Author #{author.id} has to be destroyed because of score #{author.score}"
+       Author.find(author.id).destroy
+    end
   end
 
 
   # Scrapes 1 blog post
-  def self.scrape_blog(url, author)
+  def self.scrape_post(url, author)
     sleep 1
     page = agent.get(url)
 
@@ -116,23 +130,23 @@ class MediumScraper
 
     content = MediumScraper.parse_content(body)
 
-    # Get author in scrape_author rather than
-    # getting the author's page and scraping the information over and over
-
-
     word_count = content.split.size
-
     unless Post.find_by_post_url(url)
+     
       post = Post.find_or_create_by(post_url: url,
                                     author_id: author.id,
                                     word_count: word_count)
 
+      p "Post #{post.id} created for #{author.id}"
       MediumScraper.score_post(post, content)
     end
   end
 
   def self.score_post(post, content)
     errors = MediumScraper.check_errors(content)
+    
+    
+    p "Checked errors for #{post.id}, found errors #{errors}"
     errors.each do |error|
         group = Group.find_or_create_by(name: error["group"])
         hint = Hint.find_or_create_by(title: error["title"],
@@ -166,11 +180,6 @@ class MediumScraper
                                             twitter: twtr,
                                             facebook: fcbk,
                                             author_pic: img)
-      if twtr
-        TwitterAPI.new.delay.tweet_twitter_user(twtr.split("/").last, Author.last.id)
-      else
-        TwitterAPI.new.delay.tweet_non_twitter_user(Author.last.full_name, Author.last.id)
-      end
 
       return new_author
     end

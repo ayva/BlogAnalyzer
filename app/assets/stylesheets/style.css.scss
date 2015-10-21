@@ -36,10 +36,10 @@ a {
   box-shadow: none;
 }
 .panel-default {
-  background-color: white; 
+  background-color: white;
 }
 .panel-default>.panel-heading {
-  background-color: white; 
+  background-color: white;
   border-color: white;
   border-radius: 0px;
 }
@@ -67,10 +67,6 @@ nav {
 
   }
 
-
-
-
-
   nav {
     color: #fff;
     border-radius: 0px;
@@ -80,6 +76,15 @@ nav {
 
       .icon-bar {
         background-color: #333;
+      }
+
+      &:hover,
+      &:focus {
+        background-color: #333;
+
+        .icon-bar {
+          background-color: #fff;
+        }
       }
     }
 
@@ -175,7 +180,7 @@ header {
     }
   }
 
-  
+
 
 }
 
@@ -273,13 +278,13 @@ footer {
   width: 100%;
 }
 .cta {
- 
+
   background-color:#6AA922;
-  
+
   display:inline-block;
   cursor:pointer;
   color:#ffffff;
-  
+
   font-size:16px;
   width: 100%;
   padding:10px 30px;
@@ -301,8 +306,7 @@ footer {
 }
 
 table {
-  // tr:first-child {
-  // No lines on the tables 
+  // No lines on the tables
   tr {
     td, th {
       border-top: 0 !important;

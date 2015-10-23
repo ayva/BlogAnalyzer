@@ -8,4 +8,4 @@ if caller.last =~ /script\/delayed_job/ or (File.basename($0) == "rake" and ARGV
   ActiveRecord::Base.logger = Delayed::Worker.logger
 end
 puts "Scheduling job"
-RecurringTask.schedule!
+# RecurringTask.schedule!

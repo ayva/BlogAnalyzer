@@ -377,17 +377,10 @@ table {
 #grammar-charts {
 
   .chart-wrapper {
-    // position: absolute;
 
-    // p {
-    //   width: 60px;
-    //   position: relative;
-    //   top: 100px;
-    //   bottom: 0;
-    //   right: 0;
-    //   left: 0;
-    //   margin: auto;
-    // }
+    .chart-text {
+      font-size: 1.25em;
+    }
 
   }
 }

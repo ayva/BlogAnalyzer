@@ -58,6 +58,10 @@ class TwitterAPI
     twit("Grandma just checked @#{twitter_username}\'s grammar on Medium, see results here http://grandma.space/\#/blogger/?id=#{id}!")
   end
 
+  def tweet_non_english_user(twitter_username, id)
+    twit("@#{twitter_username}\ Grandma checks only English grammar on Medium, sorry.")
+  end
+
   def twit(text)
 
     #To post in GrandMa's timeline

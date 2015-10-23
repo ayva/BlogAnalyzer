@@ -9,7 +9,8 @@ class LandingPagesController < ApplicationController
 
     # @data = GrammarCheck::check_errors(text)
 
-    @data = MediumScraper.get_top_stories
+    # @data = MediumScraper.scrape_author("https://medium.com/@Brigadeiro")
+    # MediumScraper.get_top_stories
     #DetectLanguage.simple_detect("Buenos dias señor")
     # DetectLanguage.detect("Quando uma menina de 12 anos no MasterChef Jr desperta o desejo de homens adultos precisamos falar sobre a cultura do estupro")
 

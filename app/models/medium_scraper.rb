@@ -94,8 +94,19 @@ class MediumScraper
     author_page = agent.get(author_url + "/latest")
     author = MediumScraper.scrape_author_info(author_url)
     posts = author_page.search("article")
-    author_post_urls = posts[0].xpath("//article/a").map do |post|
-      post.attributes["href"].value
+
+    author_post_urls = posts[0].xpath("//article/a/div/div/section/div/div/h3").reject{|post| DetectLanguage.simple_detect(post.text) != "en"}.map {|post| 
+        
+        post.parent.parent.parent.parent.parent.parent.attributes["href"].value
+ 
+    }
+    if author_post_urls.length == 0 
+      twtr = author.twitter
+      if twtr
+        TwitterAPI.new.delay.tweet_twitter_user(twtr.split("/").last, author.id)
+      end
+      author.destroy
+      return "No English text found"
     end
 
     author_post_urls[0..9].each_with_index do |au, i|
@@ -113,11 +124,11 @@ class MediumScraper
     if !author.score.nil? || !author.score.nan?
       twtr = author.twitter
       p "Grandma will twit to #{twtr}"
-      # if twtr
-      #   TwitterAPI.new.delay.tweet_twitter_user(twtr.split("/").last, Author.last.id)
-      # else
-      #   TwitterAPI.new.delay.tweet_non_twitter_user(Author.last.full_name, Author.last.id)
-      # end
+      if twtr
+        TwitterAPI.new.delay.tweet_twitter_user(twtr.split("/").last, author.id)
+      else
+        TwitterAPI.new.delay.tweet_non_twitter_user(author.full_name, author.id)
+      end
     else
       p "Author #{author.id} has to be destroyed because of score #{author.score}"
        Author.find(author.id).destroy

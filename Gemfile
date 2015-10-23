@@ -11,6 +11,8 @@ gem 'bower'
 
 gem 'angular-ui-bootstrap-rails'
 
+#check language
+gem 'detect_language'
 
 gem 'modernizr-rails'
 

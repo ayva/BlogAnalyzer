@@ -70,6 +70,7 @@ class AuthorsController < ApplicationController
         rescue
           format.json { render json: "The blog could not be found. Please try again." }
         else
+          
           MediumScraper.delayed_scrape_author(params[:url])
           format.json { render json: "<h5><a href='https://twitter.com/GrandmaCheck' class='twitter-follow-button' data-show-count='false'>Follow @GrandmaCheck</a> to know when your blog is ready.</h5>".to_json }
         end

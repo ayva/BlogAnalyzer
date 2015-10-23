@@ -1,5 +1,5 @@
 require "mechanize"
-require "twitter_api"
+# require "twitter_api"
 
 def agent
   Mechanize.new
@@ -41,11 +41,16 @@ class MediumScraper
     page = agent.get(TOP_STORIES_URL)
     posts = page.search("article")
 
-    # Map the posts to their href urls.
-    post_urls = posts[0].xpath("//article/a").map {|post| post.attributes["href"].value}
+    # Map the posts to their href urls if titles are in english.
+    post_urls = posts[0].xpath("//article/a/div/div/section/div/div/h3").reject{|post| DetectLanguage.simple_detect(post.text) != "en"}.map {|post| 
+
+        post.parent.parent.parent.parent.parent.parent.attributes["href"].value
+ 
+    }
 
     # Return only non-nil urls.
     post_urls.compact
+    
   end
 
   # Scrapes the stories of the top authors.
@@ -108,11 +113,11 @@ class MediumScraper
     if !author.score.nil? || !author.score.nan?
       twtr = author.twitter
       p "Grandma will twit to #{twtr}"
-      if twtr
-        TwitterAPI.new.delay.tweet_twitter_user(twtr.split("/").last, Author.last.id)
-      else
-        TwitterAPI.new.delay.tweet_non_twitter_user(Author.last.full_name, Author.last.id)
-      end
+      # if twtr
+      #   TwitterAPI.new.delay.tweet_twitter_user(twtr.split("/").last, Author.last.id)
+      # else
+      #   TwitterAPI.new.delay.tweet_non_twitter_user(Author.last.full_name, Author.last.id)
+      # end
     else
       p "Author #{author.id} has to be destroyed because of score #{author.score}"
        Author.find(author.id).destroy

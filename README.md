@@ -1,6 +1,6 @@
 # Grandma
 
-Check live project on [Grandma.space](grandma.space)
+Check live project on [Grandma](http://grandma.space)
 
 Grandma checks Medium bloggers grammar via Grammarly API and provides hints how to improve grammar.
 
@@ -38,7 +38,7 @@ Our Front-end is built on AngularJS. We used Angular because the information we 
 Some libraries we are dependent on for the front-end are AngularJS, Angular Bootstrap, Angular ChartJS, Angular UI Router and Restangular. These could be easily installed by running `bower install`
 
 #### Guided Tour
-Step 1. Visit [Grandma.space](grandma.space)
+Step 1. Visit [Grandma](http://grandma.space)
 
 Step 2. Go to leaderboards located on the navbar
 

@@ -27,8 +27,8 @@
     "angular-bootstrap": "~0.13.4",
     "angular-chart.js": "~0.8.4",
     "angular-ui-router": "~0.2.15",
-    "restangular": "~1.5.1"
-
+    "restangular": "~1.5.1",
+    "angular-smoothscroll": "~2.0.0"
 
   }
 }

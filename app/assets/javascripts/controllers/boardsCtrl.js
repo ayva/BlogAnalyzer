@@ -7,7 +7,8 @@ grandma.controller('boardsCtrl', ['$scope', '$timeout', 'storage', function($sco
   $scope.magazines = {  bbc: 100-2.11,
                         cnn: 100-1.72,
                         newyorker: 100-1.4,
-                        newyorktimes: 100-1.81};
+                        newyorktimes: 100-1.81
+                      };
 
 
   //Leaderboards and 4 bloggers at the bottom, best in a grammar group

@@ -1,6 +1,6 @@
 
 
-var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstrap', 'chart.js', 'metatags'])
+var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstrap', 'chart.js', 'metatags', 'angularSmoothscroll'])
   .config(['RestangularProvider', function(RestangularProvider) {
 
     RestangularProvider.setBaseUrl('/api/v1');

@@ -4,8 +4,8 @@ grandma.service('storage',['$http','Restangular', function($http,Restangular){
   obj.totals = {};
 
   obj.checkBlogReply = {};
-  obj.formSubmitted ={};
-  obj.formSubmitted.b = false;
+  obj.formSubmitted ={ b: false };
+
   obj.checkBlog = function(url){
     obj.checkBlogReply.message = "";
     if(url.toLowerCase().includes("https://medium.com/@")){

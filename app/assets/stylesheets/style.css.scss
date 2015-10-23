@@ -109,10 +109,11 @@ header {
 
   &.bg-fallback {
     background-image: asset-url("frame.jpg");
-    background-position: 50% 50%;
+    background-position: center center;
     background-color: #ECEDF5;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: scroll;
   }
 
   .video-gradient {
@@ -180,6 +181,24 @@ header {
     }
   }
 
+  .hint-arrow {
+    -webkit-transform: translate3d(0,50px,0);
+    transform: translate3d(0,50px,0);
+    opacity: 0.6;
+    width: 50px;
+    height: 50px;
+    background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2270%22%20height%3D%2270%22%20viewBox%3D%220%200%2070%2070%22%3E%0D%0A%09%3Cpath%20fill%3D%22%23fff%22%20opacity%3D%220.21%22%20d%3D%22M35%2C2c18.196%2C0%2C33%2C14.804%2C33%2C33S53.196%2C68%2C35%2C68S2%2C53.196%2C2%2C35S16.804%2C2%2C35%2C2%20M35%2C0C15.67%2C0%2C0%2C15.67%2C0%2C35%20s15.67%2C35%2C35%2C35s35-15.67%2C35-35S54.33%2C0%2C35%2C0L35%2C0z%22/%3E%0D%0A%09%3Cpolygon%20fill-rule%3D%22evenodd%22%20fill%3D%22%23dedede%22%20points%3D%2245.107%2C34.715%2044.08%2C33%2035%2C38.455%2025.921%2C33%2024.893%2C34.715%2034.879%2C40.715%2035%2C40.513%2035.121%2C40.715%22/%3E%0D%0A%3C/svg%3E%0D%0A') 0 0 no-repeat;
+    background-size: 100%;
+    position: absolute;
+    bottom: 30%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    -webkit-transition: -webkit-transform .4s cubic-bezier(0.200, -0.020, 0.015, 0.990), opacity 0.4s ease-out;
+    transition: transform .4s cubic-bezier(0.200, -0.020, 0.015, 0.990), opacity 0.4s ease-out;
+    cursor: pointer;
+    z-index: 4;
+  }
 
 
 }
@@ -202,7 +221,6 @@ hr.inline-hr {
   position: relative;
   top: -0.5em;
   font-family: FontAwesome;
-  // transform: translate(0%, 0%);
 }
 
 .grandma-glasses {
@@ -528,10 +546,4 @@ table {
 .icon-eye {
   background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2232%22%20height%3D%2222%22%20viewBox%3D%220%200%2032%2022%22%3E%0D%0A%09%09%3Cpath%20fill%3D%22%231b1b1b%22%20d%3D%22M16.108%2C5.054c-3.309%2C0-5.991%2C2.682-5.991%2C5.99c0%2C3.308%2C2.683%2C5.99%2C5.991%2C5.99s5.99-2.683%2C5.99-5.99%0D%0A%09%09%09C22.099%2C7.736%2C19.417%2C5.054%2C16.108%2C5.054z%20M16.108%2C15.037c-2.202%2C0-4.04-1.835-4.04-4.037c0-2.201%2C1.792-3.993%2C3.994-3.993%0D%0A%09%09%09S20.057%2C8.799%2C20.057%2C11C20.057%2C13.202%2C18.311%2C15.037%2C16.108%2C15.037z%20M31.966%2C10.768c-0.012-0.05-0.006-0.104-0.021-0.153%0D%0A%09%09%09c-0.006-0.021-0.02-0.033-0.026-0.051c-0.011-0.027-0.008-0.062-0.022-0.089C28.991%2C3.827%2C22.732%2C0%2C16.063%2C0%0D%0A%09%09%09S3.008%2C3.82%2C0.103%2C10.469c-0.013%2C0.027-0.011%2C0.057-0.021%2C0.089c-0.007%2C0.018-0.021%2C0.029-0.028%2C0.047%0D%0A%09%09%09c-0.016%2C0.051-0.009%2C0.104-0.019%2C0.154C0.017%2C10.849%2C0%2C10.937%2C0%2C11.026c0%2C0.093%2C0.017%2C0.179%2C0.036%2C0.269%0D%0A%09%09%09c0.01%2C0.05%2C0.003%2C0.104%2C0.019%2C0.152c0.006%2C0.022%2C0.021%2C0.032%2C0.028%2C0.052c0.01%2C0.028%2C0.008%2C0.062%2C0.021%2C0.089%0D%0A%09%09%09C3.008%2C18.236%2C9.33%2C22%2C16%2C22c6.671%2C0%2C12.991-3.757%2C15.896-10.404c0.015-0.028%2C0.012-0.059%2C0.022-0.09%0D%0A%09%09%09c0.007-0.018%2C0.021-0.03%2C0.026-0.05c0.016-0.048%2C0.01-0.102%2C0.021-0.152C31.983%2C11.215%2C32%2C11.127%2C32%2C11.035%0D%0A%09%09%09C32%2C10.945%2C31.983%2C10.858%2C31.966%2C10.768z%20M16%2C20.003c-5.657%2C0-11.225-2.98-13.96-8.975c2.709-5.973%2C8.352-9.032%2C14.023-9.032%0D%0A%09%09%09c5.669%2C0%2C11.186%2C3.063%2C13.896%2C9.039C27.25%2C17.007%2C21.671%2C20.003%2C16%2C20.003z%22/%3E%0D%0A%3C/svg%3E%0D%0A');
 }
-
-
-
-
-
-
 

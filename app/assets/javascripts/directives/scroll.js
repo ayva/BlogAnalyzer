@@ -1,14 +1,21 @@
-grandma.directive("scroll", function ($window) {
+grandma.directive("arrowScroll", function ($window) {
   return function(scope, element, attrs) {
-    scope.showNav = true;
-    // scope.showNav = false;
-    // angular.element($window).bind("scroll", function() {
-    //   if (this.pageYOffset >= $($window).height() ) {
-    //     scope.showNav = true;
-    //   } else {
-    //     scope.showNav = false;
-    //   }
-    // scope.$apply();
-    //});
+
+    angular.element($window).bind("scroll", function() {
+      if (this.pageYOffset >= 100 ) {
+        console.log( "below" );
+        $(".hint-arrow").css({
+          '-webkit-transform' : 'translate3d(0,300px,0)',
+          'transform'         : 'translate3d(0,300px,0)'
+        });
+      } else {
+        console.log("above")
+        $(".hint-arrow").css({
+          '-webkit-transform' : 'translate3d(0,40px,0)',
+          'transform'         : 'translate3d(0,40px,0)'
+        });
+      }
+    scope.$apply();
+    });
   };
 });

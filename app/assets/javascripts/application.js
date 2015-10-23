@@ -24,9 +24,11 @@
 
 // Bootstrap UI
 //= require angular-bootstrap/ui-bootstrap-tpls.min
-// require angular-ui-bootstrap
+
 //=require angular-route
 //=require angular-metatags
+
+//=require angular-smoothscroll/dist/scripts/bb15da28.scripts
 
 
 //= require lodash/lodash.min

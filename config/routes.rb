@@ -6,27 +6,22 @@ Rails.application.routes.draw do
 
   root 'landing_pages#main'
 
-
   # Example of regular route:
   get '/test' => 'landing_pages#test'
 
   #Counters for main page
   get '/api/v1/authors/totals' => 'authors#totals'
-  
 
-  
   #Data for leaderboards
-
   get '/api/v1/authors/grouptop' => 'authors#grouptop'
   get '/api/v1/authors/leaderboards' => 'authors#leaderboards'
 
   #Blog check
   post '/api/v1/authors/newblogger' => 'authors#newblogger'
 
-  #Data for blogger page
-
   scope 'api' do
     scope 'v1' do
+      #Data for blogger page
       resources :authors, only: [:index, :show]
     end
   end

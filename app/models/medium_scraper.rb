@@ -89,7 +89,7 @@ class MediumScraper
 
     author_url = MediumScraper.sanitize_author_url(author_url)
 
-    # Add check that author has not already been scraped in the past month
+    # Author was checked if it exists in author controller
 
     author_page = agent.get(author_url + "/latest")
     author = MediumScraper.scrape_author_info(author_url)

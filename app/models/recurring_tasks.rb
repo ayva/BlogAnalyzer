@@ -2,7 +2,7 @@ class RecurringTask
   include Delayed::RecurringJob
 
   run_every 1.day
-  run_at '9:15pm'
+  run_at '8:35am'
   timezone 'US/Pacific'
 
   def perform

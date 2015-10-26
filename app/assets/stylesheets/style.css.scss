@@ -258,12 +258,14 @@ section {
 
 footer {
   margin-top: 3em;
-
+  
   a {
     padding-left: 2em;
     padding-right: 2em;
   }
 }
+
+
 
 
 /*Leaderboards*/
@@ -324,9 +326,7 @@ footer {
   color: #ffffff;
 }
 
-.footer-fix {
-  margin-top: 9em;
-}
+
 
 table {
   // No lines on the tables
@@ -375,6 +375,27 @@ table {
   height: 50px;
   opacity: 0.8;
 }
+
+/*About*/
+
+.contributorImage {
+  border-radius: 80px;
+  width: 160px;
+}
+.gitlink {
+  img {
+    height:30px; 
+    margin-bottom: 5px; 
+    margin-right: 10px; 
+  }
+  color: #222222; 
+  text-decoration: none;
+
+}
+.gitlink:hover {
+  text-decoration: none;
+}
+
 
 /*Blogger*/
 

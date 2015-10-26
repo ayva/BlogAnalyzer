@@ -163,7 +163,7 @@ class MediumScraper
     errors = MediumScraper.check_errors(content)
     
     
-    p "Checked errors for #{post.id}, found errors #{errors}"
+    p "Checked errors for #{post.id}, found errors #{errors.length}"
     errors.each do |error|
         group = Group.find_or_create_by(name: error["group"])
         hint = Hint.find_or_create_by(title: error["title"],

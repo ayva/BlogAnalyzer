@@ -64,6 +64,20 @@ var grandma = angular.module('grandma', ['restangular', 'ui.router', 'ui.bootstr
             controller: 'bloggerCtrl'
           }
         }
+      })
+      .state('about', {
+        url: '/about',
+        views: {
+          'navbar':{
+            templateUrl: 'templates/partials/navbar',
+            controller: 'navbarCtrl'
+          },
+
+          '':{
+            templateUrl: 'templates/about'
+            
+          }
+        }
       });
 
 

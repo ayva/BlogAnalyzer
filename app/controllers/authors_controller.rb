@@ -17,8 +17,8 @@ class AuthorsController < ApplicationController
 
 
   def leaderboards
-    featuredauthors = Author.last(10)
-    grandmatop = Author.joins(:posts).group('authors.id').having('sum(posts.word_count) > 3000').order("score asc").limit(10)
+    featuredauthors = Author.where('score < 50').last(10)
+    grandmatop = Author.joins(:posts).group('authors.id').having('sum(posts.word_count) > 3000 ').order("score asc").limit(10)
 
     respond_to do |format|
       format.json { render json: [featuredauthors,grandmatop] }

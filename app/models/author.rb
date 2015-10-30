@@ -25,7 +25,11 @@ class Author < ActiveRecord::Base
   end
 
   def overall_error_rate
-    ( (self.total_errors.to_f / total_words) * 100 ).round(2)
+    if (total_words > 0)
+      return ( (self.total_errors.to_f / total_words) * 100 ).round(2)
+    end
+      return 100
+    
   end
 
   def style_errors

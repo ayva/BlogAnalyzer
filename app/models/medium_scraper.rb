@@ -119,9 +119,13 @@ class MediumScraper
       end
     end
     author.score = author.overall_error_rate
+    p "#{author} score is #{author.score}"
     author.save
 
-    if !author.score.nil? || !author.score.nan?
+    if author.score.nil? || author.score.nan? || author.score == 100
+      p "Author #{author.id} has to be destroyed because of score #{author.score}"
+       Author.find(author.id).destroy
+    else
       twtr = author.twitter
       p "Grandma will twit to #{twtr}"
       if twtr
@@ -129,9 +133,6 @@ class MediumScraper
       else
         TwitterAPI.new.delay.tweet_non_twitter_user(author.full_name, author.id)
       end
-    else
-      p "Author #{author.id} has to be destroyed because of score #{author.score}"
-       Author.find(author.id).destroy
     end
   end
 
@@ -140,26 +141,37 @@ class MediumScraper
   def self.scrape_post(url, author)
     sleep 1
     page = agent.get(url)
-
+    p "Agent got #{page}"
     title = page.search('//*[@id="71bc"]').text
+    p "Title is #{title}"
     body = page.search("div[@class='section-content']").search("p")
-
+    p "Body is #{body}"
+    
     content = MediumScraper.parse_content(body)
-
+    p "Content is #{content}"
     word_count = content.split.size
     p "URL #{url} has content size #{content.length} and #{word_count} words"
-    unless Post.find_by_post_url(url)
+
+    post = Post.find_by_post_url(url)
+    if post
+      post.post_url = url
+      post.author_id = author.id
+      post.word_count = word_count
+      post.save
+      p "Post #{post.id} updated for #{author.id}"
+    else
      
       post = Post.find_or_create_by(post_url: url,
                                     author_id: author.id,
                                     word_count: word_count)
-
       p "Post #{post.id} created for #{author.id}"
-      MediumScraper.score_post(post, content)
     end
+      MediumScraper.update_hints(post, content)
   end
 
-  def self.score_post(post, content)
+  def self.update_hints(post, content)
+    # In case post already had hints we want only new one
+    post.hints.destroy_all
     errors = MediumScraper.check_errors(content)
     
     
@@ -168,12 +180,13 @@ class MediumScraper
         group = Group.find_or_create_by(name: error["group"])
         hint = Hint.find_or_create_by(title: error["title"],
                                       group_id: group.id)
-        Posthint.find_or_create_by(post_id: post.id,
-                                   hint_id: hint.id)
+
+        Posthint.create(post_id: post.id, hint_id: hint.id)
       end
   end
 
   def self.parse_content(content)
+    p "Content parsed"
     content.map{|p| p.text}.join(" ")
   end
 

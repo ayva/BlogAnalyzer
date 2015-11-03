@@ -19,20 +19,36 @@ class MediumScraper
 
 
   def self.check_errors(text)
-      api_url = Rails.application.secrets.grammarly_API_url
-      token = Rails.application.secrets.grammarly_token
+    # Splits the text into 1000 word slices, then checks each 1000 word
+    # slice for errors.
+    #
+    # Works under assumption that result is just a 1d array of errors.
+    result = []
+    text.split(" ").each_slice(1000) do |slice|
+      sleep 1
+      MediumScraper.check_errors_subtext(slice.join(" "))
+      result.push(*check_errors_subtext(slice.join(" ")))
+    end
 
-      headers = { "Content-Type" => "text/plain",
-                  "Accept" => "application/json",
-                  "Cookie" => "grauth=#{token}",
-                  "Cache-Control" => "no-cache"
-                  }
-      result = HTTParty.post(api_url, :headers => headers, :body => text).parsed_response
-
-      p '=================Hints size=================='
-      p result.length
-      return result
+    p '=================Hints size=================='
+    p result.length
+    return result
   end
+
+  def self.check_errors_subtext(subtext)
+    p "===========================SUBTEXT=================================="
+    p subtext
+    api_url = Rails.application.secrets.grammarly_API_url
+    token = Rails.application.secrets.grammarly_token
+
+    headers = { "Content-Type" => "text/plain",
+                "Accept" => "application/json",
+                "Cookie" => "grauth=#{token}",
+                "Cache-Control" => "no-cache"
+                }
+    return  HTTParty.post(api_url, :headers => headers, :body => subtext).parsed_response
+  end
+
 
   # Scrapes top stories to find blogs to add to database.
   # Returns a list of urls related to the top stories.
@@ -42,15 +58,15 @@ class MediumScraper
     posts = page.search("article")
 
     # Map the posts to their href urls if titles are in english.
-    post_urls = posts[0].xpath("//article/a/div/div/section/div/div/h3").reject{|post| DetectLanguage.simple_detect(post.text) != "en"}.map {|post| 
+    post_urls = posts[0].xpath("//article/a/div/div/section/div/div/h3").reject{|post| DetectLanguage.simple_detect(post.text) != "en"}.map {|post|
 
         post.parent.parent.parent.parent.parent.parent.attributes["href"].value
- 
+
     }
 
     # Return only non-nil urls.
     post_urls.compact
-    
+
   end
 
   # Scrapes the stories of the top authors.
@@ -61,7 +77,7 @@ class MediumScraper
     author_urls = urls.map{|url| get_author(url)}.compact
 
     # Then, for each author url, go to the author's latest posts page and scrape the posts.
-    author_urls.each do |author_url|     
+    author_urls.each do |author_url|
       #Checks if sanitized url is already scrapped
       scrape_author(author_url) if Author.find_by_blog_url(MediumScraper.sanitize_author_url(author_url)).nil?
     end
@@ -95,12 +111,12 @@ class MediumScraper
     author = MediumScraper.scrape_author_info(author_url)
     posts = author_page.search("article")
 
-    author_post_urls = posts[0].xpath("//article/a/div/div/section/div/div/h3").reject{|post| DetectLanguage.simple_detect(post.text) != "en"}.map {|post| 
-        
+    author_post_urls = posts[0].xpath("//article/a/div/div/section/div/div/h3").reject{|post| DetectLanguage.simple_detect(post.text) != "en"}.map {|post|
+
         post.parent.parent.parent.parent.parent.parent.attributes["href"].value
- 
+
     }
-    if author_post_urls.length == 0 
+    if author_post_urls.length == 0
       twtr = author.twitter
       if twtr
         TwitterAPI.new.delay.tweet_twitter_user(twtr.split("/").last, author.id)
@@ -141,16 +157,16 @@ class MediumScraper
   def self.scrape_post(url, author)
     sleep 1
     page = agent.get(url)
-    p "Agent got #{page}"
+    # p "Agent got #{page}"
     title = page.search('//*[@id="71bc"]').text
-    p "Title is #{title}"
+    # p "Title is #{title}"
     body = page.search("div[@class='section-content']").search("p")
-    p "Body is #{body}"
-    
+    # p "Body is #{body}"
+
     content = MediumScraper.parse_content(body)
-    p "Content is #{content}"
+    # p "Content is #{content}"
     word_count = content.split.size
-    p "URL #{url} has content size #{content.length} and #{word_count} words"
+    # p "URL #{url} has content size #{content.length} and #{word_count} words"
 
     post = Post.find_by_post_url(url)
     if post
@@ -160,7 +176,7 @@ class MediumScraper
       post.save
       p "Post #{post.id} updated for #{author.id}"
     else
-     
+
       post = Post.find_or_create_by(post_url: url,
                                     author_id: author.id,
                                     word_count: word_count)
@@ -173,8 +189,8 @@ class MediumScraper
     # In case post already had hints we want only new one
     post.hints.destroy_all
     errors = MediumScraper.check_errors(content)
-    
-    
+
+
     p "Checked errors for #{post.id}, found errors #{errors.length}"
     errors.each do |error|
         group = Group.find_or_create_by(name: error["group"])

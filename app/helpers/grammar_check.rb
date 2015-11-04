@@ -8,10 +8,8 @@ module GrammarCheck
                   "Cookie" => "grauth=#{token}",
                   "Cache-Control" => "no-cache"
                   }
-      result = HTTParty.post(api_url, :headers => headers, :body => text).parsed_response
-      p '======================================================='
-      p result
-      return result
+      return HTTParty.post(api_url, :headers => headers, :body => text).parsed_response
+
   end
 end
 

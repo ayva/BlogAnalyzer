@@ -9,29 +9,39 @@ end
 
 class MediumScraper
 
-  # include GrammarCheck
+
 
   attr_reader :post_urls
 
   # The "Top Stories" url for Medium
   TOP_STORIES_URL = "https://medium.com/top-stories"
   MEDIUM_REGEX = /(https:\/\/medium.com\/@[^\/]+)(?:\/?)/
-
+  # include HTTParty
+  # default_timeout 3000
+  # read_timeout 3000
 
   def self.check_errors(text)
-      api_url = Rails.application.secrets.grammarly_API_url
-      token = Rails.application.secrets.grammarly_token
+    api_url = Rails.application.secrets.grammarly_API_url
+    token = Rails.application.secrets.grammarly_token
 
-      headers = { "Content-Type" => "text/plain",
-                  "Accept" => "application/json",
-                  "Cookie" => "grauth=#{token}",
-                  "Cache-Control" => "no-cache"
-                  }
-      result = HTTParty.post(api_url, :headers => headers, :body => text).parsed_response
+    address = URI("#{api_url}")
+    request = Net::HTTP::Post.new address.request_uri
+    request.body = text
+    request["Content-Type"]="text/plain"
+    request["Accept"]="application/json"
+    request["Cookie"]="grauth=#{token}"
+    request["Cache-Control"]="no-cache"
+    puts request
+    # Set up HTTP.
+    http             = Net::HTTP.new address.host, address.port
+    http.read_timeout = 500
+    http.use_ssl     = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 
-      p '=================Hints size=================='
-      p result.length
-      return result
+    
+    http.start
+    return http.request(request).body
+
   end
 
   # Scrapes top stories to find blogs to add to database.
@@ -169,10 +179,12 @@ class MediumScraper
       MediumScraper.update_hints(post, content)
   end
 
+
+
   def self.update_hints(post, content)
     # In case post already had hints we want only new one
     post.hints.destroy_all
-    errors = MediumScraper.check_errors(content)
+    errors = JSON.parse(MediumScraper.check_errors(content))
     
     
     p "Checked errors for #{post.id}, found errors #{errors.length}"
@@ -182,7 +194,7 @@ class MediumScraper
                                       group_id: group.id)
 
         Posthint.create(post_id: post.id, hint_id: hint.id)
-      end
+    end
   end
 
   def self.parse_content(content)

@@ -1,24 +1,19 @@
 require "mechanize"
-# require "twitter_api"
+
 
 def agent
   Mechanize.new
 end
 
 
-
 class MediumScraper
-
-
 
   attr_reader :post_urls
 
   # The "Top Stories" url for Medium
   TOP_STORIES_URL = "https://medium.com/top-stories"
   MEDIUM_REGEX = /(https:\/\/medium.com\/@[^\/]+)(?:\/?)/
-  # include HTTParty
-  # default_timeout 3000
-  # read_timeout 3000
+
 
   def self.check_errors(text)
     api_url = Rails.application.secrets.grammarly_API_url

@@ -9,7 +9,7 @@ grandma.service('storage',['$http','Restangular', '$timeout', function($http, Re
   obj.checkBlog = function(url){
     obj.formSubmitted.bool = true;
     obj.checkBlogReply.message = "We are processing your request...";
-    $timeout(function(){ obj.formSubmitted.bool = false; }, 3000);
+    $timeout(function(){ obj.formSubmitted.bool = false; }, 5000);
 
     Restangular.all('authors').customPOST({url: url}, 'newblogger' )
       .then(function(response){

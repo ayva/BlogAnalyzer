@@ -203,7 +203,8 @@ class MediumScraper
     url = author_url
     name = page.search('//*[@id="prerendered"]/div[2]/div/header/h1').text.split(" ").map(&:capitalize).join(" ")
     username = MediumScraper.add_username(name)
-    img = page.search('//*[@id="prerendered"]/div[2]/div/header/div[1]/div[2]/img')[0].attributes["src"].text
+    # img = page.search('//*[@id="prerendered"]/div[2]/div/header/div[1]/div[2]/img')[0].attributes["src"].text
+    img = page.search('.avatar/img')[0].attributes["src"].text
     twtr = MediumScraper.get_twitter(page)
     fcbk = MediumScraper.get_facebook(page)
 

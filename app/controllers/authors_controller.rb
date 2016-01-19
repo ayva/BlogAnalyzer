@@ -16,6 +16,7 @@ class AuthorsController < ApplicationController
   end
 
 
+
   def leaderboards
     featuredauthors = Author.where('score < 50').last(10)
     grandmatop = Author.joins(:posts).group('authors.id').having('sum(posts.word_count) > 3000 ').order("score asc").limit(10)

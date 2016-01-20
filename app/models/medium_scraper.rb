@@ -8,10 +8,11 @@ end
 
 class MediumScraper
 
-  attr_reader :post_urls
+  attr_reader :post_urls, :get_top_stories, :get_author
 
   # The "Top Stories" url for Medium
-  TOP_STORIES_URL = "https://medium.com/top-stories"
+  TOP_STORIES_URL = "http://medium.com/top-stories"
+
   MEDIUM_REGEX = /(https:\/\/medium.com\/@[^\/]+)(?:\/?)/
 
 
@@ -47,12 +48,13 @@ class MediumScraper
     posts = page.search("article")
 
     # Map the posts to their href urls if titles are in english.
-    post_urls = posts[0].xpath("//article/a/div/div/section/div/div/h3").reject{|post| DetectLanguage.simple_detect(post.text) != "en"}.map {|post| 
+    post_urls = posts[0].xpath("//article/a/div/div/section/div/div/h3").reject{|post| 
+      DetectLanguage.simple_detect(post.text) != "en"}.map {|post| 
 
         post.parent.parent.parent.parent.parent.parent.attributes["href"].value
  
     }
-
+    puts "Found #{post_urls.compact.length} en articles in top stories"
     # Return only non-nil urls.
     post_urls.compact
     
@@ -201,7 +203,8 @@ class MediumScraper
     page = agent.get(author_url)
 
     url = author_url
-    name = page.search('//*[@id="prerendered"]/div[2]/div/header/h1').text.split(" ").map(&:capitalize).join(" ")
+    name=page.link_with(:href => url).text
+    # name = page.search('//*[@id="prerendered"]/div[2]/div/header/h1').text.split(" ").map(&:capitalize).join(" ")
     username = MediumScraper.add_username(name)
     # img = page.search('//*[@id="prerendered"]/div[2]/div/header/div[1]/div[2]/img')[0].attributes["src"].text
     img = page.search('.avatar/img')[0].attributes["src"].text

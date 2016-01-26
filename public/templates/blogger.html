@@ -30,7 +30,7 @@
           <table class="table" >
             <tr>
 
-              <td>{{blogger.full_name}}'s blog is in the top {{blogger.rating}}% blogs read by Grandma.</td>
+              <td>{{blogger.full_name}}'s blog is in the top <span ng-hide="blogger.rating<1">{{blogger.rating}}%</span> blogs read by Grandma.</td>
               <td><a class="twitter-share-button"
                       target="_blank"
                       ng-href= "{{twitterUrl}}"

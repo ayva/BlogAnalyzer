@@ -108,12 +108,10 @@ class MediumScraper
  
     }
     if author_post_urls.length == 0 
-      twtr = author.twitter
-      if twtr
-        TwitterAPI.new.delay.tweet_twitter_user(twtr.split("/").last, author.id)
-      end
+     
       author.destroy
-      return "No English text found"
+      p "No English text found for author #{author.id}"
+      return 
     end
 
     author_post_urls[0..9].each_with_index do |au, i|
@@ -126,19 +124,20 @@ class MediumScraper
       end
     end
     author.score = author.overall_error_rate
-    p "#{author} score is #{author.score}"
-    author.save
-
-    if author.score.nil? || author.score.nan? || author.score == 100
-      p "Author #{author.id} has to be destroyed because of score #{author.score}"
-       Author.find(author.id).destroy
-    else
-      twtr = author.twitter
-      p "Grandma will twit to #{twtr}"
-      if twtr
-        TwitterAPI.new.delay.tweet_twitter_user(twtr.split("/").last, author.id)
+    p "#{author.id} author id score is #{author.score}"
+    if author.save
+      if author.score.nil? || author.score.nan? || author.score == 100
+        p "Author #{author.id} has to be destroyed because of score #{author.score}"
+         Author.find(author.id).destroy
       else
-        TwitterAPI.new.delay.tweet_non_twitter_user(author.full_name, author.id)
+        twtr = author.twitter
+        if twtr
+          p "Grandma will twit to #{twtr}"
+          TwitterAPI.new.delay.tweet_twitter_user(twtr.split("/").last, author.id)
+        else
+          p "Grandma will twit with no twitter account"
+          TwitterAPI.new.delay.tweet_non_twitter_user(author.full_name, author.id)
+        end
       end
     end
   end
@@ -149,10 +148,10 @@ class MediumScraper
     sleep 1
     page = agent.get(url)
     p "Agent got #{page}"
-    title = page.search('//*[@id="71bc"]').text
+    title = page.search('.section-content/div/h3').first.text
     p "Title is #{title}"
     body = page.search("div[@class='section-content']").search("p")
-    p "Body is #{body}"
+    
     
     content = MediumScraper.parse_content(body)
     p "Content is #{content}"

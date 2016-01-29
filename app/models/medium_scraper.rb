@@ -152,7 +152,6 @@ class MediumScraper
     p "Title is #{title}"
     body = page.search("div[@class='section-content']").search("p")
     
-    
     content = MediumScraper.parse_content(body)
     p "Content is #{content}"
     word_count = content.split.size
